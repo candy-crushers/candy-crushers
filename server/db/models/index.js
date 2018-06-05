@@ -3,6 +3,7 @@ const Category = require ('./Category')
 const Order = require ('./Order')
 const Product = require('./Product')
 const Review = require('./Review')
+const OrderProducts = require('./OrderProducts')
 const db = require('../db.js')
 
 
@@ -16,8 +17,8 @@ Review.belongsTo(User)
 User.hasMany(Review)
 
 
-Product.belongsToMany(Order, {through : 'orderProducts'})
-Order.belongsToMany(Product, { through : 'orderProducts'})
+Product.belongsToMany(Order, {through : 'OrderProducts'})
+Order.belongsToMany(Product, { through : 'OrderProducts'})
 
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -34,5 +35,6 @@ module.exports = {
   Product,
   Category,
   Review,
-  Order
+  Order,
+  OrderProducts
 }
