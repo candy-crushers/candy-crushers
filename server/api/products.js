@@ -12,3 +12,16 @@ router.get('/', (req, res, next) => {
     .then(products => res.json(products))
     .catch(next)
 })
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findOne({
+      where : {
+        id : req.params.id
+      }
+    })
+    res.json(product)
+  }catch(err){
+    console.error(err)
+  }
+})
