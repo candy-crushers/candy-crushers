@@ -1,11 +1,11 @@
 import React from 'react'
 
 
-export const ReviewAvatar = (props)=> {
+export default function ReviewAvatar(props){
   const { user, text, stars } = props.review
   return(
     <div className="reviewAvatarContainer">
-      <img src={'./defaultPhotos/ompa.jpg'} />
+      <img src={'/defaultPhotos/ompa.jpg'} />
       <h2>{user.email}</h2>
       <p>{stars}</p>
       <p>{text}</p>

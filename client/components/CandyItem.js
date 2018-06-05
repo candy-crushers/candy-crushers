@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CandyItem = (props) => {
+export default function CandyItem(props){
   const { image, name, price, description } = props.product
   const button = props.button
   return(

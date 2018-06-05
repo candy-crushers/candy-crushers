@@ -5,38 +5,49 @@ import CandyItem from './CandyItem'
 import ReviewAvatar from './ReviewAvatar'
 
 
-
-
-
-
 class SingleProduct extends Component {
   constructor(props){
     super(props)
   }
 
+  componentDidMount () {
+    const id = this.props.match.params.id
+    //console.log('id', id)
+    this.props.getProduct(id)
+  }
+
+  productComponent () {
+    const product = this.props.singleProduct
+    return (
+      <div>
+            <CandyItem product={product.product} />
+            <div className="singleProductReviews">
+            {
+              product.reviews.map((review) => {
+                return <ReviewAvatar review={review} />
+              })
+            }
+            </div>
+          </div>
+    )
+  }
+
   render(){
-    return(<div>
-        <CandyItem product={...this.props.product} />
-        <div className="singleProductReviews">
-        {
-          product.reviews.map((review) => {
-            <ReviewAvatar review={review} />
-          })
-        }
-        </div>
-      </div>)
+    return (
+      this.props.singleProduct.product ?  this.productComponent() : <div></div>)
   }
 }
 
+
 const mapState = (state) => {
   return({
-    product : state.singleProduct
+    singleProduct : state.singleProduct
   })
 }
 
 const mapDispatch = (dispatch) => {
   return ({
-    getProduct : () => dispatch(fetchSingleProduct())
+    getProduct : (id) => dispatch(fetchSingleProduct(id))
   })
 }
 
