@@ -7,10 +7,6 @@ const app = require('../index')
 const User = db.model('user')
 
 describe('User routes', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
-
   describe('/api/users/', () => {
     const codysEmail = 'cody@puppybook.com'
 
