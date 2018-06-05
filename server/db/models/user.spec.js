@@ -5,10 +5,6 @@ const db = require('../index')
 const User = db.model('user')
 
 describe('User model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
-
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
       let cody
