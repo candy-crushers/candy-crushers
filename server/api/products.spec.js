@@ -6,7 +6,27 @@ const { Product, User } = require('../db/models')
 
 describe('Product routes', () => {
   describe('/api/products without authorization', () => {
-    it('GET /api/products returns products from the DB')
+    it('GET /api/products returns products from the DB', () => {
+      const newProduct = {
+        name: 'twix',
+        description: 'caramel heaven',
+        inventory: 50,
+        price: 1.49
+      }
+
+      Product.create(newProduct)
+
+      return request(app)
+        .get('/api/products')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('array')
+          expect(res.body[0].name).to.be.equal(newProduct.name);
+          expect(res.body[0].description).to.be.equal(newProduct.description);
+          expect(res.body[0].inventory).to.be.equal(newProduct.inventory);
+          expect(res.body[0].price).to.be.equal(newProduct.price);
+        })
+      })
 
     it('POST /api/products as an unauthorized user receives a 401', () => {
       const productToCreate = {
