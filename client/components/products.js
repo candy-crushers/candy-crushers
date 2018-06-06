@@ -1,11 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-<<<<<<< HEAD
+
 import {fetchProducts, fetchCategories, setCategory} from '../store'
-=======
 import { Link } from 'react-router-dom'
-import {fetchProducts, fetchCategories} from '../store'
->>>>>>> master
 import {Container, Image, Segment} from 'semantic-ui-react'
 
 /**
@@ -75,8 +72,10 @@ class Products extends React.Component {
     return (
       <Container >
         <h3>ALL PRODUCTS</h3>
+        <Link to="/admin/products/add">Add Product</Link>
         <select onChange={this.handleChange} value={selectedCategory.id}>
           <option value={null}>Select Category</option>
+
           {categories.map( category =>
             <option key={category.id} value={category.id}>
               {category.name}

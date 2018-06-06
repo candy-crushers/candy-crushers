@@ -6,6 +6,7 @@ const { Product, User } = require('../db/models')
 
 describe('Product routes', () => {
   describe('/api/products without authorization', () => {
+
     it('GET /api/products returns products from the DB', () => {
       const newProduct = {
         name: 'twix',
@@ -27,7 +28,6 @@ describe('Product routes', () => {
           expect(res.body[0].price).to.be.equal(newProduct.price);
         })
       })
-
 
     it('POST /api/products as an unauthorized user receives a 401', () => {
       const productToCreate = {
