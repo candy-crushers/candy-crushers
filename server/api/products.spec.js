@@ -6,7 +6,7 @@ const { Product, User } = require('../db/models')
 
 describe('Product routes', () => {
   describe('/api/products without authorization', () => {
-    xit('GET /api/products returns products from the DB')
+    it('GET /api/products returns products from the DB')
 
     it('POST /api/products as an unauthorized user receives a 401', () => {
       const productToCreate = {
@@ -26,8 +26,11 @@ describe('Product routes', () => {
   })
 
   describe('/api/products/:id without authorization', () => {
-    xit('GET /api/products/:id returns a product from the DB')
-
+    it('GET /api/products/:id returns a product from the DB', () => {
+      return request(app)
+        .get('/api/products/1')
+        .expect(200)
+    })
     it('PUT /api/products/:id receives a 401', () => {
       const updates = {name: 'Snickers'}
       return request(app)
@@ -81,7 +84,6 @@ describe('Product routes', () => {
           expect(res.body.name).to.equal('Snickers')
         })
     })
-
   })
 })
 
