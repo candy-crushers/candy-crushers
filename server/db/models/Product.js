@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const { Review, User } = require('./')
 
 const Product = db.define('product', {
    name: {
@@ -23,8 +24,13 @@ const Product = db.define('product', {
      type : Sequelize.ARRAY(Sequelize.STRING),
      defaultValue : ['/defaultPhotos/lolies.jpg']
    },
+})
 
-
+//-----HOOKS-----
+Product.beforeValidate(instance => {
+  if (!Array.isArray(instance.images)) {
+    instance.images = instance.images.split(',')
+  }
 })
 
 module.exports = Product
