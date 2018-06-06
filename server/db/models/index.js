@@ -6,9 +6,8 @@ const Review = require('./Review')
 const OrderProducts = require('./OrderProducts')
 const db = require('../db.js')
 
-
-Product.belongsToMany(Category, { through : 'productCategories'})
-Category.belongsToMany(Product, { through : 'productCategories'})
+Product.belongsToMany(Category, { through: 'product_categories' })
+Category.belongsToMany(Product, { through: 'product_categories' })
 
 Review.belongsTo(Product)
 Product.hasMany(Review)
@@ -16,15 +15,14 @@ Product.hasMany(Review)
 Review.belongsTo(User)
 User.hasMany(Review)
 
-
-Product.belongsToMany(Order, {through : 'OrderProducts'})
-Order.belongsToMany(Product, { through : 'OrderProducts'})
+Product.belongsToMany(Order, { through: OrderProducts })
+Order.belongsToMany(Product, { through: OrderProducts })
 
 User.hasMany(Order)
 Order.belongsTo(User)
 
 Product.addScope('defaultScope', {
-  include: [{model: Review, include: User }],
+  include: [{ model: Review, include: User }],
 }, {
   override: true
 });

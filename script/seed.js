@@ -5,6 +5,7 @@ const { Product, Category, Review, Order, User } = require('../server/db/models'
 const { reviewData, categoryData, productData, userData, orderData } = require('./seed-data');
 
 const shuffle = () => 0.5 - Math.random()
+const randomQuantity = () => Math.floor(Math.random() * 10) + 1
 
 async function seed () {
   await db.sync({force: true})
@@ -36,7 +37,14 @@ async function seed () {
     const subtotal = randomProducts.reduce((a, b) => a + b.price, 0)
     const user = users.sort(shuffle)[0]
 
-    return order.update({subtotal, userId: user.id, email: user.email}).then((orderInst) => orderInst.setProducts(randomProducts))
+    return order.update({subtotal, userId: user.id, email: user.email}).then((orderInst) => {
+      return Promise.all(randomProducts.map(product => orderInst.addProduct(product, {
+        through: {
+          priceAtTime: product.price,
+          quantity: randomQuantity()
+        }
+      })))
+    })
   }))
 
   console.log(`seeded successfully`)

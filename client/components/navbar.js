@@ -10,11 +10,19 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     {/* <nav> */}
     <Menu size='tiny'>
       <Menu.Item>
-        <Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' />
+        <Link to='/products'><Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' /></Link>
       </Menu.Item>
       <Menu.Item>
         <Link to='/products' >Products </Link>
       </Menu.Item>
+      {
+        isLoggedIn &&
+        <Menu.Menu>
+          <Menu.Item>
+            <Link to="/orders">Orders</Link>
+          </Menu.Item>
+        </Menu.Menu>
+      }
       <Menu.Menu position='right'>
         <Menu.Item>
           <Link to='/cart' >
@@ -25,7 +33,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to='/myAccount' > My Account </Link>
         </Menu.Item>
           {isLoggedIn ? (
-            <div>
+            <Menu.Menu position='right'>
               {/* The navbar will show these links after you log in */}
               <Menu.Item>
                 <Link to="/home">Home</Link>
@@ -35,9 +43,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 Logout
               </a>
               </Menu.Item>
-            </div>
+            </Menu.Menu>
           ) : (
-            <div>
+            <Menu.Menu position='right'>
               {/* The navbar will show these links before you log in */}
               <Menu.Item>
                 <Link to="/login">Login</Link>
@@ -45,7 +53,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <Menu.Item>
                 <Link to="/signup">Sign Up</Link>
               </Menu.Item>
-            </div>
+            </Menu.Menu>
           )}
         {/* </nav> */}
       </Menu.Menu >
