@@ -5,7 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_PRODUCTS = 'GET_PRODUCTS'
-
+const SELECT_CATEGORY = 'SELECT_CATEGORY'
 /**
  * INITIAL STATE
  */
@@ -24,6 +24,13 @@ const getProducts = products => {
   }
 }
 
+const selectCategory = category => {
+  return {
+    type: SELECT_CATEGORY,
+    category
+  }
+}
+
 /**
  * THUNK CREATORS
  */
@@ -34,13 +41,19 @@ export const fetchProducts = () =>
         dispatch(getProducts(res.data || initialState)))
       .catch(err => console.log(err))
 
+export const setCategory = (category) =>
+  dispatch =>
+    dispatch(selectCategory(category))
+
 /**
  * REDUCER
  */
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS:
-      return action.products
+      return {...state, products: action.products}
+    case SELECT_CATEGORY:
+      return {...state, selectedCategory: action.category}
     default:
       return state
   }

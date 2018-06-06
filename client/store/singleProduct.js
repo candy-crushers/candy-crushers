@@ -33,7 +33,6 @@ axios.get(`/api/products/${id}`)
 
 
 export default function (state = singleProduct, action) {
-  console.log('hello from reducer')
   switch (action.type) {
     case GET_SINGLE_PRODUCT:
       return action.product
