@@ -14,6 +14,7 @@ export default function CandyItem(props){
         <p>{description}</p>
       </div>
       { button && <button>{button}</button> }
+      <button type="button" onClick={() => props.history.push(`/admin/products/${props.product.id}/edit`)}>Edit</button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store'
+import { Link } from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -16,6 +17,7 @@ class Products extends React.Component {
     return (
       <div>
         <h3>ALL PRODUCTS</h3>
+        <Link to="/admin/products/add">Add Product</Link>
         {products.map(product =>
           (
           <div key={product.id}>
