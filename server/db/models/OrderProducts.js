@@ -14,7 +14,7 @@ const UserProjects = db.define('userProjects', {
     subTotal : {
         type : Sequelize.VIRTUAL,
         get() {
-            return this.getDataValues('priceAtTime') * this.getDataValues('quantity')
+            return this.getDataValue('priceAtTime') * this.getDataValue('quantity')
         }
 
     }
