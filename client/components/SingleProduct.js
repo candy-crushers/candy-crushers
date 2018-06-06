@@ -35,7 +35,7 @@ class SingleProduct extends Component {
 
   render(){
     return (
-      this.props.singleProduct.id ?  this.productComponent() : <div></div>)
+      this.props.singleProduct.id ?  this.productComponent() : <span />)
   }
 }
 
