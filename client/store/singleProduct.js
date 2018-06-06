@@ -50,12 +50,8 @@ export const createPutProductThunk = (product) => {
   }
 }
 
-<<<<<<< HEAD
-export default function (state = singleProduct, action) {
-=======
 // reducer
 export default function (state = initialState, action) {
->>>>>>> master
   switch (action.type) {
     case GET_SINGLE_PRODUCT:
     case ADD_SINGLE_PRODUCT:

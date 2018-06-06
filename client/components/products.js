@@ -75,14 +75,8 @@ class Products extends React.Component {
     return (
       <Container >
         <h3>ALL PRODUCTS</h3>
-<<<<<<< HEAD
         <select onChange={this.handleChange} value={selectedCategory.id}>
           <option value={null}>Select Category</option>
-=======
-        <Link to="/admin/products/add">Add Product</Link>
-        <select onChange={this.handleChange}>
-          <option>Select Category</option>
->>>>>>> master
           {categories.map( category =>
             <option key={category.id} value={category.id}>
               {category.name}
