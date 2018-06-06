@@ -42,8 +42,6 @@ export const createPutProductThunk = (product) => {
     try {
       const { data: updatedProduct } = await axios.put(`/api/products/${product.id}`, product)
       dispatch(createEditProductAction(updatedProduct))
-
-      return updatedProduct.id
     } catch (error) {
       console.error(error)
     }
