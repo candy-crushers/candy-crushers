@@ -1,15 +1,14 @@
 const router = require('express').Router()
-const {Product, Category} = require('../db/models')
+const {Category} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-    Product.findAll({
+    Category.findAll({
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      // attributes: ['id', 'name', 'price',]
-      include: [Category]
+       attributes: ['id', 'name']
     })
-    .then(products => res.json(products))
+    .then(categories => res.json(categories))
     .catch(next)
 })
