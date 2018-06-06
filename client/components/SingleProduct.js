@@ -12,7 +12,6 @@ class SingleProduct extends Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    //console.log('id', id)
     this.props.getProduct(id)
   }
 
@@ -24,7 +23,7 @@ class SingleProduct extends Component {
             <div className="singleProductReviews">
             {
               product.reviews.map((review) => {
-                return <ReviewAvatar review={review} />
+                return <ReviewAvatar key={review.id} review={review} />
               })
             }
             </div>
@@ -34,7 +33,7 @@ class SingleProduct extends Component {
 
   render(){
     return (
-      this.props.singleProduct.product ?  this.productComponent() : <div></div>)
+      this.props.singleProduct.product ?  this.productComponent() : <span />)
   }
 }
 
