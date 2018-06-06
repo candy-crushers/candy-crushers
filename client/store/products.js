@@ -9,7 +9,10 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
 /**
  * INITIAL STATE
  */
-const initialState = []
+const initialState = {
+  products: [],
+  selectedCategory : {}
+}
 
 /**
  * ACTION CREATORS

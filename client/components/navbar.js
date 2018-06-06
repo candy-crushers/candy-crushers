@@ -30,11 +30,11 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <Menu.Item>
                 <Link to="/home">Home</Link>
               </Menu.Item>
-              <Menu.item>
+              <Menu.Item>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
-              </Menu.item>
+              </Menu.Item>
             </div>
           ) : (
             <div>
