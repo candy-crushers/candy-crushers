@@ -1,8 +1,19 @@
 import React from 'react'
 
+
+function Quantity(){
+  return (
+  <form>
+    <input type="number" name="quantity" />
+  </form>
+  )
+}
+
+
 export default function CandyItem(props){
   const { images, name, price, description } = props.product
-  const button = props.button
+  const { button, handleClick, showQuantity } = props
+
   return(
     <div className="singleProductContainer">
       <div className="singleProductImagesContainer">
@@ -13,8 +24,11 @@ export default function CandyItem(props){
         <h4>{price}</h4>
         <p>{description}</p>
       </div>
-      { button && <button>{button}</button> }
+      { button && <button onClick={handleClick} >{button}</button> }
+      { showQuantity && <Quantity /> }
       <button type="button" onClick={() => props.history.push(`/admin/products/${props.product.id}/edit`)}>Edit</button>
     </div>
   )
 }
+
+
