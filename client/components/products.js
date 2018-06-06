@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+
 import {fetchProducts, fetchCategories, setCategory} from '../store'
 import { Link } from 'react-router-dom'
 import {Container, Image, Segment} from 'semantic-ui-react'
