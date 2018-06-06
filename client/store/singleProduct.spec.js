@@ -26,19 +26,29 @@ describe('SingleProduct Reducer', () => {
 
   describe('Thunk Creators', () => {
     describe('Post Product Thunk', () => {
-      it('eventually dispatches the ADD_SINGLE_USER action and returns its id', () => {
-        const fakeProduct = {
-          id: 1,
-          name: 'Kit-Kat',
-          description: 'Oat cake soufflé powder carrot cake gummi bears.',
-          price: 1.99,
-          inventory: 100,
-        }
+      const fakeProduct = {
+        id: 1,
+        name: 'Kit-Kat',
+        description: 'Oat cake soufflé powder carrot cake gummi bears.',
+        price: 1.99,
+        inventory: 100,
+      }
+
+      beforeEach(() => {
         mockAxios.onPost('/api/products').replyOnce(201, fakeProduct)
+      })
+
+      it('eventually dispatches the ADD_SINGLE_USER action', () => {
         return store.dispatch(createPostProductThunk(fakeProduct))
-          .then((productId) => {
+          .then(() => {
             const actions = store.getActions()
             expect(actions[0].type).to.equal('ADD_SINGLE_PRODUCT')
+          })
+      })
+
+      it('returns the newly created product id', () => {
+        return store.dispatch(createPostProductThunk(fakeProduct))
+          .then((productId) => {
             expect(productId).to.equal(1)
           })
       })
