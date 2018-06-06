@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Products, SingleProduct } from './components'
+import {Login, Signup, UserHome, Products, SingleProduct, AddProduct, EditProduct} from './components'
 import {me} from './store'
 
 /**
@@ -14,7 +14,7 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <Switch>
@@ -25,13 +25,21 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {
           isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-            </Switch>
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHome} />
+            {
+              isAdmin &&
+              <Switch>
+                {/* Routes placed here are only available for logged in admins */}
+                <Route path="/admin/products/add" component={AddProduct} />
+                <Route path="/admin/products/:id/edit" component={EditProduct} />
+              </Switch>
+            }
+          </Switch>
         }
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Redirect to="/login" />
       </Switch>
     )
   }
@@ -44,7 +52,8 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.id && state.user.isAdmin,
   }
 }
 

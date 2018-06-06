@@ -12,7 +12,6 @@ class SingleProduct extends Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    //console.log('id', id)
     this.props.getProduct(id)
   }
 
@@ -20,21 +19,23 @@ class SingleProduct extends Component {
     const product = this.props.singleProduct
     return (
       <div>
-            <CandyItem product={product.product} />
-            <div className="singleProductReviews">
-            {
-              product.reviews.map((review) => {
-                return <ReviewAvatar review={review} />
-              })
-            }
-            </div>
-          </div>
+        <CandyItem product={product} history={this.props.history} />
+        <div className="singleProductReviews">
+        {
+          product.reviews && product.reviews.length > 0
+          ? product.reviews.map((review) => {
+              return <ReviewAvatar key={review.id} review={review} />
+            })
+          : <div>No reviews yet</div>
+        }
+        </div>
+      </div>
     )
   }
 
   render(){
     return (
-      this.props.singleProduct.product ?  this.productComponent() : <div></div>)
+      this.props.singleProduct.id ?  this.productComponent() : <span />)
   }
 }
 
