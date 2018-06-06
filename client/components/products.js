@@ -43,10 +43,12 @@ class Products extends React.Component {
       this.setState({
         showProducts
       })
-    } else
+    } else {
+      this.props.setCategory({});
       this.setState({
         showProducts: this.props.products
       })
+    }
   }
 
   handleSearch = (event) => {
