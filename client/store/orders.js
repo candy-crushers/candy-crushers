@@ -10,10 +10,25 @@ const initialState = []
 const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
 
 // thunk creators
-export const createGetOrdersThunk = () => {
+export const createGetOrdersForUserThunk = () => {
   return async (dispatch) => {
-    const { data: orders } = await axios.get('/api/orders')
-    dispatch(createGotOrdersAction(orders))
+    try {
+      const { data: orders } = await axios.get('/api/user/orders')
+      dispatch(createGotOrdersAction(orders))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const createGetOrdersForAdminThunk = () => {
+  return async (dispatch) => {
+    try {
+      const { data: orders } = await axios.get('/api/admin/orders')
+      dispatch(createGotOrdersAction(orders))
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

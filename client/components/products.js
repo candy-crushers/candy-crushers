@@ -68,7 +68,6 @@ class Products extends React.Component {
   }
 
   render(){
-    console.log(this.props);
     const {categories,selectedCategory} = this.props;
     const products = this.state.showProducts;
     return (
