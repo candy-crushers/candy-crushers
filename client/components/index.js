@@ -13,3 +13,4 @@ export {default as AddProduct} from './add-product'
 export {default as EditProduct} from './edit-product'
 export {default as OrderHistory} from './order-history'
 export {default as OrderRow} from './order-row'
+
