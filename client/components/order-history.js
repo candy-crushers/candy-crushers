@@ -16,6 +16,7 @@ class OrderHistory extends Component {
         <h1>Order History</h1>
         <div className="order-history-orders">
           {
+            /* REVIEW: is this check neccessary? */
             orders.length > 0 && orders.map(order => <OrderRow key={order.id} order={order} />)
           }
         </div>

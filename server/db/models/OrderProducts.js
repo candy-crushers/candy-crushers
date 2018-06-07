@@ -3,6 +3,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const OrderProducts = db.define('order_products', {
+    // REVIEW: price as float D:
     priceAtTime: Sequelize.FLOAT,
     quantity : {
         type : Sequelize.INTEGER,

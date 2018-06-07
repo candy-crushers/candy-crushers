@@ -33,6 +33,7 @@ class Routes extends Component {
               isAdmin &&
               <Switch>
                 {/* Routes placed here are only available for logged in admins */}
+                <Route path="/admin/orders" component={OrderAdministration} />
                 <Route path="/admin/products/add" component={AddProduct} />
                 <Route path="/admin/products/:id/edit" component={EditProduct} />
               </Switch>

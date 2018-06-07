@@ -38,7 +38,7 @@ class Products extends React.Component {
   handleChange = async (event) => {
     const activeCategory = this.props.categories.filter(category => category.id === Number(event.target.value))[0]
     if(activeCategory) {
-      await this.props.setCategory(activeCategory)
+     await this.props.setCategory(activeCategory)
       const showProducts = this.filterProducts(this.props.selectedCategory.id)
       this.setState({
         showProducts
@@ -90,6 +90,7 @@ class Products extends React.Component {
            type="text"
           />
         </form>
+        {/* REVIEW: do we need this check? */}
         {products.length && products.map( (product) =>
         (
           <div key={product.id}>
@@ -112,6 +113,14 @@ class Products extends React.Component {
  * CONTAINER
  */
 const mapStateToProps = (state) => {
+
+  const showProducts = this.state.showProducts.filter(product =>
+    product.name.startsWith(event.target.value)
+  )
+  this.setState({
+    showProducts
+  })
+
   return {
     products: state.products.products,
     selectedCategory: state.products.selectedCategory,

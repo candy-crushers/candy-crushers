@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {Product, Review, User, Category} = require('../db/models')
 module.exports = router
 
+// REVIEW: isolate admin routes
 const checkAdminMiddleware = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next()
@@ -20,6 +21,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+  /*
+try {
+  await Product.create()
+}
+catch (err) {
+}
+*/
+
+// REVIEW: async/await/promise/express try/catch
 router.post('/', checkAdminMiddleware, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
@@ -45,6 +55,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', checkAdminMiddleware, async (req, res, next) => {
   try {
+    // REVIEW: req.body dangerous, even for "admin"
+    //         privelage escalation
     await Product.update(req.body, {
       where: {
         id: req.params.id,

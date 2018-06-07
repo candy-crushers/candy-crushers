@@ -5,6 +5,21 @@ import CandyItem from './CandyItem'
 import ReviewAvatar from './ReviewAvatar'
 
 
+  <Collection
+    items={[]}
+    itemComponent={({item}) => {
+
+    }}
+    blankSlate={() => {
+
+    }}
+  />
+
+function Collection (props) {
+  if (props.items && props.items.length > 0)
+    // etc.
+}
+
 
 class SingleProduct extends Component {
   constructor(props){
@@ -21,7 +36,7 @@ class SingleProduct extends Component {
     this.props.getProduct(id)
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     event.preventDefault()
     if(event.target.value >= 0){
       this.setState({
@@ -39,6 +54,16 @@ class SingleProduct extends Component {
     })
   }
 
+    /*
+  const foo = true ? 1 : 0
+  const bar = if (true) {
+    1
+  }
+  else {
+    0
+  }
+  */
+
   productComponent () {
     const product = this.props.singleProduct
     const showQuantity = {
@@ -53,15 +78,19 @@ class SingleProduct extends Component {
         <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} />
         <div className="singleProductReviews">
         {
-          product.reviews && product.reviews.length > 0
-          ? product.reviews.map((review) => {
-              return <ReviewAvatar key={review.id} review={review} />
-            })
-          : <div>No reviews yet</div>
+          this.renderReviews()
         }
         </div>
       </div>
     )
+  }
+
+  renderReviews () {
+    product.reviews && product.reviews.length > 0
+    ? product.reviews.map((review) => {
+        return <ReviewAvatar key={review.id} review={review} />
+      })
+    : <div>No reviews yet</div>
   }
 
   render(){

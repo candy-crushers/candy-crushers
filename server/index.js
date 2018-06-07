@@ -69,6 +69,15 @@ const createApp = () => {
     }
   })
 
+  // REVIEW: error handling
+  app.get('/caught', (req, res, next) => {
+    next(new Error('BOOM'))
+  })
+
+  app.get('/uncaught', (req, res, next) => {
+    throw new Error('BOOM')
+  })
+
   // sends index.html
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'))

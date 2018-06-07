@@ -4,6 +4,7 @@ const db = require('../db')
 const app = require('../index')
 const { Product, User } = require('../db/models')
 
+// REVIEW: NICE
 describe('Product routes', () => {
   describe('/api/products without authorization', () => {
     it('GET /api/products returns products from the DB', () => {

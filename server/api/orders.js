@@ -11,6 +11,12 @@ const checkLoggedInMiddleware = (req, res, next) => {
   }
 }
 
+// /api/admin
+// /api/public
+// /api/user
+// app.use('/api/admin', checkAdmin, adminRouter)
+
+// REVIEW: isolate admin api
 router.get('/', checkLoggedInMiddleware, async (req, res, next) => {
   const options = {
     include: [{ all: true }],

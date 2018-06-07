@@ -4,6 +4,7 @@ const db = require('../db')
 const app = require('../index')
 const { User, Product, Order } = require('../db/models')
 
+// REVIEW: NICE
 describe('Orders routes', () => {
   describe('/api/orders without logging in', () => {
     it('GET /api/orders receives a 401', () => {

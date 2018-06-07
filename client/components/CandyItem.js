@@ -1,5 +1,6 @@
 import React from 'react'
 
+// REVIEW: naming/casing of files
 export default function CandyItem(props){
   const { images, name, price, description } = props.product
   const { text, method, quantity, handleChange, handleSubmit } = props.showQuantity
