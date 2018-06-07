@@ -2,10 +2,7 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-
-
-
-const UserProjects = db.define('userProjects', {
+const OrderProducts = db.define('order_products', {
     priceAtTime: Sequelize.FLOAT,
     quantity : {
         type : Sequelize.INTEGER,
@@ -21,4 +18,4 @@ const UserProjects = db.define('userProjects', {
 })
 
 
-module.exports = UserProjects
+module.exports = OrderProducts
