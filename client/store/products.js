@@ -4,8 +4,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_PRODUCTS = 'GET_PRODUCTS'
-const SELECT_CATEGORY = 'SELECT_CATEGORY'
+export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 /**
  * INITIAL STATE
  */
@@ -17,14 +17,14 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const getProducts = products => {
+export const getProducts = products => {
   return {
       type: GET_PRODUCTS,
       products
   }
 }
 
-const selectCategory = category => {
+export const selectCategory = category => {
   return {
     type: SELECT_CATEGORY,
     category

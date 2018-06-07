@@ -31,8 +31,7 @@ class Products extends React.Component {
 
   filterProducts = (categoryId) => {
     return this.props.products.filter(product =>
-      !!product.categories.filter( category => category.id === Number(categoryId)).length
-    );
+      !!product.categories.filter( category => category.id === Number(categoryId)).length)
   }
 
   handleChange = async (event) => {
@@ -76,7 +75,6 @@ class Products extends React.Component {
         <Link to="/admin/products/add">Add Product</Link>
         <select onChange={this.handleChange} value={selectedCategory.id}>
           <option value={null}>Select Category</option>
-
           {categories.map( category =>
             <option key={category.id} value={category.id}>
               {category.name}
@@ -97,7 +95,7 @@ class Products extends React.Component {
               <h4>{product.name}</h4>
               <h5>${product.price}</h5>
               <Segment basic>{product.description.substring(0, 100)}...</Segment>
-              <a>Add To Cart</a>
+              <p>Add To Cart</p>
             </Link>
           </div>
         ))
