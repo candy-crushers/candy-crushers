@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { fetchSingleProduct } from '../store'
+import { fetchSingleProduct, addItem } from '../store'
 import CandyItem from './CandyItem'
 import ReviewAvatar from './ReviewAvatar'
+
 
 
 class SingleProduct extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      quantity : 1
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount () {
@@ -15,11 +21,37 @@ class SingleProduct extends Component {
     this.props.getProduct(id)
   }
 
+  handleChange(event) {
+    event.preventDefault()
+    if(event.target.value >= 0){
+      this.setState({
+        [event.target.name] : event.target.value
+      })
+    }
+  }
+
+  handleSubmit (event) {
+    event.preventDefault()
+    const id = this.props.match.params.id
+    const quantity = this.state.quantity
+    this.props.addToCart({id, quantity})
+    this.setState({
+      quantity : ''
+    })
+  }
+
   productComponent () {
     const product = this.props.singleProduct
+    const showQuantity = {
+      text : 'Add to Cart',
+      method : 'post',
+      handleChange : this.handleChange,
+      handleSubmit : this.handleSubmit,
+      quantity : this.state.quantity
+    }
     return (
       <div>
-        <CandyItem product={product} history={this.props.history} />
+        <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} />
         <div className="singleProductReviews">
         {
           product.reviews && product.reviews.length > 0
@@ -42,13 +74,15 @@ class SingleProduct extends Component {
 
 const mapState = (state) => {
   return({
-    singleProduct : state.singleProduct
+    singleProduct : state.singleProduct,
+    cart : state.cart
   })
 }
 
 const mapDispatch = (dispatch) => {
   return ({
-    getProduct : (id) => dispatch(fetchSingleProduct(id))
+    getProduct : (id) => dispatch(fetchSingleProduct(id)),
+    addToCart : (item) => dispatch(addItem(item))
   })
 }
 
