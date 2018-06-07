@@ -18,6 +18,16 @@ const middleware = composeWithDevTools(applyMiddleware(
 ))
 const store = createStore(reducer, middleware)
 
+const saveStateToLocalStorage = () => {
+  const storedCart = store.getState().cart
+  localStorage.setItem("cart", JSON.stringify(storedCart))
+}
+
+window.onbeforeunload = saveStateToLocalStorage
+
+
+
+
 export default store
 export * from './user'
 export * from './products'
