@@ -6,6 +6,8 @@ import history from '../history'
  */
 const GET_CART = 'GET_CART'
 const ADD_ITEM = 'ADD_ITEM'
+const EDIT_QUANTITY = 'EDIT_QUANTITY'
+const DELETE_ITEM = 'DELETE_ITEM'
 /**
  * INITIAL STATE
  */
@@ -28,6 +30,20 @@ export const addItem = item => {
   }
 }
 
+export const editquantity = item => {
+  return {
+    type: EDIT_QUANTITY,
+    item
+  }
+}
+
+export const deleteItem = itemId => {
+  return {
+    type: DELETE_ITEM,
+    itemId
+  }
+}
+
 /**
  * THUNK CREATORS
  */
@@ -40,6 +56,10 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM:
       return [...state, action.item]
+    case EDIT_QUANTITY:
+      return state.map(cartItem => cartItem.item.id !== Number(action.item.id) ? cartItem : {...cartItem, quantity: action.item.quantity })
+    case DELETE_ITEM:
+      return state.filter(cartItem => cartItem.item.id !== Number(action.itemId))
     default:
       return state
   }

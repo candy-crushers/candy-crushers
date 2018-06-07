@@ -23,7 +23,7 @@ class SingleProduct extends Component {
 
   handleChange(event) {
     event.preventDefault()
-    if(event.target.value >= 0){
+    if(event.target.value > 0){
       this.setState({
         [event.target.name] : event.target.value
       })
