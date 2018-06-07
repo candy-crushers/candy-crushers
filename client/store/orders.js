@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 // action types
-const GET_ORDERS = 'GET_ORDERS'
+export const GOT_ORDERS = 'GOT_ORDERS'
 
 // initial state
 const initialState = []
 
 // action creators
-const createGotOrdersAction = (orders) => ({type: GET_ORDERS, orders})
+const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
 
 // thunk creators
 export const createGetOrdersThunk = () => {
@@ -20,7 +20,7 @@ export const createGetOrdersThunk = () => {
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_ORDERS:
+    case GOT_ORDERS:
       return action.orders
     default:
       return state
