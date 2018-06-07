@@ -1,14 +1,23 @@
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../db')
-const app = require('../index')
-const { User, Product, Order } = require('../db/models')
+const db = require('../../db')
+const app = require('../../index')
+const { User, Product, Order } = require('../../db/models')
 
-describe('Orders routes', () => {
-  describe('/api/orders without logging in', () => {
-    it('GET /api/orders receives a 401', () => {
+describe('Orders User routes', () => {
+  describe('without logging in', () => {
+    it('GET /api/user/orders receives a 401', () => {
       return request(app)
-        .get('/api/orders')
+        .get('/api/user/orders')
+        .expect(401)
+        .then(res => {
+          expect(res.body).to.be.empty
+        })
+    })
+
+    it('GET /api/user/orders/:id', () => {
+      return request(app)
+        .get('/api/user/orders/1')
         .expect(401)
         .then(res => {
           expect(res.body).to.be.empty
@@ -16,7 +25,7 @@ describe('Orders routes', () => {
     })
   })
 
-  describe('/api/orders with authorization', () => {
+  describe('with logged in user', () => {
     const authRequest = request.agent(app)
     const productToCreate = {
       name: 'Kit-Kat',
@@ -40,7 +49,8 @@ describe('Orders routes', () => {
     const adminData = {email: 'user2@test.com', password: 'test', isAdmin: true}
 
     beforeEach(async () => {
-      await User.bulkCreate([userData, adminData], {individualHooks: true})
+      await User.create(userData)
+      await User.create(adminData)
       const [product, orders] = await Promise.all([Product.create(productToCreate), Order.bulkCreate([userOneOrder, userTwoOrder])])
 
       let syncedOrders = await Order.findAll()
@@ -48,18 +58,16 @@ describe('Orders routes', () => {
         priceAtTime: product.price,
         quantity: 2,
       }})))
-    })
 
-    describe('as a logged in user', () => {
-      beforeEach(async () => {
-        await authRequest
+      await authRequest
         .post('/auth/login')
         .send(userData)
-      })
+    })
 
-      it('GET /api/orders returns only their orders from the DB', () => {
+    describe('GET /api/user/orders', () => {
+      it('returns only their orders from the DB', () => {
         return authRequest
-          .get('/api/orders')
+          .get('/api/user/orders')
           .expect(200)
           .then(res => {
             expect(res.body).to.be.an('array')
@@ -68,9 +76,9 @@ describe('Orders routes', () => {
           })
       })
 
-      it('GET /api/orders returns orders with products eager loaded', () => {
+      it('returns orders with products eager loaded', () => {
         return authRequest
-          .get('/api/orders')
+          .get('/api/user/orders')
           .expect(200)
           .then(res => {
             expect(res.body).to.be.an('array')
@@ -79,14 +87,14 @@ describe('Orders routes', () => {
           })
       })
 
-      it('GET /api/orders returns the prices of products at the time of the order', async () => {
+      it('returns the prices of products at the time of the order', async () => {
         await Product.update({price: 1.99}, {
           where: {
             id: 1,
           },
         })
         return authRequest
-          .get('/api/orders')
+          .get('/api/user/orders')
           .expect(200)
           .then(res => {
             expect(res.body[0].products[0].order_products.priceAtTime).to.equal(2.50)
@@ -94,21 +102,21 @@ describe('Orders routes', () => {
       })
     })
 
-    describe('as a logged in admin', () => {
-      beforeEach(async () => {
-        await authRequest
-        .post('/auth/login')
-        .send(adminData)
-      })
-
-      it('GET /api/orders returns ALL orders from the DB', () => {
+    describe('GET /api/user/orders/:id', () => {
+      it('returns the single order from the DB', () => {
         return authRequest
-          .get('/api/orders')
+          .get('/api/user/orders/1')
           .expect(200)
           .then(res => {
-            expect(res.body).to.be.an('array')
-            expect(res.body.length).to.equal(2)
+            expect(res.body).to.be.an('object')
+            expect(res.body.userId).to.equal(1)
           })
+      })
+
+      it('will return a 404 if the order doesn\'t belong to them', () => {
+        return authRequest
+          .get('/api/user/orders/2')
+          .expect(404)
       })
     })
   })

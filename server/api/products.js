@@ -1,16 +1,7 @@
 const router = require('express').Router()
 const {Product, Review, User, Category} = require('../db/models')
+const { isAdmin } = require('./middleware')
 module.exports = router
-
-const checkAdminMiddleware = (req, res, next) => {
-  if (req.user && req.user.isAdmin) {
-    next()
-  } else {
-    const error = new Error('Not Authorized')
-    error.status = 401
-    next(error)
-  }
-}
 
 router.get('/', (req, res, next) => {
     Product.findAll({
@@ -20,7 +11,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', checkAdminMiddleware, async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.status(201).json(product)
@@ -43,7 +34,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', checkAdminMiddleware, async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     await Product.update(req.body, {
       where: {

@@ -3,13 +3,13 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import { createGetOrdersForUserThunk, createGetOrdersForAdminThunk } from '../store'
-import reducer, { GOT_ORDERS } from './orders'
+import { createGetOrderForUserThunk, createGetOrderForAdminThunk } from '../store'
+import reducer, { GOT_ORDER } from './single-order'
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe('Orders Reducer', () => {
+describe('SingleOrder Reducer', () => {
   let store
   let mockAxios
   const initialState = []
@@ -20,8 +20,7 @@ describe('Orders Reducer', () => {
   })
 
   describe('Thunk Creators', () => {
-    const fakeOrders = [
-      {
+    const fakeOrder = {
         id: 1,
         status: "Created",
         subtotal: 112.43,
@@ -51,59 +50,48 @@ describe('Orders Reducer', () => {
         }}
         ],
       }
-    ]
 
-    describe('Get Orders for User Thunk', () => {
-      it('eventually dispatches the GOT_ORDERS action', () => {
-        mockAxios.onGet('/api/user/orders').replyOnce(200, fakeOrders)
-        return store.dispatch(createGetOrdersForUserThunk())
+    describe('Get Order for User Thunk', () => {
+      it('eventually dispatches the GOT_ORDER action', () => {
+        mockAxios.onGet('/api/user/orders/1').replyOnce(200, fakeOrder)
+        return store.dispatch(createGetOrderForUserThunk(1))
           .then(() => {
             const actions = store.getActions()
-            expect(actions[0].type).to.equal('GOT_ORDERS')
+            expect(actions[0].type).to.equal('GOT_ORDER')
           })
       })
     })
 
-    describe('Get Orders for Admin Thunk', () => {
-      it('eventually dispatches the GOT_ORDERS action', () => {
-        mockAxios.onGet('/api/admin/orders').replyOnce(200, fakeOrders)
-        return store.dispatch(createGetOrdersForAdminThunk())
+    describe('Get Order for Admin Thunk', () => {
+      it('eventually dispatches the GOT_ORDER action', () => {
+        mockAxios.onGet('/api/admin/orders/1').replyOnce(200, fakeOrder)
+        return store.dispatch(createGetOrderForAdminThunk(1))
           .then(() => {
             const actions = store.getActions()
-            expect(actions[0].type).to.equal('GOT_ORDERS')
+            expect(actions[0].type).to.equal('GOT_ORDER')
           })
       })
     })
   })
 
   describe('Reducer', () => {
-    it('should return an empty array for initial state', () => {
+    it('should return an empty object for initial state', () => {
       const newState = reducer(undefined, {})
-      expect(newState).to.be.an('array')
-      expect(newState.length).to.equal(0)
+      expect(newState).to.be.an('object')
+      expect(newState).to.be.empty
     })
 
-    it('should handle GOT_ORDERS', () => {
-      const newState = reducer([], {type: GOT_ORDERS, orders: [
-        {
+    it('should handle GOT_ORDER', () => {
+      const newState = reducer([], {type: GOT_ORDER, order: {
           id: 1,
           status: "Created",
           subtotal: 112.43,
           shippingAddress: "456 Broadway, New York, NY 60610",
           email: "cody@email.com",
           userId: 1
-        },
-        {
-          id: 2,
-          status: "Processing",
-          subtotal: 100,
-          shippingAddress: "456 Broadway, New York, NY 60610",
-          email: "cody@email.com",
-          userId: 2
-        },
-      ]})
-      expect(newState).to.be.an('array')
-      expect(newState.length).to.equal(2)
+        }})
+      expect(newState).to.be.an('object')
+      expect(newState.id).to.equal(1)
     })
   })
 })

@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createGetOrdersThunk } from '../store';
+import { createGetOrdersForAdminThunk } from '../store';
 import { OrderRow } from './'
 
-class OrderHistory extends Component {
+class AdminOrderHistory extends Component {
 
   componentDidMount () {
     this.props.getOrders()
   }
 
   render () {
-    const { orders } = this.props
+    const { orders, match } = this.props
     return (
       <div className="order-history">
-        <h1>Order History</h1>
+        <h1>All Orders</h1>
         <div className="order-history-orders">
           {
-            orders.length > 0 && orders.map(order => <OrderRow key={order.id} order={order} />)
+            orders.length > 0 && orders.map(order => <OrderRow key={order.id} order={order} path={match.path} />)
           }
         </div>
       </div>
@@ -32,8 +32,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getOrders: () => dispatch(createGetOrdersThunk())
+    getOrders: () => dispatch(createGetOrdersForAdminThunk())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderHistory)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminOrderHistory)
