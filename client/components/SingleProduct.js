@@ -32,9 +32,8 @@ class SingleProduct extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const id = this.props.match.params.id
     const quantity = this.state.quantity
-    this.props.addToCart({id, quantity})
+    this.props.addToCart({item : this.props.singleProduct, quantity})
     this.setState({
       quantity : ''
     })

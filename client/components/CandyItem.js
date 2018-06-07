@@ -17,8 +17,8 @@ export default function CandyItem(props){
         <p>{description}</p>
       </div>
       { button && <button onClick={handleClick} >{button}</button> }
-      { text &&  <form onSubmit={(e)=> handleSubmit(e)}>
-          <input type="number" name="quantity" value={quantity} onChange={(e) => handleChange(e)} />
+      { text &&  <form onSubmit={handleSubmit}>
+          <input type="number" name="quantity" value={quantity} onChange={handleChange} />
           <button type="submit" >{text}</button>
         </form> }
     </div>
