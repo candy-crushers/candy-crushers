@@ -93,11 +93,13 @@ class Products extends React.Component {
         {products.length && products.map( (product) =>
         (
           <div key={product.id}>
+            <Link to={'/products/' + product.id}>
               <Image src={product.images[0]} size='small' />
               <h4>{product.name}</h4>
               <h5>${product.price}</h5>
               <Segment basic>{product.description.substring(0, 100)}...</Segment>
               <a>Add To Cart</a>
+            </Link>
           </div>
         ))
       }
