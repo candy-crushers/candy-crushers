@@ -21,7 +21,7 @@ const getCart = () => {
   }
 }
 
-const addItem = item => {
+export const addItem = item => {
   return {
     type: ADD_ITEM,
     item
