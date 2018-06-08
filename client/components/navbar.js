@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Menu, Icon, Image} from 'semantic-ui-react'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     {/* <nav> */}
     <Menu size='tiny'>
@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         isLoggedIn &&
         <Menu.Menu>
           <Menu.Item>
-            <Link to="/orders">Orders</Link>
+            <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
           </Menu.Item>
         </Menu.Menu>
       }
@@ -67,7 +67,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.id && state.user.isAdmin,
   }
 }
 

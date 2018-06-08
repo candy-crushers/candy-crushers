@@ -62,7 +62,9 @@ class Cart extends React.Component {
 
 const mapStateToProps = (state) => {
   const calculatesubtotal = () => {
-    return state.cart.reduce( (subtotal, cartItem) => subtotal + cartItem.item.price * cartItem.quantity, 0 )
+    return state.cart.reduce( (subtotal, cartItem) => subtotal +
+    Number((cartItem.item.price * cartItem.quantity) * 100).toFixed(0) / 100
+    , 0 )
   }
   return {
     cart: state.cart,

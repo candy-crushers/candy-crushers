@@ -3,7 +3,16 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const OrderProducts = db.define('order_products', {
-    priceAtTime: Sequelize.FLOAT,
+    priceAtTime: {
+      type : Sequelize.INTEGER,
+      allowNull : false,
+      get() {
+        return (this.getDataValue('priceAtTime')/100)
+      },
+      set(priceAtTime){
+        this.setDataValue('priceAtTime', Number((priceAtTime*100).toFixed(0)))
+      }
+    },
     quantity : {
         type : Sequelize.INTEGER,
         defaultValue : 1

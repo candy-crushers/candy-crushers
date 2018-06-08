@@ -57,7 +57,7 @@ export default function (state = initialState, action) {
     case ADD_ITEM:
       return [...state, action.item]
     case EDIT_QUANTITY:
-      return state.map(cartItem => cartItem.item.id !== Number(action.item.id) ? cartItem : {item: cartItem.item, quantity: action.item.quantity })
+      return state.map(cartItem => cartItem.item.id !== Number(action.item.id) ? cartItem : {...cartItem, quantity: action.item.quantity })
     case DELETE_ITEM:
       return state.filter(cartItem => cartItem.item.id !== Number(action.itemId))
     default:

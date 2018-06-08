@@ -6,6 +6,7 @@ import ReviewAvatar from './ReviewAvatar'
 
 
 
+
 class SingleProduct extends Component {
   constructor(props){
     super(props)
@@ -33,11 +34,14 @@ class SingleProduct extends Component {
   handleSubmit (event) {
     event.preventDefault()
     const quantity = this.state.quantity
-    this.props.addToCart({item : this.props.singleProduct, quantity})
+    const item = {item : this.props.singleProduct, quantity}
+    this.props.addToCart(item)
     this.setState({
       quantity : ''
     })
   }
+
+
 
   productComponent () {
     const product = this.props.singleProduct

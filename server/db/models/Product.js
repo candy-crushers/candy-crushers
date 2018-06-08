@@ -13,8 +13,14 @@ const Product = db.define('product', {
      allowNull : false
    },
    price : {
-     type : Sequelize.FLOAT,
-     allowNull : false
+     type : Sequelize.INTEGER,
+     allowNull : false,
+     get() {
+       return this.getDataValue('price')/100
+     },
+     set(price){
+       this.setDataValue('price', Number((price*100).toFixed(0)))
+     }
    },
    inventory : {
      type : Sequelize.INTEGER,
