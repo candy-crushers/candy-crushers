@@ -3,11 +3,10 @@ import {connect} from 'react-redux'
 
 import {fetchProducts, fetchCategories, setCategory} from '../store'
 import { Link } from 'react-router-dom'
-import {Container, Image, Segment} from 'semantic-ui-react'
+import {Container, Image, Segment, Grid } from 'semantic-ui-react'
+import AllProductsCard from './product/all-products-card';
 
-/**
- * COMPONENT
- */
+
 class Products extends React.Component {
   constructor(){
     super()
@@ -71,8 +70,9 @@ class Products extends React.Component {
     const products = this.state.showProducts;
     return (
       <Container >
-        <h3>ALL PRODUCTS</h3>
-        <Link to="/admin/products/add">Add Product</Link>
+        {/* <h3>ALL PRODUCTS</h3> */}
+        <div>
+        {/* <Link to="/admin/products/add">Add Product</Link>
         <select onChange={this.handleChange} value={selectedCategory.id}>
           <option value={null}>Select Category</option>
           {categories.map( category =>
@@ -80,26 +80,19 @@ class Products extends React.Component {
               {category.name}
             </option>
           )}
-        </select>
+        </select> */}
         <form onChange={this.handleSearch}>
           <label>Search: </label>
           <input
            type="text"
           />
         </form>
+        </div><br />
+        <Grid columns={3} divided >
         {products.length && products.map( (product) =>
-        (
-          <div key={product.id}>
-            <Link to={'/products/' + product.id}>
-              <Image src={product.images[0]} size='small' />
-              <h4>{product.name}</h4>
-              <h5>${product.price}</h5>
-              <Segment basic>{product.description.substring(0, 100)}...</Segment>
-              <p>Add To Cart</p>
-            </Link>
-          </div>
-        ))
+        (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>))
       }
+      </Grid>
       </Container>
     )
   }
@@ -125,3 +118,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products)
+
+
+
+{/* <div key={product.id}>
+            <Link to={'/products/' + product.id}>
+              <Image src={product.images[0]} size='small' />
+              <h4>{product.name}</h4>
+              <h5>${product.price}</h5>
+              <Segment basic>{product.description.substring(0, 100)}...</Segment>
+              <p>Add To Cart</p>
+            </Link>
+          </div> */}

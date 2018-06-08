@@ -5,16 +5,19 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Menu, Icon, Image} from 'semantic-ui-react'
 
+const color = 'pink'
+//<Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' />
+
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     {/* <nav> */}
-    <Menu size='tiny'>
+    <Menu size='tiny' inverted color='pink' >
       <Menu.Item>
-        <Link to='/products'><Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' /></Link>
+        <Link to='/products'>CANDY<br />CRUSHERS</Link>
       </Menu.Item>
-      <Menu.Item>
+      {/* <Menu.Item>
         <Link to='/products' >Products </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       {
         isLoggedIn &&
         <Menu.Menu>

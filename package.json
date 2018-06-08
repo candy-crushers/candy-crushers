@@ -46,6 +46,7 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "semantic-ui-react": "^0.81.1",
+    "semantic-ui-react-numberpicker": "0.0.1-b",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3"
   },
