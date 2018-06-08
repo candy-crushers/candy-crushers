@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image, Card } from 'semantic-ui-react'
 import NumberPickerWrapper from './number-picker-wrapper'
-import { Link }
+import { Link } from 'react-router-dom'
 
 //average stars
 
@@ -10,6 +10,7 @@ import { Link }
 function AllProductsCard(props){
   const { id, images, name, price, description } = props.product
   return (
+  <Link to={`/products/${id}`} >
   <Card color='teal'>
     <Image src={images[0]}/>
     <Card.Content>
@@ -22,7 +23,8 @@ function AllProductsCard(props){
     <Card.Content extra>
       <NumberPickerWrapper product={props.product} />
     </Card.Content>
-  </Card>)
+  </Card>
+  </Link>)
   }
 
 

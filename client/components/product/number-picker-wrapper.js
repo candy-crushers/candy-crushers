@@ -59,9 +59,9 @@ class NumberPickerWrapper extends Component {
       <div>
       <Segment.Group horizontal >
         <p>qantityty:</p>
-        <Icon name='plus square' onClick={(e) => this.plus(e) }/>
-          <p>{quantity}</p>
         <Icon name='minus square' onClick={(e) => this.minus(e) }/>
+          <p>{quantity}</p>
+        <Icon name='plus square' onClick={(e) => this.plus(e) }/>
       </Segment.Group>
         <Button size='mini' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
         </div>)
