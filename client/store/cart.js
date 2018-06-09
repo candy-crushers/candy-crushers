@@ -86,7 +86,7 @@ export const getCartFromStorageThunk = (user) => {
 export const createSaveCartOnLogoutThunk = (userId, cart) => {
   return async (dispatch) => {
     try {
-      await axios.put(`/api/users/${userId}`, {cart})
+      await axios.put(`/api/user/users/${userId}`, {cart})
       dispatch(logout())
       dispatch(createClearCartAction())
     } catch (error) {

@@ -1,10 +1,11 @@
 const router = require('express').Router()
-const { isAdmin, isLoggedIn } = require('./middleware')
+const { isAdmin, isLoggedIn, isCurrentUser } = require('./middleware')
 module.exports = router
 
 router.use('/users', require('./users'))
 router.use('/products', require('./products'))
 router.use('/categories', require('./categories'))
+router.use('/user/users/:id', isCurrentUser, require('./user/users'))
 router.use('/user/orders', isLoggedIn, require('./user/orders'))
 router.use('/admin/orders', isAdmin, require('./admin/orders'))
 
