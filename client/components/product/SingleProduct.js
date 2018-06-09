@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../../store'
-import CandyItem from './CandyItem'
-import ReviewAvatar from './ReviewAvatar'
+import CandyItem from '../'
+import ReviewAvatar from '../'
 import { List, Container, Divider, Segment } from 'semantic-ui-react'
 
 
