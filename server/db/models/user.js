@@ -30,6 +30,9 @@ const User = db.define('user', {
   isAdmin : Sequelize.BOOLEAN,
   stripeToken : {
       type: Sequelize.STRING
+  },
+  cart: {
+    type: Sequelize.JSON
   }
 })
 
