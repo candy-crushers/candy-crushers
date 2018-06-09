@@ -7,7 +7,7 @@ const OrderProducts = db.define('order_products', {
       type : Sequelize.INTEGER,
       allowNull : false,
       get() {
-        return (this.getDataValue('priceAtTime')/100)
+        return (this.getDataValue('priceAtTime') / 100)
       },
       set(priceAtTime){
         this.setDataValue('priceAtTime', Number((priceAtTime*100).toFixed(0)))
@@ -20,7 +20,7 @@ const OrderProducts = db.define('order_products', {
     subTotal : {
         type : Sequelize.VIRTUAL,
         get() {
-            return this.getDataValue('priceAtTime') * this.getDataValue('quantity')
+            return (this.getDataValue('priceAtTime') * this.getDataValue('quantity')) / 100
         }
 
     }
