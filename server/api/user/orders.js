@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Order } = require('../../db/models')
+const { Order, User } = require('../../db/models')
 
 router.get('/', async (req, res, next) => {
   const options = {

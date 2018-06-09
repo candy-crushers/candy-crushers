@@ -104,7 +104,7 @@ export default function (state = initialState, action) {
       // this will update the quantities of the arrays when the same item exists
       return mergeCarts(action.cart, state)
     case ADD_ITEM:
-      return [...state, action.item]
+      return mergeCarts(state,[action.item]);
     case EDIT_QUANTITY:
       return state.map(cartItem => {
         if (cartItem.item.id !== Number(action.item.id)) {
