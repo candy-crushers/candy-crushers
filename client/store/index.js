@@ -9,6 +9,7 @@ import singleProduct from './singleProduct'
 import orders from './orders'
 import cart from './cart'
 import singleOrder from './single-order'
+import axios from 'axios';
 
 const reducer = combineReducers({user, products, categories, singleProduct, orders, singleOrder, cart})
 
@@ -18,15 +19,30 @@ const middleware = composeWithDevTools(applyMiddleware(
 ))
 const store = createStore(reducer, middleware)
 
-const saveStateToLocalStorage = () => {
-  const storedCart = store.getState().cart
-  localStorage.setItem("cart", JSON.stringify(storedCart))
+const saveCartToLocalStorage = (storedCart) => {
+  localStorage.setItem('cart', JSON.stringify(storedCart))
 }
 
-window.onbeforeunload = saveStateToLocalStorage
+const saveCartToUser = async (id, storedCart) => {
+  try {
+    await axios.put(`/api/users/${id}`, {cart: storedCart})
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+const saveCart = () => {
+  const { cart, user } = store.getState()
+  if (cart.length === 0) return
 
+  if (user.id) {
+    saveCartToUser(user.id, cart)
+  } else {
+    saveCartToLocalStorage(cart)
+  }
+}
 
+window.onbeforeunload = saveCart
 
 export default store
 export * from './user'

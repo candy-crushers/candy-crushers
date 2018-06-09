@@ -2,12 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
-import {Menu, Icon, Image} from 'semantic-ui-react'
+import {createSaveCartOnLogoutThunk} from '../store'
+import {Menu, Icon} from 'semantic-ui-react'
 
-
-
-const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (
   <div>
     <Menu size='tiny' inverted  >
       <Menu.Item>
@@ -37,7 +35,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
                 <Link to="/home">Home</Link>
               </Menu.Item>
               <Menu.Item>
-              <a href="#" onClick={handleClick}>
+              <a href="#" onClick={() => handleClick(userId, cart)}>
                 Logout
               </a>
               </Menu.Item>
@@ -64,13 +62,15 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.id && state.user.isAdmin,
+    cart: state.cart,
+    userId: state.user.id,
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
+    handleClick(id, cart) {
+      dispatch(createSaveCartOnLogoutThunk(id, cart))
     }
   }
 }
