@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import {fetchProducts, fetchCategories, setCategory} from '../store'
 import { Link } from 'react-router-dom'
 import {Container, Image, Segment, Grid } from 'semantic-ui-react'
@@ -70,7 +69,6 @@ class Products extends React.Component {
     const products = this.state.showProducts;
     return (
       <Container >
-        {/* <h3>ALL PRODUCTS</h3> */}
         <div>
         {/* <Link to="/admin/products/add">Add Product</Link>
         <select onChange={this.handleChange} value={selectedCategory.id}>
@@ -88,7 +86,7 @@ class Products extends React.Component {
           />
         </form>
         </div><br />
-        <Grid columns={3} divided >
+        <Grid columns={3} >
         {products.length && products.map( (product) =>
         (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>))
       }
@@ -98,9 +96,7 @@ class Products extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
+
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
@@ -121,12 +117,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Products)
 
 
 
-{/* <div key={product.id}>
-            <Link to={'/products/' + product.id}>
-              <Image src={product.images[0]} size='small' />
-              <h4>{product.name}</h4>
-              <h5>${product.price}</h5>
-              <Segment basic>{product.description.substring(0, 100)}...</Segment>
-              <p>Add To Cart</p>
-            </Link>
-          </div> */}
+

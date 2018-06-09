@@ -25,7 +25,6 @@ class NumberPickerWrapper extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    //console.log('props', this.props)
     const quantity = this.state.quantity
     const item = {item : this.props.product, quantity}
     this.props.addToCart(item)
@@ -63,7 +62,7 @@ class NumberPickerWrapper extends Component {
           <p>{quantity}</p>
         <Icon name='plus square' onClick={(e) => this.plus(e) }/>
       </Segment.Group>
-        <Button size='mini' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
+        <Button size='mini' color='pink' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
         </div>)
 
   }

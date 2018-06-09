@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../store'
 import CandyItem from './CandyItem'
 import ReviewAvatar from './ReviewAvatar'
-
-
+import { List, Container, Divider, Segment } from 'semantic-ui-react'
 
 
 class SingleProduct extends Component {
@@ -42,7 +41,6 @@ class SingleProduct extends Component {
   }
 
 
-
   productComponent () {
     const product = this.props.singleProduct
     const showQuantity = {
@@ -53,18 +51,28 @@ class SingleProduct extends Component {
       quantity : this.state.quantity
     }
     return (
-      <div>
+      <Container>
+        <br /><br />
+        <Segment>
+        <Container>
         <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} />
-        <div className="singleProductReviews">
+        </Container><br /><br />
+        <Divider horizontal></Divider>
+        </Segment>
+        <Container>
+        <Segment>
+        <List relaxed>
         {
           product.reviews && product.reviews.length > 0
           ? product.reviews.map((review) => {
-              return <ReviewAvatar key={review.id} review={review} />
+              return <List.Item key={review.id}><ReviewAvatar  review={review} /></List.Item>
             })
           : <div>No reviews yet</div>
         }
-        </div>
-      </div>
+        </List>
+        </Segment>
+        </Container>
+      </Container>
     )
   }
 

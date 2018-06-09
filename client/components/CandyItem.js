@@ -1,4 +1,5 @@
 import React from 'react'
+import { Item, Container, Button } from 'semantic-ui-react'
 
 export default function CandyItem(props){
   const { images, name, price, description } = props.product
@@ -6,24 +7,32 @@ export default function CandyItem(props){
   const { button, handleClick } = props
 
 
+
+
   return(
-    <div className="singleProductContainer">
-      <div className="singleProductImagesContainer">
-      </div>
-      <div className="singleProductHero">
-        <img src={images[0]} />
-        <h1>{name}</h1>
-        <h4>{price}</h4>
-        <p>{description}</p>
-      </div>
-      { button && <button onClick={handleClick} >{button}</button> }
-      { text &&  <form onSubmit={handleSubmit}>
-          <input type="number" name="quantity" value={quantity} onChange={handleChange} />
-          <button type="submit" >{text}</button>
-        </form> }
-    </div>
+    <Container relaxed='true'>
+      <Item.Group>
+      <Item>
+        <Item.Image size='medium' floated='left' src={images[0]} />
+          <Item.Content verticalAlign='middle' >
+            <Item.Header as='h1'>{name}</Item.Header>
+            <Item.Description>{description}</Item.Description><br />
+              <Item.Extra>
+                { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
+                { text &&  <form onSubmit={handleSubmit}>
+                    <input type="number" name="quantity" value={quantity} onChange={handleChange} />
+                    <Button color='pink' size="mini" type="submit" >{text}</Button>
+                  </form> }
+                  <p>{`price : ${price}`}</p>
+              </Item.Extra>
+          </Item.Content>
+      </Item>
+      </Item.Group>
+    </Container>
   )
 }
+
+
 
 
 
