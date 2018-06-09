@@ -5,15 +5,13 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Menu, Icon, Image} from 'semantic-ui-react'
 
+
+
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
-    {/* <nav> */}
-    <Menu size='tiny'>
+    <Menu size='tiny' inverted  >
       <Menu.Item>
-        <Link to='/products'><Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' /></Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to='/products' >Products </Link>
+        <Link to='/products'>CANDY<br />CRUSHERS</Link>
       </Menu.Item>
       {
         isLoggedIn &&
@@ -55,16 +53,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
               </Menu.Item>
             </Menu.Menu>
           )}
-        {/* </nav> */}
       </Menu.Menu >
     </Menu>
     <hr />
   </div>
 )
 
-/**
- * CONTAINER
- */
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
@@ -82,10 +77,11 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Navbar)
 
-/**
- * PROP TYPES
- */
+
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+
+//<Image src='https://pbs.twimg.com/profile_images/978488409365753856/5zaAsrTo_400x400.jpg' size='tiny' />
