@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts, fetchCategories, setCategory} from '../store'
+import {fetchProducts, fetchCategories, setCategory} from '../../store'
 import { Link } from 'react-router-dom'
 import {Container, Image, Segment, Grid } from 'semantic-ui-react'
-import AllProductsCard from './product/all-products-card';
+import AllProductsCard from './all-products-card';
 
 
 class Products extends React.Component {

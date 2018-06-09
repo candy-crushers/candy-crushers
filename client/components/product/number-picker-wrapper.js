@@ -49,7 +49,7 @@ class NumberPickerWrapper extends Component {
     return(
       <div>
       <Segment.Group horizontal >
-        <p>qantity:</p>
+        <p>quantity:</p>
         <Icon name='minus square' onClick={(e) => this.minus(e) }/>
           <p>{quantity}</p>
         <Icon name='plus square' onClick={(e) => this.plus(e) }/>

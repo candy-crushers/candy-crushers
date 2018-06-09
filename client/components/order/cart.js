@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteItem, editquantity} from '../store'
+import {deleteItem, editquantity} from '../../store'
 import { Link } from 'react-router-dom'
 import { Container, Image, Button, Icon } from 'semantic-ui-react';
 
