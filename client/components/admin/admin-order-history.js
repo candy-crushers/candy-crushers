@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createGetOrdersForAdminThunk } from '../../store';
-import { OrderRow } from '../order/order-row'
+import { OrderRow } from '../'
 
 class AdminOrderHistory extends Component {
 

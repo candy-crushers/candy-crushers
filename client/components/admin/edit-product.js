@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ProductForm } from './product-form'
+import { ProductForm } from '../'
 import { createPutProductThunk, fetchSingleProduct } from '../../store'
 
 class EditProduct extends Component {
