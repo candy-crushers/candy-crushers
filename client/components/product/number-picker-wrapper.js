@@ -13,14 +13,6 @@ class NumberPickerWrapper extends Component {
     }
   }
 
-  updateQuantity = (event) => {
-    event.preventDefault()
-    if(event.target.value > 0){
-      this.setState({
-        [event.target.name] : event.target.value
-      })
-    }
-  }
 
 
   handleSubmit = (event) => {
@@ -57,7 +49,7 @@ class NumberPickerWrapper extends Component {
     return(
       <div>
       <Segment.Group horizontal >
-        <p>qantityty:</p>
+        <p>qantity:</p>
         <Icon name='minus square' onClick={(e) => this.minus(e) }/>
           <p>{quantity}</p>
         <Icon name='plus square' onClick={(e) => this.plus(e) }/>
