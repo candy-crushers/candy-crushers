@@ -4,10 +4,7 @@ import { Item, Container, Button } from 'semantic-ui-react'
 export default function CandyItem(props){
   const { images, name, price, description } = props.product
   const { text, method, quantity, handleChange, handleSubmit } = props.showQuantity
-  const { button, handleClick } = props
-
-
-
+  const { button, handleClick, outOfStock } = props
 
   return(
     <Container relaxed='true'>
@@ -19,9 +16,9 @@ export default function CandyItem(props){
             <Item.Description>{description}</Item.Description><br />
               <Item.Extra>
                 { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
-                { text &&  <form onSubmit={handleSubmit}>
+                { (text && !outOfStock) && <form onSubmit={handleSubmit} >
                     <input type="number" name="quantity" value={quantity} onChange={handleChange} />
-                    <Button color='pink' size="mini" type="submit" >{text}</Button>
+                    <Button color='pink' size="mini" type="submit">{text}</Button>
                   </form> }
                   <p>{`price : ${price}`}</p>
               </Item.Extra>
@@ -31,8 +28,3 @@ export default function CandyItem(props){
     </Container>
   )
 }
-
-
-
-
-

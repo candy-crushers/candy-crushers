@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../../store'
-import CandyItem from '../'
-import ReviewAvatar from '../'
-import { List, Container, Divider, Segment } from 'semantic-ui-react'
+import {CandyItem, ReviewAvatar} from '../'
+import { List, Container, Divider, Segment, Message } from 'semantic-ui-react'
 
 
 class SingleProduct extends Component {
@@ -53,9 +52,14 @@ class SingleProduct extends Component {
     return (
       <Container>
         <br /><br />
+        {this.props.outOfStock && (
+          <Message negative>
+            <Message.Header>We're sorry, but this product is currently unavailable.</Message.Header>
+          </Message>
+        )}
         <Segment>
         <Container>
-        <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} />
+        <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} outOfStock={this.props.outOfStock} />
         </Container><br /><br />
         <Divider horizontal></Divider>
         </Segment>
@@ -86,7 +90,8 @@ class SingleProduct extends Component {
 const mapState = (state) => {
   return({
     singleProduct : state.singleProduct,
-    cart : state.cart
+    cart : state.cart,
+    outOfStock: state.singleProduct.inventory === 0
   })
 }
 
