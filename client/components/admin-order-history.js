@@ -25,7 +25,6 @@ class AdminOrderHistory extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     orders: state.orders,
   }

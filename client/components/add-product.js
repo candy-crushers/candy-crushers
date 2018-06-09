@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     postProduct: (product) => {
       dispatch(createPostProductThunk(product))
-        .then(() => {
-          ownProps.history.push(`/guest/orders/confirmation`)
+        .then((newProductId) => {
+          ownProps.history.push(`/products/${newProductId}`)
         })
     }
   }
