@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {newOrderForGuestThunk, newOrderForUserThunk, me} from '../store'
+import {newOrderForGuestThunk, newOrderForUserThunk, me, createClearCartAction} from '../store'
 //import { Link } from 'react-router-dom'
 //import {Container, Image, Segment} from 'semantic-ui-react'
 
@@ -41,10 +41,10 @@ class Checkout extends React.Component {
       status, subtotal, email, shippingAddress, productsInCart
     }
     if(this.props.user.id)
-      await this.props.newOrderForUser(order);
+      await this.props.newOrderForUser(order)
     else
       await this.props.newOrderForGuest(order);
-    // this.props.emptyCart();
+    this.props.clearCart();
   }
   render(){
     return (
@@ -95,10 +95,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getUser: () => {
       dispatch(me());
+    },
+    clearCart: () => {
+      dispatch(createClearCartAction())
     }
-    // emptyCart: () => {
-    //   dispatch(emptyCart())
-    // }
   }
 }
 
