@@ -1,15 +1,15 @@
 import axios from 'axios'
-
+import store from './'
 // action types
 export const GOT_ORDERS = 'GOT_ORDERS'
-export const NEW_ORDER_FOR_GUEST = 'NEW_ORDER_FOR_GUEST'
+export const NEW_ORDER = 'NEW_ORDER'
 
 // initial state
 const initialState = []
 
 // action creators
 const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
-const newOrderForGuestAction = (order) => ({type: NEW_ORDER_FOR_GUEST, order})
+const newOrderAction = (order) => ({type: NEW_ORDER, order})
 
 // thunk creators
 export const createGetOrdersForUserThunk = () => {
@@ -37,9 +37,20 @@ export const createGetOrdersForAdminThunk = () => {
 export const newOrderForGuestThunk = (order) => {
   return async (dispatch) => {
     try{
-      console.log('Order in thunk', order)
       const {data: newOrder} = await axios.post('/api/guest/orders', order)
-      dispatch(newOrderForGuestAction(newOrder))
+      dispatch(newOrderAction(newOrder))
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const newOrderForUserThunk = (order) => {
+  return async (dispatch) => {
+    try{
+      const userId = store.getState().user.id;
+      const {data: newOrder} = await axios.post(`/api/users/${userId}/orders`, order)
+      dispatch(newOrderAction(newOrder))
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +62,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GOT_ORDERS:
       return action.orders
-    case NEW_ORDER_FOR_GUEST:
+    case NEW_ORDER:
       return [...state, action.order]
     default:
       return state

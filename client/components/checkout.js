@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {newOrderForGuestThunk, emptyCart} from '../store'
+import {newOrderForGuestThunk, newOrderForUserThunk, me, createClearCartAction} from '../store'
 //import { Link } from 'react-router-dom'
 //import {Container, Image, Segment} from 'semantic-ui-react'
 
@@ -14,6 +14,15 @@ class Checkout extends React.Component {
     this.state = {
       email: '',
       shippingAddress: ''
+    }
+  }
+
+  async componentDidMount() {
+    await this.props.getUser();
+    if(this.props.user.email) {
+      this.setState({
+        email: this.props.user.email
+      })
     }
   }
 
@@ -31,8 +40,11 @@ class Checkout extends React.Component {
     const order = {
       status, subtotal, email, shippingAddress, productsInCart
     }
-    await this.props.newOrder(order);
-    // this.props.emptyCart();
+    if(this.props.user.id)
+      await this.props.newOrderForUser(order)
+    else
+      await this.props.newOrderForGuest(order);
+    this.props.clearCart();
   }
   render(){
     return (
@@ -62,21 +74,31 @@ const mapStateToProps = (state) => {
     const getProductsInCart = () => state.cart.map( cartItem => ({ id: cartItem.item.id, quantity:cartItem.quantity}) )
     return {
       subtotal: calculatesubtotal(),
-      productsInCart: getProductsInCart()
+      productsInCart: getProductsInCart(),
+      user: state.user
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    newOrder: (order) => {
+    newOrderForGuest: (order) => {
       dispatch(newOrderForGuestThunk(order))
       .then( () => {
         ownProps.history.push('/guest/orders/confirmation')
       })
     },
-    // emptyCart: () => {
-    //   dispatch(emptyCart())
-    // }
+    newOrderForUser: (order) => {
+      dispatch(newOrderForUserThunk(order))
+      .then( () => {
+        ownProps.history.push('/user/orders/confirmation')
+      })
+    },
+    getUser: () => {
+      dispatch(me());
+    },
+    clearCart: () => {
+      dispatch(createClearCartAction())
+    }
   }
 }
 
