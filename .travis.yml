@@ -15,14 +15,14 @@ install:
   - npm i -g npm # delete once default travis npm supports `ci` command
   - npm ci       # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "candy-crushers-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: candy-crushers # see README
+  api_key:
+    secure: Q87tlFxuRWB0Aj2nilQdAYa8QYyPWI9akaNYWDlJ2R5Ed2dChdtCJ/alm60LmJbqFN3f/7x+lNi3oJ5PEuEp21wq8dn641OpsTFjavz11BcJpoB7ArZfuOTg8KzLG5peFJ2KgUARKIpWGp/Yd8zCA82Kew1Ov0pSi/szmWxFCaGmsIUnmcMwDoUEjfDEAuSqBEK00nbu4qgSG3yPBn5WwXzzb6xGLtQ9u80yWE935w7g6iXsoS0NqTrdpuPg4Onz0SQhwBJkwp6+I3drCl3fds8ZMoPhyv2Kf0naNhl6JE1+IgYuYM5RConScmNXJ/hmicM4rTCE5lqpgbNF9B56FyZ4nKyqFIJ4efd6ixQ+QDoHlDUZjYDS+kpNbGuIXYpG5Bzvb+QWUoM3j7DaTfbkQcliTyUtpQmmmHojD++9uf3ZM6IWmcpWd1QBvW0aJ0jAjbPMUXIa6Ci8Af9zQiW2d4pK0vfHreSVqgqQgSSLHqE25fqtYqYhBRV4nweueS2mhJ3sQl05ySE07/ptJSB4cms6BDxIa9MHDizl4biHtCu2KJtJUAoGBLaA+aY6cCMuL1x+hc01nwPIWXwtUwumJdHGeGtTguL3J1ZT77hotcBuZccXw4Nx9bRWZjiJ5xBQSHdISg5GFE5J/AoFuKlCnJPm2udltoq92QxJ3m5O4uU= # see README

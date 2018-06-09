@@ -16,11 +16,6 @@ describe('<CandyItem>', () => {
       images : ["../../puplic/defaultPhotos/lolies.jpg"]
     };
     const wrapper = shallow(<CandyItem product={candyCane} showQuantity={({})}/>)
-    assert.equal(wrapper.find('h1').text(), 'Candy Cane')
+    assert.equal(wrapper.render().find('h1').text(), 'Candy Cane')
   })
 })
-
-
-
-
-
