@@ -50,7 +50,6 @@ export const newOrderForGuestThunk = (order) => {
 export const newOrderForUserThunk = (order) => {
   return async (dispatch) => {
     try{
-      console.log('Order in thunk', order)
       const {data: newOrder} = await axios.post('/api/user/orders', order)
       dispatch(newOrderForUserAction(newOrder))
     } catch (error) {
