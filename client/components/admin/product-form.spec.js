@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import React from 'react'
 import {shallow} from 'enzyme'
-import {ProductForm} from './'
+import {ProductForm} from '../'
 
 describe('<ProductForm> Component', () => {
   describe('during edit', () => {
