@@ -21,7 +21,6 @@ const isAdmin = (req, res, next) => {
 }
 
 const isCurrentUser = (req, res, next) => {
-  console.log('USER', req.user.id, 'PARAMS', req.params.id)
   if (req.user.id === Number(req.params.id)) {
     next()
   } else {
