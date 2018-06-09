@@ -45,7 +45,7 @@ class Cart extends React.Component {
         <div>
           Subtotal: ${subtotal}
         </div>
-        <div>
+        {subtotal ? <div>
           <Link to={'/checkout'} >
             <Button animated='vertical'>
               <Button.Content hidden>Checkout</Button.Content>
@@ -54,7 +54,7 @@ class Cart extends React.Component {
               </Button.Content>
             </Button>
           </Link>
-        </div>
+        </div> : <div></div> }
       </Container>
     )
   }
@@ -63,7 +63,7 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   const calculatesubtotal = () => {
     return state.cart.reduce( (subtotal, cartItem) => subtotal +
-    Number((cartItem.item.price * cartItem.quantity) * 100).toFixed(0) / 100
+    (Number(cartItem.item.price) * cartItem.quantity * 100).toFixed(0) / 100
     , 0 )
   }
   return {
