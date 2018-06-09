@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { createGetOrderForUserThunk } from '../store'
+import { createGetOrderForUserThunk } from '../../store'
 import { connect } from 'react-redux'
-import { OrderDetail, OrderProductDetails } from './'
+import { OrderProductDetails } from '../order/order-product-details'
+import { OrderDetail } from '../order/order-detail'
 
 class UserSingleOrder extends Component {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {createSaveCartOnLogoutThunk} from '../store'
+import {createSaveCartOnLogoutThunk} from '../../store'
 import {Menu, Icon} from 'semantic-ui-react'
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (

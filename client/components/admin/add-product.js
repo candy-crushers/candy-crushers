@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ProductForm } from './'
-import { createPostProductThunk } from '../store'
+import { ProductForm } from './product-form'
+import { createPostProductThunk } from '../../store'
 
 const AddProduct = (props) => {
   return (
