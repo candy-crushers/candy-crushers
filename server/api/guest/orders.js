@@ -10,17 +10,22 @@ router.post('/', async (req, res, next) => {
         email: req.body.email,
         sessionId: req.session.id,
       });
-      req.body.productsInCart.map( async (productInCart)  => {
+      await Promise.all(req.body.productsInCart.map( async (productInCart)  => {
         const orderProduct = await Product.findById(productInCart.id);
-        order.addProduct(orderProduct, {
+        await order.addProduct(orderProduct, {
           through: {
             priceAtTime: orderProduct.price,
             quantity: productInCart.quantity
           }
         })
-        orderProduct.decrement('inventory', { by: productInCart.quantity})
+        await orderProduct.decrement('inventory', { by: productInCart.quantity})
+      }))
+
+      // after products have been added, retrieve the eager loaded instance to send back
+      const newOrderWithProducts = await Order.findById(order.id, {
+        include: [{all: true}],
       })
-      res.status(201).json(order);
+      res.status(201).json(newOrderWithProducts);
     } catch (error) {
       next(error)
     }
