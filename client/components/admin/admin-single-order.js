@@ -15,18 +15,12 @@ class AdminSingleOrder extends Component {
     this.props.getOrder(this.props.match.params.id)
   }
 
-  // componentWillReceiveProps (nextProps) {
-  //   this.setState({
-  //     status : nextProps.order.status
-  //   })
-  //   console.log('next', this.state.status)
-  // }
+ 
 
   handleChange = async(event) => {
     await this.setState({
       status : event.target.value,
     })
-    //console.log('state', this.state)
   }
 
   handleEdit = (event) => {
