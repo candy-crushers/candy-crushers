@@ -25,7 +25,6 @@ class AdminSingleOrder extends Component {
 
   handleEdit = (event) => {
     event.preventDefault()
-    console.log('here', )
     this.props.updateOrderStatus(this.props.match.params.id, {status : this.state.status })
   }
 
