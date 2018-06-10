@@ -1,12 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createGetOrdersForAdminThunk } from '../../store';
-import { OrderRow } from '../'
+import { OrderRow, StatusFilterRadios } from '../'
 
 class AdminOrderHistory extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      filtered : false,
+      categort : ''
+    }
+  }
 
   componentDidMount () {
     this.props.getOrders()
+  }
+
+  handleRadioChange = (event) => {
+    event.preventDefault()
+
   }
 
   render () {
@@ -14,6 +26,7 @@ class AdminOrderHistory extends Component {
     return (
       <div className="order-history">
         <h1>All Orders</h1>
+        <StatusFilterRadios />
         <div className="order-history-orders">
           {
             orders.length > 0 && orders.map(order => <OrderRow key={order.id} order={order} path={match.path} />)
@@ -27,6 +40,7 @@ class AdminOrderHistory extends Component {
 const mapStateToProps = (state) => {
   return {
     orders: state.orders,
+    filteredOrders: state.filteredOrders
   }
 }
 

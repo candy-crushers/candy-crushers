@@ -9,9 +9,10 @@ import singleProduct from './singleProduct'
 import orders from './orders'
 import cart from './cart'
 import singleOrder from './single-order'
+import filteredOrders from './filtered-orders'
 import axios from 'axios';
 
-const reducer = combineReducers({user, products, categories, singleProduct, orders, singleOrder, cart})
+const reducer = combineReducers({user, products, categories, singleProduct, orders, singleOrder, cart, filteredOrders})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -52,3 +53,4 @@ export * from './singleProduct'
 export * from './orders'
 export * from './cart'
 export * from './single-order'
+export * from './filtered-orders'

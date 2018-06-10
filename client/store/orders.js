@@ -5,12 +5,14 @@ export const GOT_ORDERS = 'GOT_ORDERS'
 export const NEW_ORDER_FOR_GUEST = 'NEW_ORDER_FOR_GUEST'
 
 
+
 // initial state
 const initialState = []
 
 // action creators
 const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
 const newOrderForGuestAction = (order) => ({type: NEW_ORDER_FOR_GUEST, order})
+
 
 
 // thunk creators
