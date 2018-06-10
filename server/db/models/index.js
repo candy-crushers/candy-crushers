@@ -25,7 +25,7 @@ Product.addScope('defaultScope', {
   include: [{ model: Review, include: User }],
 }, {
   override: true
-});
+})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
