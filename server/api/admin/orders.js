@@ -23,8 +23,6 @@ router.put('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     const { status } = req.body
-    console.log('route', req.body )
-
     await Order.update({ status }, {
       where : {
         id
@@ -35,8 +33,6 @@ router.put('/:id', async (req, res, next) => {
   }catch(error){
     next(error)
   }
-  const updates = { status, subtotal, shippingAddress, email, sessionId }
-  next()
 })
 
 

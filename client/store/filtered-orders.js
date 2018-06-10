@@ -4,7 +4,7 @@ import orders from './'
 export const FILTER_ORDER_BY_STATUS_FOR_ADMIN = 'FILTER_ORDER_BY_STATUS_FOR_ADMIN'
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 
-const initialState = orders || []
+const initialState = []
 
 const filterOrdersByStatusAction = (status) => ({type: FILTER_ORDER_BY_STATUS_FOR_ADMIN, status})
 const getAllOders = () => ({type: GET_ALL_ORDERS})

@@ -7,8 +7,7 @@ router.use('/products', require('./products'))
 router.use('/categories', require('./categories'))
 router.use('/user/users/:id', isCurrentUser, require('./user/users'))
 router.use('/user/orders', isLoggedIn, require('./user/orders'))
-//router.use('/admin/orders', isAdmin, require('./admin/orders'))
-router.use('/admin/orders', require('./admin/orders'))
+router.use('/admin/orders', isAdmin, require('./admin/orders'))
 router.use('/guest/orders', require('./guest/orders'));
 
 router.use((req, res, next) => {

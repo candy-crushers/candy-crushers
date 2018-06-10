@@ -7,8 +7,7 @@ class AdminOrderHistory extends Component {
   constructor(props){
     super(props)
     this.state = {
-      filtered : false,
-      categort : ''
+      filter : ''
     }
   }
 
