@@ -22,6 +22,22 @@ form div {
   display: inline-block;
 }
 
+/* -----MULTI-PHOTO-DISPLAY------ */
+
+.multiPhoto {
+  max-height : 200px;
+  max-width : 200px
+}
+
+.largePhoto {
+  width : 100px
+}
+
+.smallPhoto {
+  width : 50px
+}
+
+
 /* -----NAVBAR------ */
 
 .nav-bar {

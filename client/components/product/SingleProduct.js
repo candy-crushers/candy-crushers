@@ -3,16 +3,16 @@ import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../../store'
 import {CandyItem, ReviewAvatar} from '../'
 import { List, Container, Divider, Segment, Message } from 'semantic-ui-react'
+import MultiPhotoDisplay from './multi-photo-display';
 
 
 class SingleProduct extends Component {
   constructor(props){
     super(props)
     this.state = {
-      quantity : 1
+      quantity : 1,
+      selected : 0
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount () {
@@ -20,7 +20,7 @@ class SingleProduct extends Component {
     this.props.getProduct(id)
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     event.preventDefault()
     if(event.target.value > 0){
       this.setState({
@@ -29,7 +29,7 @@ class SingleProduct extends Component {
     }
   }
 
-  handleSubmit (event) {
+  handleSubmit = (event) => {
     event.preventDefault()
     const quantity = this.state.quantity
     const item = {item : this.props.singleProduct, quantity}
@@ -37,6 +37,11 @@ class SingleProduct extends Component {
     this.setState({
       quantity : ''
     })
+  }
+
+  changeSelectedPhoto = (event) => {
+    event.preventDefault()
+    console.log(event.target)
   }
 
 
@@ -59,6 +64,7 @@ class SingleProduct extends Component {
         )}
         <Segment>
         <Container>
+        <MultiPhotoDisplay photos={product.images} selected={this.state.selected} changeSelected={this.changeSelectedPhoto}/>
         <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} outOfStock={this.props.outOfStock} />
         </Container><br /><br />
         <Divider horizontal></Divider>

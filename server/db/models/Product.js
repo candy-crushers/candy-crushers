@@ -28,9 +28,11 @@ const Product = db.define('product', {
    },
    images : {
      type : Sequelize.ARRAY(Sequelize.STRING),
-     defaultValue : ['/defaultPhotos/lolies.jpg']
+     defaultValue : ['/defaultPhotos/lolies.jpg', '/defaultPhotos/bon-bons.jpg', '/defaultPhotos/chocolate-bar.jpg', '/defaultPhotos/gummy-bears.jpg', '/defaultPhotos/jelly-beans.jpg' ]
    },
 })
+
+
 
 //-----HOOKS-----
 Product.beforeValidate(instance => {
