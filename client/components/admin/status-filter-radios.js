@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+
 
 
 
 function StatusFilterRadios(props){
-  const { handleChange } = props
+  const { handleChange, checked } = props
   return (
-      <form onChange={(e)=> handleChange(e)}>
+      <form>
         <p>Filter orders by status:</p>
         <div>
-          <input type="radio" name="status" value="all" />
+          <input type="radio" value="all" checked={checked === "all"}  onChange={handleChange}/>
           <label htmlFor="all">all</label>
 
-          <input type="radio" name="status" value="Created" />
+          <input type="radio" value="Created" checked={checked === "Created"}  onChange={handleChange}/>
           <label htmlFor="Created">Created</label>
 
-          <input type="radio" name="status" value="Processing" />
+          <input type="radio" value="Processing" checked={checked === "Processing"} onChange={handleChange}/>
           <label htmlFor="Processing">Processing</label>
 
-          <input type="radio" name="status" value="Completed" />
+          <input type="radio" value="Completed" checked={checked === "Completed"} onChange={handleChange}/>
           <label htmlFor="Completed">Completed</label>
 
-          <input type="radio" name="status" value="Cancelled" />
+          <input type="radio" value="Cancelled"checked={checked === "Cancelled"} onChange={handleChange} />
           <label htmlFor="Cancelled">Cancelled</label>
         </div>
       </form>)
