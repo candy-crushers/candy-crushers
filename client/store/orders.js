@@ -23,6 +23,14 @@ export const createGetOrdersForUserThunk = () => {
   }
 }
 
+const sendConfirmationEmail = (order) => {
+  const emailOptions = {
+    to: order.email,
+    order,
+  }
+  return axios.post('/api/confirmation', emailOptions)
+}
+
 export const createGetOrdersForAdminThunk = () => {
   return async (dispatch) => {
     try {
@@ -39,6 +47,7 @@ export const newOrderForGuestThunk = (order) => {
     try{
       const {data: newOrder} = await axios.post('/api/guest/orders', order)
       dispatch(newOrderAction(newOrder))
+      await sendConfirmationEmail(newOrder)
     } catch (error) {
       console.error(error);
     }
@@ -51,6 +60,7 @@ export const newOrderForUserThunk = (order) => {
       const userId = store.getState().user.id;
       const {data: newOrder} = await axios.post(`/api/users/${userId}/orders`, order)
       dispatch(newOrderAction(newOrder))
+      await sendConfirmationEmail(newOrder)
     } catch (error) {
       console.error(error);
     }

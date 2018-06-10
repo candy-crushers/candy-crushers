@@ -5,6 +5,7 @@ module.exports = router
 router.use('/users', require('./users'))
 router.use('/products', require('./products'))
 router.use('/categories', require('./categories'))
+router.use('/email', require('./email'))
 router.use('/user/users/:id', isCurrentUser, require('./user/users'))
 router.use('/user/orders', isLoggedIn, require('./user/orders'))
 router.use('/admin/orders', isAdmin, require('./admin/orders'))
