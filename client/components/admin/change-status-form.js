@@ -3,7 +3,7 @@ import React from 'react'
 
 
 function ChangeStatusForm(props){
-  const { order, handleChange, handleEdit, handleDelete } = props
+  const { order, handleChange, handleEdit } = props
   return(
     <form name="status" >
     <p>{`Oder Status: ${order.status}`}</p>
@@ -15,7 +15,6 @@ function ChangeStatusForm(props){
         <option name="status" value="Completed">Completed</option>
         <option name="status" value="Cancelled">Cancelled</option>
       </select>
-      {/* <Button onClick={handleDelete}>Delete Order</Button> */}
       <button type="submit" onClick={handleEdit}>Change Status</button>
     </form>)
 }

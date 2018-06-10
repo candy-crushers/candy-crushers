@@ -15,7 +15,6 @@ class AdminSingleOrder extends Component {
     this.props.getOrder(this.props.match.params.id)
   }
 
- 
 
   handleChange = async(event) => {
     await this.setState({
@@ -25,12 +24,11 @@ class AdminSingleOrder extends Component {
 
   handleEdit = (event) => {
     event.preventDefault()
-    this.props.updateOrderStatus(this.props.match.params.id, {status : this.state.status })
+    this.props.updateOrderStatus(this.props.match.params.id, {status: this.state.status})
   }
 
   render () {
     const { order } = this.props
-    console.log('detail', order)
     return (
       <div>
         <h1>Order Details</h1>
@@ -39,7 +37,6 @@ class AdminSingleOrder extends Component {
           status={this.state.status}
           handleChange={this.handleChange}
           handleEdit={this.handleEdit}
-          // handleDelete={this.handleDelete}
           />
         <OrderDetail order={order} />
         <OrderProductDetails products={order.products} />
