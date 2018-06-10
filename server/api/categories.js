@@ -4,8 +4,6 @@ module.exports = router
 
 const { isAdmin } = require('./middleware')
 
-router.use(isAdmin)
-
 router.get('/', (req, res, next) => {
     Category.findAll({
        attributes: ['id', 'name']
@@ -14,7 +12,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const category = await Category.create({
       name: req.body.name
@@ -25,7 +23,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     console.log(req.body);
     await Category.update({name: req.body.name}, {
@@ -40,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
     await Category.destroy({
       where: {
