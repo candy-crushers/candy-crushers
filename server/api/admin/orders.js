@@ -32,10 +32,8 @@ router.put('/:id', async (req, res, next) => {
     res.json(updatedOrder)
   }catch(error){
     next(error)
-  }
-  const updates = { status, subtotal, shippingAddress, email, sessionId }
-  next()
-})
+  })
+
 
 
 
