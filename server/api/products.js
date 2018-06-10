@@ -1,11 +1,17 @@
 const router = require('express').Router()
+const Op = require('sequelize').Op
 const {Product, Review, User, Category} = require('../db/models')
 const { isAdmin } = require('./middleware')
 module.exports = router
 
 router.get('/', (req, res, next) => {
     Product.findAll({
-      include: [Category]
+      include: [Category],
+      where: {
+        inventory: {
+          [Op.gt]: 0
+        }
+      }
     })
     .then(products => res.json(products))
     .catch(next)

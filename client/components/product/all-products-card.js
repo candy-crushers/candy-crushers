@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, Card } from 'semantic-ui-react'
-import NumberPickerWrapper from './number-picker-wrapper'
+import { NumberPickerWrapper } from '../'
 import { Link } from 'react-router-dom'
 
 

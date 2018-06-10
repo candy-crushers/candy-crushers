@@ -4,12 +4,14 @@ import store from './'
 export const GOT_ORDERS = 'GOT_ORDERS'
 export const NEW_ORDER = 'NEW_ORDER'
 
+
 // initial state
 const initialState = []
 
 // action creators
 const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
 const newOrderAction = (order) => ({type: NEW_ORDER, order})
+
 
 // thunk creators
 export const createGetOrdersForUserThunk = () => {
@@ -23,6 +25,14 @@ export const createGetOrdersForUserThunk = () => {
   }
 }
 
+const sendConfirmationEmail = (order) => {
+  const emailOptions = {
+    to: order.email,
+    order,
+  }
+  return axios.post('/api/email/confirmation', emailOptions)
+}
+
 export const createGetOrdersForAdminThunk = () => {
   return async (dispatch) => {
     try {
@@ -34,11 +44,13 @@ export const createGetOrdersForAdminThunk = () => {
   }
 }
 
+
 export const newOrderForGuestThunk = (order) => {
   return async (dispatch) => {
     try{
       const {data: newOrder} = await axios.post('/api/guest/orders', order)
       dispatch(newOrderAction(newOrder))
+      await sendConfirmationEmail(newOrder)
     } catch (error) {
       console.error(error);
     }
@@ -51,6 +63,7 @@ export const newOrderForUserThunk = (order) => {
       const userId = store.getState().user.id;
       const {data: newOrder} = await axios.post(`/api/users/${userId}/orders`, order)
       dispatch(newOrderAction(newOrder))
+      await sendConfirmationEmail(newOrder)
     } catch (error) {
       console.error(error);
     }
