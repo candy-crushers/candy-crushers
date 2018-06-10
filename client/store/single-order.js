@@ -2,12 +2,14 @@ import axios from 'axios'
 
 // action creators
 export const GOT_ORDER = 'GOT_ORDER'
+export const EDIT_ORDER_FOR_ADMIN = 'EDIT_ORDER_FOR_ADMIN'
 
 // initial state
 const initialState = {}
 
 // action creators
 const createGotOrderAction = (order) => ({type: GOT_ORDER, order})
+const editOrderForAdminAction = (status) => ({type: EDIT_ORDER_FOR_ADMIN, status})
 
 // thunk creators
 export const createGetOrderForUserThunk = (id) => {
@@ -32,11 +34,24 @@ export const createGetOrderForAdminThunk = (id) => {
   }
 }
 
+export const createEditOrderForAdminThunk = (id, status) => {
+  return async (dispatch) => {
+    try{
+      await axios.put(`/api/admin/orders/${id}`, status)
+      dispatch(editOrderForAdminAction(status))
+    }catch(error) {
+      console.error(error)
+    }
+  }
+}
+
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
     case GOT_ORDER:
       return action.order
+    case EDIT_ORDER_FOR_ADMIN:
+      return {...state, status: action.status.status}
     default:
       return state
   }
