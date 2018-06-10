@@ -32,9 +32,7 @@ router.put('/:id', async (req, res, next) => {
     res.json(updatedOrder)
   }catch(error){
     next(error)
-  })
-
-
-
+  }
+})
 
 module.exports = router
