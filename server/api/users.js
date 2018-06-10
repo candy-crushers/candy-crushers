@@ -14,7 +14,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:id/orders', async (req, res, next) => {
-  console.log(`I'm here`, req.params.id);
   try {
     const order = await Order.create({
       status: req.body.status,
@@ -39,4 +38,3 @@ router.post('/:id/orders', async (req, res, next) => {
     next(error)
   }
 })
-

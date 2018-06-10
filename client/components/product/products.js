@@ -70,7 +70,7 @@ class Products extends React.Component {
     return (
       <Container >
         <div>
-        {/* <Link to="/admin/products/add">Add Product</Link>
+        {/* <Link to="/admin/products/add">Add Product</Link> */}
         <select onChange={this.handleChange} value={selectedCategory.id}>
           <option value={null}>Select Category</option>
           {categories.map( category =>
@@ -78,7 +78,7 @@ class Products extends React.Component {
               {category.name}
             </option>
           )}
-        </select> */}
+        </select>
         <form onChange={this.handleSearch}>
           <label>Search: </label>
           <input

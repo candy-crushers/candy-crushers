@@ -19,6 +19,14 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (
           </Menu.Item>
         </Menu.Menu>
       }
+      {
+        isAdmin &&
+        <Menu.Menu>
+          <Menu.Item>
+            <Link to='/admin/dashboard'>Dashboard</Link>
+          </Menu.Item>
+        </Menu.Menu>
+      }
       <Menu.Menu position='right'>
         <Menu.Item>
           <Link to='/cart' >
