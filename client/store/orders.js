@@ -4,12 +4,14 @@ import axios from 'axios'
 export const GOT_ORDERS = 'GOT_ORDERS'
 export const NEW_ORDER_FOR_GUEST = 'NEW_ORDER_FOR_GUEST'
 
+
 // initial state
 const initialState = []
 
 // action creators
 const createGotOrdersAction = (orders) => ({type: GOT_ORDERS, orders})
 const newOrderForGuestAction = (order) => ({type: NEW_ORDER_FOR_GUEST, order})
+
 
 // thunk creators
 export const createGetOrdersForUserThunk = () => {
@@ -34,10 +36,10 @@ export const createGetOrdersForAdminThunk = () => {
   }
 }
 
+
 export const newOrderForGuestThunk = (order) => {
   return async (dispatch) => {
     try{
-      console.log('Order in thunk', order)
       const {data: newOrder} = await axios.post('/api/guest/orders', order)
       dispatch(newOrderForGuestAction(newOrder))
     } catch (error) {

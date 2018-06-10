@@ -19,4 +19,39 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+    const { status } = req.body
+    console.log('route', req.body )
+
+    await Order.update({ status }, {
+      where : {
+        id
+      },
+    })
+    const updatedOrder = await Order.findById(id)
+    res.json(updatedOrder)
+  }catch(error){
+    next(error)
+  }
+  const updates = { status, subtotal, shippingAddress, email, sessionId }
+  next()
+})
+
+// router.put('/:id', isAdmin, async (req, res, next) => {
+//   try {
+//     await Product.update(req.body, {
+//       where: {
+//         id: req.params.id,
+//       },
+//     })
+//     // Model.update does not support eager loading
+//     const updatedProduct = await Product.findById(req.params.id)
+//     res.json(updatedProduct)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
 module.exports = router
