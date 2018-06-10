@@ -30,7 +30,7 @@ const sendConfirmationEmail = (order) => {
     to: order.email,
     order,
   }
-  return axios.post('/api/confirmation', emailOptions)
+  return axios.post('/api/email/confirmation', emailOptions)
 }
 
 export const createGetOrdersForAdminThunk = () => {
