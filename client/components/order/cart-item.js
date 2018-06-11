@@ -5,16 +5,12 @@ import { Link } from 'react-router-dom'
 class CartItem extends Component {
   constructor (props){
     super(props)
-    this.state = {
-      total : ''
-    }
   }
 
 
   render(){
     const { deleteItem } = this.props
-    const { item } = this.props.item
-    const { quantity } = this.props.item
+    const { item, quantity } = this.props.item
     const subtotal = quantity * item.price
 
 
