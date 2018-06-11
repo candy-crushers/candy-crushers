@@ -36,7 +36,7 @@ class CandyItem extends Component {
           </Item.Extra>
           </div>
             <Item.Content verticalAlign='middle' >
-              <Item.Header as='h1'>{name}</Item.Header>
+              <Item.Header as='h1'>{name}</Item.Header>git
               <Item.Description>{description}</Item.Description><br />
                 <Item.Extra>
                   { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
