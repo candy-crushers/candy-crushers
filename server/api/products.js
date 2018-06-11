@@ -40,6 +40,21 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.post('/:id/reviews', async (req, res, next) => {
+  const reviewData = {
+    text: req.body.text,
+    stars: req.body.stars,
+    productId: req.body.productId,
+    userId: req.body.userId,
+  }
+
+  const review = await Review.create(reviewData)
+  const reviewWithUser = await Review.findById(review.id, {
+    include: [User]
+  })
+  res.status(201).send(reviewWithUser)
+})
+
 router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     await Product.update(req.body, {
