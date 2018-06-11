@@ -39,10 +39,6 @@ class SingleProduct extends Component {
     })
   }
 
-  changeSelectedPhoto = (event) => {
-    event.preventDefault()
-  }
-
 
   productComponent () {
     const product = this.props.singleProduct
@@ -53,10 +49,7 @@ class SingleProduct extends Component {
       handleSubmit : this.handleSubmit,
       quantity : this.state.quantity
     }
-    const multiContent = {
-      selected : this.state.selected,
-      changeSelected : this.changeSelectedPhoto,
-    }
+
     return (
       <Container>
         <br /><br />
@@ -67,7 +60,6 @@ class SingleProduct extends Component {
         )}
         <Segment>
         <Container>
-
         <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} outOfStock={this.props.outOfStock} />
         </Container><br /><br />
         <Divider horizontal></Divider>

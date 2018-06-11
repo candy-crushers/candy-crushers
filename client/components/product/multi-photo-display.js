@@ -1,18 +1,15 @@
 import React from 'react'
 
 function MultiPhotoDisplay (props) {
-  const { photos, selected, changeSelected } = props
+  const { photos } = props
+  const { selected, changeSelected } = props.multi
   return (
     <div className="multiPhoto">
-      <img className="largePhoto" src={selected} />
+      {/* <img className="largePhoto" src={photos[selected]} /> */}
       <div className="photoBar" >
         {
           photos.map((photo, index) => {
-            if(index !== selected){
-              return <img key={photo.id} src={photo} className="smallPhoto" onClick={changeSelected} />
-            }else{
-              return (<span />)
-            }
+              return <div className="row" key={photo.id}><img src={photo} className="smallPhoto" onClick={() => changeSelected(index)} /></div>
           })
         }
       </div>
@@ -20,3 +17,5 @@ function MultiPhotoDisplay (props) {
 }
 
 export default MultiPhotoDisplay
+
+{/* <MultiPhotoDisplay photos={product.images} selected={this.state.selected} changeSelected={this.changeSelectedPhoto}/> */}

@@ -1,7 +1,8 @@
 /* -----GENERAL------ */
 
 body {
-  font-family: "Helvetica"
+  font-family: "Helvetica";
+  background-color: pink
 }
 
 a {
@@ -25,12 +26,23 @@ form div {
 /* -----MULTI-PHOTO-DISPLAY------ */
 
 .multiPhoto {
-  max-height : 200px;
-  max-width : 200px
+  max-height : 60px;
+  display: flex;
+  width : 300px;
+  flex-direction: row;
+  margin-bottom: 0
+}
+
+.marginCandyItem {
+  margin: 0 40px;
+}
+
+.row {
+  display: inline;
 }
 
 .largePhoto {
-  width : 100px
+  width : 250px
 }
 
 .smallPhoto {
