@@ -28,6 +28,24 @@ form div {
   background-color: hotpink
 }
 
+/* -----CART PAGE------ */
+
+.cartItemContainer {
+  display: flex;
+  border: 1px solid black;
+}
+
+.cartItemWrapper {
+  border: 1px solid black;
+  margin: 30px
+}
+
+.subTotal {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column
+}
+
 /* -----ORDERS------ */
 
 .order-history {

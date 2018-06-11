@@ -1,9 +1,10 @@
 import React from 'react'
 import { Item, Container, Button } from 'semantic-ui-react'
 
+
 export default function CandyItem(props){
   const { images, name, price, description } = props.product
-  const { text, method, quantity, handleChange, handleSubmit } = props.showQuantity
+  const { text, quantity, handleChange, handleSubmit } = props.showQuantity
   const { button, handleClick, outOfStock } = props
 
   return(
