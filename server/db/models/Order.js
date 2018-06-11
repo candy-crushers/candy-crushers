@@ -21,6 +21,10 @@ const Order = db.define('order', {
    sessionId : {
      type : Sequelize.STRING //integer?
    },
+   chargeId: {
+     type: Sequelize.STRING,
+     allowNull: true
+   },
    shippingDate: {
      type: Sequelize.DATE,
      get () {
