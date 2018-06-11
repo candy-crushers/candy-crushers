@@ -1,5 +1,5 @@
 # Candy Crushers
-[![Build Status](https://travis-ci.org/candy-crushers/candy-crushers.svg?branch=master)](https://travis-ci.org/candy-crushers/candy-crushers)
+[![Build Status](https://travis-ci.org/candy-crushers/candy-crushers.svg?branch=master)](https://travis-ci.org/candy-crushers/candy-crushers) [![Waffle.io - Columns and their card count](https://badge.waffle.io/candy-crushers/candy-crushers.svg?columns=all)](https://waffle.io/candy-crushers/candy-crushers)
 ## About Us
 We fight food waste by finding a home for crushed candy. We source it directly from confectioners and deliver it to customers’ doors for 30-50% less than candy store prices. By eating ‘crushed,’ you’re helping build a more sustainable and effective food system. You’re helping fight food waste. You’re ensuring confectioners are rewarded for their full harvest of candy with less wasted sugar, dye, and sugar. With every lick of a crushed candy cane or jolly rancher, you’re helping shape our world for the better.
 

@@ -7,9 +7,9 @@ const generatePrice = () => {
 }
 
 const userData = [
-  {email: 'cody@email.com', password: '123', isAdmin: false, isVerified: true},
-  {email: 'murphy@email.com', password: '123', isAdmin: false, isVerified: true},
-  {email: 'admin@candy.com', password: 'candy', isAdmin: true, isVerified: true},
+  {email: 'cody@email.com', password: '123', isAdmin: false},
+  {email: 'murphy@email.com', password: '123', isAdmin: false},
+  {email: 'admin@candy.com', password: 'candy', isAdmin: true},
 ]
 
 const productData = [

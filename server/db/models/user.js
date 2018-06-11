@@ -39,7 +39,7 @@ const User = db.define('user', {
   },
   isVerified: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: true
   }
 })
 

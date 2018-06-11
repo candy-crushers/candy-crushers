@@ -9,6 +9,7 @@ router.post('/', async (req, res, next) => {
         shippingAddress: req.body.shippingAddress,
         email: req.body.email,
         sessionId: req.session.id,
+        chargeId: req.body.chargeId,
       });
       await Promise.all(req.body.productsInCart.map( async (productInCart)  => {
         const orderProduct = await Product.findById(productInCart.id);

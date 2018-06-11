@@ -53,7 +53,7 @@ export const logout = () =>
 
 export const changePasswordThunk = (user) =>
   dispatch =>
-    axios.put('/auth/resetpass', {...user, isVerified: true})
+    axios.put('/auth/resetpass', user)
     .then(res =>
       dispatch(getUser(res.data)))
     .catch(err => console.log(err))

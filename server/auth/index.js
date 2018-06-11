@@ -20,7 +20,6 @@ router.post('/login', (req, res, next) => {
 
 router.put('/resetpass', async (req, res, next) => {
   try {
-    console.log(`I'm here`);
     const user = await User.findOne({where: {email: req.body.email}});
     if (!user) {
         console.log('No such user found:', req.body.email)
