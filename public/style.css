@@ -36,6 +36,13 @@ form.checkout div, #auth-form.form div {
   width: 100%;
 }
 
+/* -----CART ITEM------ */
+
+.cartNumber {
+  display: flex;
+
+}
+
 /* -----MULTI-PHOTO-DISPLAY------ */
 
 .multiPhoto {
