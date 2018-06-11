@@ -2,7 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {deleteItem, editquantity} from '../../store'
 import { Link } from 'react-router-dom'
-import { Container, Image, Button, Icon } from 'semantic-ui-react';
+import { Container, Image, Button, Icon, Item, Table } from 'semantic-ui-react';
+import { CartItem } from '../'
 
 class Cart extends React.Component {
 
@@ -19,35 +20,36 @@ class Cart extends React.Component {
   render(){
     const {cart, deleteItem, subtotal} = this.props
     return (
-      <Container>
-        <h3>CART</h3>
-        {cart.length ? cart.map( cartItem =>
-          (
-            <div key={cartItem.item.id}>
-                <Image src={cartItem.item.images[0]} size='small' />
-                <Link to={'/products/' + cartItem.item.id} >
-                  {cartItem.item.name}
-                </Link>
-                <h5>${cartItem.item.price}</h5>
-                <form>
-                  <input type="number" name="quantity" value={cartItem.quantity} onChange={(event) => this.changeQuantity(event, cartItem.item.id)} />
-                </form>
-                <button
-                  type='button'
-                  onClick={() => deleteItem(cartItem.item.id)}
-                >
-                Delete
-                </button>
-            </div>
-          )) : <div>Cart is Empty :(</div>
-        }
-        <hr />
+      <Container><br /><br />
+      <h3>YOUR CART</h3>
+      <Table striped >
+      <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell>Product</Table.HeaderCell>
+        <Table.HeaderCell>Quantity</Table.HeaderCell>
+        <Table.HeaderCell>Price Each</Table.HeaderCell>
+        <Table.HeaderCell>Total for Items</Table.HeaderCell>
+        <Table.HeaderCell> </Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      {
+       cart.map((item) => {
+         return <CartItem deleteItem={deleteItem} item={item} key={item.id}/>
+       })
+      }
+    </Table.Body>
+    </Table>
+        <hr /><br />
+        <div className="subTotal">
         <div>
-          Subtotal: ${subtotal}
-        </div>
+          <h2>Subtotal: ${subtotal}</h2>
+        </div><br />
+
+
         {subtotal ? <div>
           <Link to={'/checkout'} >
-            <Button animated='vertical'>
+            <Button animated='vertical' color="teal" size="massive">
               <Button.Content hidden>Checkout</Button.Content>
               <Button.Content visible>
                 <Icon name='payment' />
@@ -55,6 +57,7 @@ class Cart extends React.Component {
             </Button>
           </Link>
         </div> : <div></div> }
+       </div>
       </Container>
     )
   }
@@ -68,7 +71,8 @@ const mapStateToProps = (state) => {
   }
   return {
     cart: state.cart,
-    subtotal: calculatesubtotal()
+    subtotal: calculatesubtotal(),
+
   }
 }
 
@@ -80,3 +84,34 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+
+  {/* <Image src={cartItem.item.images[0]} size='small' />
+                <Link to={'/products/' + cartItem.item.id} >
+                  {cartItem.item.name}
+                </Link>
+                <h5>${cartItem.item.price}</h5>
+                <form>
+                  <input type="number" name="quantity" value={cartItem.quantity} onChange={(event) => this.changeQuantity(event, cartItem.item.id)} />
+                </form>
+                <button
+                  type='button'
+                  onClick={() => deleteItem(cartItem.item.id)}
+                >
+                Delete
+                </button> */}
+
+
+
+                // <Container>
+                // <div className="cartItemContainer">
+                //   <Item.Group>
+                //   {cart.length ? cart.map( cartItem =>
+                //     (
+                //       <div key={cartItem.item.id} className="cartItemWrapper">
+                //         <CartItem item={cartItem} deleteItem={deleteItem}/>
+                //       </div>
+                //     )) : <div>Cart is Empty :(</div>
+                //   }
+                //   </Item.Group>
+                //   </div>

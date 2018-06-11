@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Item, Container, Button } from 'semantic-ui-react'
 import MultiPhotoDisplay from './multi-photo-display'
 
+
+
 class CandyItem extends Component {
   constructor(props){
     super(props)
@@ -9,6 +11,7 @@ class CandyItem extends Component {
       selected : 0
     }
   }
+
 
   changeSelectedPhoto = (index) => {
     this.setState({
