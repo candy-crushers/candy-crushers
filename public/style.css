@@ -50,6 +50,11 @@ form.checkout div, #auth-form.form div {
 
 #add-review div, #add-review textarea {
   margin-bottom: 0.5em;
+
+/* -----CART ITEM------ */
+
+.cartNumber {
+  display: flex;
 }
 
 /* -----MULTI-PHOTO-DISPLAY------ */
@@ -83,6 +88,24 @@ form.checkout div, #auth-form.form div {
 
 .nav-bar {
   background-color: hotpink
+}
+
+/* -----CART PAGE------ */
+
+.cartItemContainer {
+  display: flex;
+  border: 1px solid black;
+}
+
+.cartItemWrapper {
+  border: 1px solid black;
+  margin: 30px
+}
+
+.subTotal {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column
 }
 
 /* -----ORDERS------ */
