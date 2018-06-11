@@ -6,6 +6,9 @@ const Review = db.define('review', {
    text: {
      type : Sequelize.TEXT,
      allowNull : false,
+     validate: {
+       min: 5,
+     }
    },
    stars : {
      type : Sequelize.INTEGER,

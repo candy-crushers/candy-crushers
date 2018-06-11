@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../../store'
-import {CandyItem, ReviewAvatar} from '../'
+import {CandyItem, ReviewAvatar, AddReview} from '../'
 import { List, Container, Divider, Segment, Message } from 'semantic-ui-react'
 
 
@@ -67,12 +67,11 @@ class SingleProduct extends Component {
         <Segment>
         <List relaxed>
         {
-          product.reviews && product.reviews.length > 0
-          ? product.reviews.map((review) => {
+          (product.reviews && product.reviews.length > 0) && product.reviews.map((review) => {
               return <List.Item key={review.id}><ReviewAvatar  review={review} /></List.Item>
             })
-          : <div>No reviews yet</div>
         }
+        <AddReview />
         </List>
         </Segment>
         </Container>
@@ -104,7 +103,3 @@ const mapDispatch = (dispatch) => {
 
 
 export default connect(mapState, mapDispatch)(SingleProduct);
-
-
-
-
