@@ -7,7 +7,7 @@ import {Modal, Form, Button} from 'semantic-ui-react'
 /**
  * COMPONENT
  */
-class UserHome extends React.Component {
+export class UserHome extends React.Component {
 
   updatePassword = async (email) => {
     await this.props.changePassword({email, password: this._password.value})
