@@ -9,9 +9,10 @@ import singleProduct from './singleProduct'
 import orders from './orders'
 import cart from './cart'
 import singleOrder from './single-order'
+import allusers from './allusers'
 import axios from 'axios';
 
-const reducer = combineReducers({user, products, categories, singleProduct, orders, singleOrder, cart})
+const reducer = combineReducers({user, products, categories, singleProduct, orders, singleOrder, cart, allusers})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -25,7 +26,7 @@ const saveCartToLocalStorage = (storedCart) => {
 
 const saveCartToUser = async (id, storedCart) => {
   try {
-    await axios.put(`/api/users/${id}`, {cart: storedCart})
+    await axios.put(`/api/user/users/${id}`, {cart: storedCart})
   } catch (error) {
     console.error(error)
   }
@@ -52,4 +53,4 @@ export * from './singleProduct'
 export * from './orders'
 export * from './cart'
 export * from './single-order'
-
+export * from './allusers'

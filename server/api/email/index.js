@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer')
 const confirmTemplate = require('../../../emails/confirmation')
 const shippedTemplate = require('../../../emails/shipped')
 const deliveredTemplate = require('../../../emails/delivered')
+const { Order } = require('../../db/models')
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -12,7 +13,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-// Do not want to overload email account when testing so have option to disable and not taking email
+// Do not want to overload email account when testing so have option to disable
 if (process.env.SEND_EMAILS) {
   router.post('/confirmation', (req, res, next) => {
     const { to, order} = req.body
@@ -32,8 +33,9 @@ if (process.env.SEND_EMAILS) {
     })
   })
 
-  router.post('/shipped', (req, res, next) => {
-    const { to, order } = req.body
+  router.post('/shipped', async (req, res, next) => {
+    const order = await Order.findById(req.body.id)
+
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL_TO,
@@ -50,8 +52,11 @@ if (process.env.SEND_EMAILS) {
     })
   })
 
-  router.post('/delivered', (req, res, next) => {
-    const { to, order } = req.body
+  router.post('/delivered', async (req, res, next) => {
+    const order = await Order.findById(req.body.id, {
+      include: [{ all: true }]
+    })
+
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL_TO,

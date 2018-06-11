@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AdminCategories from './categories'
+import AdminUsers from './users'
 import { Menu } from 'semantic-ui-react'
 
 class Dashboard extends React.Component {
@@ -29,7 +30,7 @@ class Dashboard extends React.Component {
         {/* {display === 'Products' && <AdminProducts />} */}
         {display === 'Categories' && <AdminCategories  />}
         {/* {display === 'Orders' && <AdminOrders  />} */}
-        {/* {display === 'Users' && <AdminUsers  />} */}
+        {display === 'Users' && <AdminUsers  />}
       </div>
     )
   }

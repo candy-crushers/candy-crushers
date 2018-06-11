@@ -4,7 +4,7 @@ const db = require('../db')
 
 const Order = db.define('order', {
    status: {
-     type : Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed'),
+     type : Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed', 'Shipped', 'Delivered'),
      allowNull : false,
    },
    subtotal : {
@@ -20,6 +20,10 @@ const Order = db.define('order', {
    },
    sessionId : {
      type : Sequelize.STRING //integer?
+   },
+   chargeId: {
+     type: Sequelize.STRING,
+     allowNull: true
    },
    shippingDate: {
      type: Sequelize.DATE,

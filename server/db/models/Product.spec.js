@@ -4,7 +4,7 @@ const { Product, User, Review } = require('./')
 
 describe('Product model', () => {
   describe('defaults', () => {
-    it('a single image if none is provided', async () => {
+    it('angit  image if none is provided', async () => {
       const productToCreate = {
         name: 'Kit-Kat',
         description: 'Oat cake soufflé powder carrot cake gummi bears.',
@@ -14,7 +14,7 @@ describe('Product model', () => {
 
       const product = await Product.create(productToCreate)
       expect(product.images).to.be.an('array')
-      expect(product.images.length).to.equal(1)
+      expect(product.images.length).to.be.greaterThan(0)
       expect(product.images[0].length).to.be.greaterThan(0)
     })
   })

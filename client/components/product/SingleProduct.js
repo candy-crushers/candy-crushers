@@ -5,14 +5,14 @@ import {CandyItem, ReviewAvatar, AddReview} from '../'
 import { List, Container, Divider, Segment, Message } from 'semantic-ui-react'
 
 
+
 class SingleProduct extends Component {
   constructor(props){
     super(props)
     this.state = {
-      quantity : 1
+      quantity : 1,
+      selected : 0
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount () {
@@ -20,7 +20,7 @@ class SingleProduct extends Component {
     this.props.getProduct(id)
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     event.preventDefault()
     if(event.target.value > 0){
       this.setState({
@@ -29,7 +29,7 @@ class SingleProduct extends Component {
     }
   }
 
-  handleSubmit (event) {
+  handleSubmit = (event) => {
     event.preventDefault()
     const quantity = this.state.quantity
     const item = {item : this.props.singleProduct, quantity}
@@ -49,6 +49,7 @@ class SingleProduct extends Component {
       handleSubmit : this.handleSubmit,
       quantity : this.state.quantity
     }
+
     return (
       <Container>
         <br /><br />
