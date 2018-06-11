@@ -20,6 +20,7 @@ router.post('/:id/orders', async (req, res, next) => {
       subtotal: req.body.subtotal,
       shippingAddress: req.body.shippingAddress,
       email: req.body.email,
+      chargeId: req.body.chargeId,
     });
     const user = await User.findById(req.params.id);
     order.setUser(user);
