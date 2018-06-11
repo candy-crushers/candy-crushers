@@ -17,9 +17,16 @@ nav a {
   margin: 1em;
 }
 
+/* -----Forms------ */
+
 #checkout-form, #auth-form {
   margin: 2em auto;
   width: 40vw;
+}
+
+#add-product {
+  margin: 2em auto;
+  width: 60vw;
 }
 
 form.checkout div, #auth-form.form div {
@@ -34,6 +41,15 @@ form.checkout div, #auth-form.form div {
 
 #auth-form button, #checkout-form button {
   width: 100%;
+}
+
+#add-review button {
+  display: block;
+  margin-top: 0.5em;
+}
+
+#add-review div, #add-review textarea {
+  margin-bottom: 0.5em;
 }
 
 /* -----MULTI-PHOTO-DISPLAY------ */
@@ -110,5 +126,12 @@ form.checkout div, #auth-form.form div {
   background-color: #fefde5 !important;
 }
 
-/* -----Auth Forms------ */
+/* -----Confirmation------ */
+#confirmation {
+  width: 70%;
+  margin: 2em auto;
+}
 
+#confirmation img {
+  margin-top: 3em;
+}

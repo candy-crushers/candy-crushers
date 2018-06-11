@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Form, Button, Popup } from 'semantic-ui-react'
 
 class ProductForm extends Component {
   constructor () {
@@ -35,32 +36,40 @@ class ProductForm extends Component {
 
   render () {
     return (
-      <div>
+      <div id="add-product">
         <h1>{this.props.updating ? 'Edit Product' : 'Add a New Product'}</h1>
-        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-          <div>
+        <Form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+          <Form.Field>
             <label htmlFor="name">Name</label>
             <input type="text" name="name" value={this.state.name} />
-          </div>
-          <div>
+          </Form.Field>
+          <Form.Field>
             <label htmlFor="description">Description</label>
-            <textarea name="description" rows="5" value={this.state.description} />
-          </div>
-          <div>
-            <label htmlFor="price">Price</label>
-            <input type="number" min="0.00" step="0.01" name="price" value={this.state.price} />
-          </div>
-          <div>
-            <label htmlFor="inventory">Inventory</label>
-            <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} />
-          </div>
-          <div>
+            <textarea name="description" rows="7" value={this.state.description} />
+          </Form.Field>
+          <Form.Group widths="equal">
+            <Form.Field>
+              <label htmlFor="price">Price</label>
+              <input type="number" min="0.00" step="0.01" name="price" value={this.state.price} />
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="inventory">Inventory</label>
+              <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} />
+            </Form.Field>
+          </Form.Group>
+          <Form.Field>
             <label htmlFor="images">Images</label>
-            <input type="text" name="images" value={this.state.images} />
-            <span>Multiple image locations must be separated by a comma</span>
-          </div>
-          <button type="submit">{this.props.updating ? 'Save Changes' : 'Add Product'}</button>
-        </form>
+            <Popup
+              trigger={<input type="text" name="images" value={this.state.images} />}
+              content='Multiple image locations must be separated by a comma'
+              on='focus'
+              position='top right'
+              size="mini"
+              flowing
+            />
+          </Form.Field>
+          <Button type="submit" positive floated="right">{this.props.updating ? 'Save Changes' : 'Add Product'}</Button>
+        </Form>
       </div>
     )
   }

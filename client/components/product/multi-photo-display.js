@@ -9,7 +9,7 @@ function MultiPhotoDisplay (props) {
       <div className="photoBar" >
         {
           photos.map((photo, index) => {
-              return <div className="row" key={photo.id}><img src={photo} className="smallPhoto" onClick={() => changeSelected(index)} /></div>
+              return <div className="row" key={index}><img src={photo} className="smallPhoto" onClick={() => changeSelected(index)} /></div>
           })
         }
       </div>

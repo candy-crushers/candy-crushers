@@ -54,10 +54,10 @@ class AddReview extends Component {
     return (
       <div>
         {this.state.error && <Message onDismiss={this.handleDismiss} size="small" negative>{this.state.error}</Message>}
-        <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        <Form id="add-review" onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <TextArea name="text" value={this.state.text} autoHeight placeholder='Leave a review' rows={3} />
           <Rating icon="star" name="stars" maxRating={5} onRate={this.handleRate} rating={this.state.stars} />
-          <Button positive type="submit" disabled={this.state.stars === 0}>Save</Button>
+          <Button positive type="submit" disabled={this.state.stars === 0}>Submit</Button>
         </Form>
       </div>
     )

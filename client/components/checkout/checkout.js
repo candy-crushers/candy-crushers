@@ -65,6 +65,7 @@ class Checkout extends React.Component {
       console.error(error)
     }
   }
+
   render(){
     return (
       <Segment id="checkout-form">
@@ -113,13 +114,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     newOrderForGuest: (order) => {
       dispatch(newOrderForGuestThunk(order))
       .then( () => {
-        ownProps.history.push('/guest/orders/confirmation')
+        ownProps.history.push('/checkout/confirmation')
       })
     },
     newOrderForUser: (order) => {
       dispatch(newOrderForUserThunk(order))
       .then( () => {
-        ownProps.history.push('/user/orders/confirmation')
+        ownProps.history.push('/checkout/confirmation')
       })
     },
     deleteCart: (id) => {
