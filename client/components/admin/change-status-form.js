@@ -14,6 +14,8 @@ function ChangeStatusForm(props){
         <option name="status" value="Processing">Processing</option>
         <option name="status" value="Completed">Completed</option>
         <option name="status" value="Cancelled">Cancelled</option>
+        <option name="status" value="Shipped">Shipped</option>
+        <option name="status" value="Delivered">Delivered</option>
       </select>
       <button type="submit" onClick={handleEdit}>Change Status</button>
     </form>)
