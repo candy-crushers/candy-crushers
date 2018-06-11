@@ -24,8 +24,8 @@ function StatusFilterRadios(props){
           <input type="radio" value="Shipped" checked={checked === "Shipped"} onChange={handleChange} />
           <label htmlFor="Shipped">Shipped</label>
 
-          <input type="radio" value="Ordered" checked={checked === "Ordered"} onChange={handleChange} />
-          <label htmlFor="Ordered">Ordered</label>
+          <input type="radio" value="Delivered" checked={checked === "Delivered"} onChange={handleChange} />
+          <label htmlFor="Delivered">Delivered</label>
         </div>
       </form>)
 }
