@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Image, Card } from 'semantic-ui-react'
 import { NumberPickerWrapper } from '../'
 import { Link } from 'react-router-dom'
+import MultiPhotoDisplay from './multi-photo-display';
 
 
 

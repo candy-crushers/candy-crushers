@@ -1,30 +1,59 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Item, Container, Button } from 'semantic-ui-react'
+import MultiPhotoDisplay from './multi-photo-display'
 
-export default function CandyItem(props){
-  const { images, name, price, description } = props.product
-  const { text, method, quantity, handleChange, handleSubmit } = props.showQuantity
-  const { button, handleClick, outOfStock } = props
+class CandyItem extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selected : 0
+    }
+  }
 
-  return(
-    <Container relaxed='true'>
-      <Item.Group>
-      <Item>
-        <Item.Image size='medium' floated='left' src={images[0]} />
-          <Item.Content verticalAlign='middle' >
-            <Item.Header as='h1'>{name}</Item.Header>
-            <Item.Description>{description}</Item.Description><br />
-              <Item.Extra>
-                { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
-                { (text && !outOfStock) && <form onSubmit={handleSubmit} >
-                    <input type="number" name="quantity" value={quantity} onChange={handleChange} />
-                    <Button color='pink' size="mini" type="submit">{text}</Button>
-                  </form> }
-                  <p>{`price : ${price}`}</p>
-              </Item.Extra>
-          </Item.Content>
-      </Item>
-      </Item.Group>
-    </Container>
-  )
+  changeSelectedPhoto = (index) => {
+    this.setState({
+      selected : index
+    })
+  }
+
+    render (){
+      const { images, name, price, description } = this.props.product
+      const { text, quantity, handleChange, handleSubmit } = this.props.showQuantity
+      const { button, handleClick, outOfStock, multi } = this.props
+      const multiContent = {
+        selected : this.state.selected,
+        changeSelected : this.changeSelectedPhoto,
+      }
+     return(
+      <Container relaxed='true'><br /><br />
+      <div className="marginCandyItem">
+        <Item.Group>
+        <Item>
+          <div>
+          <Item.Image size='medium' floated='left' src={images[this.state.selected]} />
+          <Item.Extra>
+          <MultiPhotoDisplay multi={multiContent} photos={images}/>
+          </Item.Extra>
+          </div>
+            <Item.Content verticalAlign='middle' >
+              <Item.Header as='h1'>{name}</Item.Header>git
+              <Item.Description>{description}</Item.Description><br />
+                <Item.Extra>
+                  { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
+                  { (text && !outOfStock) && <form onSubmit={handleSubmit} >
+                      <input type="number" name="quantity" value={quantity} onChange={handleChange} />
+                      <Button color='pink' size="mini" type="submit">{text}</Button>
+                    </form> }
+                    <p>{`price : ${price}`}</p>
+                </Item.Extra>
+            </Item.Content>
+        </Item>
+        </Item.Group>
+        </div>
+      </Container>
+    )
+
+  }
 }
+
+export default CandyItem
