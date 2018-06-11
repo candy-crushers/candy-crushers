@@ -34,12 +34,23 @@ export const createGetOrderForAdminThunk = (id) => {
   }
 }
 
+const sendStatusChangeEmail = (status, orderId) => {
+  if (status === 'Shipped') {
+    return axios.post('/api/email/shipped', {id: orderId})
+  } else if (status === 'Delivered') {
+    return axios.post('/api/email/delivered', {id: orderId})
+  }
+
+  return false
+}
+
 export const createEditOrderForAdminThunk = (id, status) => {
   return async (dispatch) => {
-    try{
+    try {
       await axios.put(`/api/admin/orders/${id}`, status)
       dispatch(editOrderForAdminAction(status))
-    }catch(error) {
+      await sendStatusChangeEmail(status, id)
+    } catch (error) {
       console.error(error)
     }
   }
@@ -51,7 +62,7 @@ export default (state = initialState, action) => {
     case GOT_ORDER:
       return action.order
     case EDIT_ORDER_FOR_ADMIN:
-      return {...state, status: action.status.status}
+      return {...state, status: action.status}
     default:
       return state
   }

@@ -6,6 +6,7 @@ import history from '../history'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 const ADD_SINGLE_PRODUCT = 'ADD_SINGLE_PRODUCT'
 const EDIT_SINGLE_PRODUCT = 'EDIT_SINGLE_PRODUCT'
+export const ADD_REVIEW = 'ADD_REVIEW'
 
 // initial state
 const initialState = {}
@@ -14,6 +15,12 @@ const initialState = {}
 const getSingleProduct = (product) => ({ type: GET_SINGLE_PRODUCT, product })
 const createAddProductAction = (product) => ({ type: ADD_SINGLE_PRODUCT, product })
 const createEditProductAction = (product) => ({ type: EDIT_SINGLE_PRODUCT, product })
+export const createAddReviewAction = (review) => {
+  return {
+    type: ADD_REVIEW,
+    review
+  }
+}
 
 // thunk creators
 export const fetchSingleProduct = (id) =>
@@ -48,6 +55,17 @@ export const createPutProductThunk = (product) => {
   }
 }
 
+export const createPostReviewThunk = (review) => {
+  return async (dispatch) => {
+    try {
+      const { data: newReview } = await axios.post(`/api/products/${review.productId}/reviews`, review)
+      dispatch(createAddReviewAction(newReview))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 // reducer
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -55,6 +73,8 @@ export default function (state = initialState, action) {
     case ADD_SINGLE_PRODUCT:
     case EDIT_SINGLE_PRODUCT:
       return action.product
+    case ADD_REVIEW:
+      return {...state, reviews: [...state.reviews, action.review]}
     default:
       return state
   }

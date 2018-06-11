@@ -25,7 +25,7 @@ const saveCartToLocalStorage = (storedCart) => {
 
 const saveCartToUser = async (id, storedCart) => {
   try {
-    await axios.put(`/api/users/${id}`, {cart: storedCart})
+    await axios.put(`/api/user/users/${id}`, {cart: storedCart})
   } catch (error) {
     console.error(error)
   }
@@ -52,3 +52,4 @@ export * from './singleProduct'
 export * from './orders'
 export * from './cart'
 export * from './single-order'
+
