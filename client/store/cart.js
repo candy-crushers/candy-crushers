@@ -95,6 +95,17 @@ export const createSaveCartOnLogoutThunk = (userId, cart) => {
   }
 }
 
+export const createDeleteCartOnPurchaseThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/user/users/${userId}`, {cart: null})
+      dispatch(createClearCartAction())
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
