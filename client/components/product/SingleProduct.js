@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { fetchSingleProduct, addItem } from '../../store'
 import {CandyItem, ReviewAvatar} from '../'
 import { List, Container, Divider, Segment, Message } from 'semantic-ui-react'
-import MultiPhotoDisplay from './multi-photo-display';
+
 
 
 class SingleProduct extends Component {
@@ -41,7 +41,6 @@ class SingleProduct extends Component {
 
   changeSelectedPhoto = (event) => {
     event.preventDefault()
-    console.log(event.target)
   }
 
 
@@ -54,6 +53,10 @@ class SingleProduct extends Component {
       handleSubmit : this.handleSubmit,
       quantity : this.state.quantity
     }
+    const multiContent = {
+      selected : this.state.selected,
+      changeSelected : this.changeSelectedPhoto,
+    }
     return (
       <Container>
         <br /><br />
@@ -64,7 +67,7 @@ class SingleProduct extends Component {
         )}
         <Segment>
         <Container>
-        <MultiPhotoDisplay photos={product.images} selected={this.state.selected} changeSelected={this.changeSelectedPhoto}/>
+
         <CandyItem product={product} history={this.props.history} showQuantity={showQuantity} outOfStock={this.props.outOfStock} />
         </Container><br /><br />
         <Divider horizontal></Divider>

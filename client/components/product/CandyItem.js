@@ -10,7 +10,8 @@ export default function CandyItem(props){
     <Container relaxed='true'>
       <Item.Group>
       <Item>
-        <Item.Image size='medium' floated='left' src={images[0]} />
+        {/* <Item.Image size='medium' floated='left' src={images[0]} /> */}
+
           <Item.Content verticalAlign='middle' >
             <Item.Header as='h1'>{name}</Item.Header>
             <Item.Description>{description}</Item.Description><br />
