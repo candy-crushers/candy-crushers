@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 
-
-
-
 function StatusFilterRadios(props){
   const { handleChange, checked } = props
   return (
@@ -23,6 +20,12 @@ function StatusFilterRadios(props){
 
           <input type="radio" value="Cancelled"checked={checked === "Cancelled"} onChange={handleChange} />
           <label htmlFor="Cancelled">Cancelled</label>
+
+          <input type="radio" value="Shipped" checked={checked === "Shipped"} onChange={handleChange} />
+          <label htmlFor="Shipped">Shipped</label>
+
+          <input type="radio" value="Delivered" checked={checked === "Delivered"} onChange={handleChange} />
+          <label htmlFor="Delivered">Delivered</label>
         </div>
       </form>)
 }
