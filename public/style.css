@@ -2,7 +2,6 @@
 
 body {
   font-family: "Helvetica";
-  background-color: pink
 }
 
 a {
@@ -18,17 +17,22 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-form.checkout {
-  margin: 1em auto;
+#checkout-form, #auth-form {
+  margin: 2em auto;
   width: 40vw;
 }
 
-form.checkout div {
+form.checkout div, #auth-form.form div {
+  width: 100%;
+}
+
+#auth-form .auth-buttons, #checkout-form .checkout-buttons {
+  width: 70%;
+  margin: 2em auto 0 auto;
+  text-align: center;
+}
+
+#auth-form button, #checkout-form button {
   width: 100%;
 }
 
@@ -105,3 +109,6 @@ form.checkout div {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+/* -----Auth Forms------ */
+
