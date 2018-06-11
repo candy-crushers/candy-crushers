@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {newOrderForGuestThunk, newOrderForUserThunk, me, createClearCartAction} from '../../store'
+import {newOrderForGuestThunk, newOrderForUserThunk, createDeleteCartOnPurchaseThunk, createClearCartAction} from '../../store'
 import { injectStripe, CardElement } from 'react-stripe-elements'
 import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios'
@@ -56,10 +56,11 @@ class Checkout extends React.Component {
       order.chargeId = chargeId
       if (this.props.user.id) {
         await this.props.newOrderForUser(order)
+        await this.props.deleteCart(this.props.user.id)
       } else {
         await this.props.newOrderForGuest(order)
+        this.props.clearCart();
       }
-      this.props.clearCart();
     } catch (error) {
       console.error(error)
     }
@@ -116,6 +117,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       .then( () => {
         ownProps.history.push('/user/orders/confirmation')
       })
+    },
+    deleteCart: (id) => {
+      dispatch(createDeleteCartOnPurchaseThunk(id))
     },
     clearCart: () => {
       dispatch(createClearCartAction())
