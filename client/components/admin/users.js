@@ -23,6 +23,7 @@ class AdminUsers extends React.Component {
                 label='Admin'
                 checked={user.isAdmin}
                 onChange={() => changeAdminStatus({...user, isAdmin: !user.isAdmin})}
+                toggle
               />
             <div>
               {currentUser.id !== user.id ? <button type="button" onClick={() => deleteUser(user.id)}>Delete</button> :
