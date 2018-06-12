@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Table, Header} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import {DisplayAmount} from '../'
 
 function OrderItemRow(props){
   const { order } = props
@@ -16,7 +17,7 @@ function OrderItemRow(props){
         </Link>}
         </Table.Cell>
         <Table.Cell>{order.products.length}</Table.Cell>
-        <Table.Cell>${order.subtotal}</Table.Cell>
+        <Table.Cell><DisplayAmount amount={order.subtotal} /></Table.Cell>
         <Table.Cell>{order.orderDate}</Table.Cell>
         <Table.Cell>{order.status}</Table.Cell>
       </Table.Row>)

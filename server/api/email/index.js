@@ -57,6 +57,7 @@ if (process.env.SEND_EMAILS) {
       include: [{ all: true }]
     })
 
+
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL_TO,
