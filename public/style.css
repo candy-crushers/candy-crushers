@@ -17,9 +17,22 @@ nav a {
   margin: 1em;
 }
 
-#checkout-form, #auth-form {
+/* -----Forms------ */
+
+#auth-form {
   margin: 2em auto;
   width: 40vw;
+}
+
+#checkout-form {
+  margin: 2em auto;
+  width: 60vw;
+  max-width: 500px;
+}
+
+#add-product {
+  margin: 2em auto;
+  width: 60vw;
 }
 
 form.checkout div, #auth-form.form div {
@@ -36,11 +49,19 @@ form.checkout div, #auth-form.form div {
   width: 100%;
 }
 
+#add-review button {
+  display: block;
+  margin-top: 0.5em;
+}
+
+#add-review div, #add-review textarea {
+  margin-bottom: 0.5em;
+}
+
 /* -----CART ITEM------ */
 
 .cartNumber {
   display: flex;
-
 }
 
 /* -----MULTI-PHOTO-DISPLAY------ */
@@ -135,7 +156,15 @@ form.checkout div, #auth-form.form div {
   background-color: #fefde5 !important;
 }
 
-/* -----Auth Forms------ */
+/* -----Confirmation------ */
+#confirmation {
+  width: 70%;
+  margin: 2em auto;
+}
+
+#confirmation img {
+  margin-top: 3em;
+}
 
 .ui.vertical.menu .item > i.icon.left {
   float: none;
@@ -168,7 +197,3 @@ form.checkout div, #auth-form.form div {
   width: 150px
 
 }
-
-/* .numberPicker > * {
-  margin: 10px
-} */

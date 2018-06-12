@@ -36,7 +36,11 @@ export const auth = (email, password, method) =>
       .then(res => {
         dispatch(getUser(res.data))
         dispatch(getCartFromStorageThunk(res.data))
-        history.push('/home')
+        if (res.data.isAdmin) {
+          history.push('/admin/dashboard')
+        } else {
+          history.push('/home')
+        }
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
