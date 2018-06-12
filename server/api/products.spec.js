@@ -69,7 +69,9 @@ describe('Product routes', () => {
       name: 'Kit-Kat',
       description: 'Oat cake soufflé powder carrot cake gummi bears. Cotton candy danish jelly-o wafer gummi bears cookie topping. Croissant icing jelly lemon drops muffin lollipop croissant jelly macaroon. Sweet roll candy topping icing cake candy cupcake chocolate. Jujubes fruitcake halvah. Cotton candy sugar plum lollipop. Powder topping marzipan. Marzipan icing muffin. Macaroon lemon drops candy canes gummi bears.',
       price: 1.99,
-      inventory: 100
+      inventory: 100,
+      images: ['/defaultPhotos/lolies.jpg'],
+      selectedCategories: []
     }
 
     beforeEach(async () => {
@@ -92,7 +94,9 @@ describe('Product routes', () => {
     })
 
     it('PUT /api/products/:id edits a product in the DB', async () => {
-      const updates = {name: 'Snickers'}
+      const updates = {name: 'Snickers',description: 'Oat cake soufflé powder carrot cake gummi bears. Cotton candy danish jelly-o wafer gummi bears cookie topping. Croissant icing jelly lemon drops muffin lollipop croissant jelly macaroon. Sweet roll candy topping icing cake candy cupcake chocolate. Jujubes fruitcake halvah. Cotton candy sugar plum lollipop. Powder topping marzipan. Marzipan icing muffin. Macaroon lemon drops candy canes gummi bears.',
+      price: 1.99,
+      inventory: 100,selectedCategories: []}
       const product = await Product.create(productToCreate)
       return authRequest
         .put(`/api/products/${product.id}`)
