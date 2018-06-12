@@ -8,7 +8,7 @@ describe('<ProductForm> Component', () => {
     it('renders edit messages', () => {
       const productForm = shallow(<ProductForm updating />)
       expect(productForm.find('h1').text()).to.equal('Edit Product')
-      expect(productForm.find('button').text()).to.equal('Save Changes')
+      expect(productForm.find('Button').render().text()).to.equal('Save Changes')
     })
 
     it('pre-populates data based on product', () => {
@@ -31,7 +31,7 @@ describe('<ProductForm> Component', () => {
     it('renders add messages', () => {
       const productForm = shallow(<ProductForm />)
       expect(productForm.find('h1').text()).to.equal('Add a New Product')
-      expect(productForm.find('button').text()).to.equal('Add Product')
+      expect(productForm.find('Button').render().text()).to.equal('Add Product')
     })
 
     it('starts without any data', () => {
