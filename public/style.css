@@ -165,3 +165,35 @@ form.checkout div, #auth-form.form div {
 #confirmation img {
   margin-top: 3em;
 }
+
+.ui.vertical.menu .item > i.icon.left {
+  float: none;
+  margin: 0 .5em 0 -.5em;
+}
+
+#admin-dashboard {
+  margin: 2em auto;
+  width: 95vw;
+}
+
+#dashboard-right {
+  margin-left: 1em;
+}
+
+/* -----Radio Buttons Admin------ */
+
+.radioForm {
+  display: flex;
+  width: 60vw;
+  justify-content: space-between
+
+}
+
+/* -----Number Picker Wrapper------ */
+
+.numberPicker {
+  display: flex;
+  justify-content: space-between;
+  width: 150px
+
+}

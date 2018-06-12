@@ -16,7 +16,7 @@ const Product = db.define('product', {
      type : Sequelize.INTEGER,
      allowNull : false,
      get() {
-       return this.getDataValue('price')/100
+      return this.getDataValue('price')
      },
      set(price){
        this.setDataValue('price', Number((price*100).toFixed(0)))
@@ -31,7 +31,9 @@ const Product = db.define('product', {
      defaultValue : ['/defaultPhotos/lolies.jpg',
      '/defaultPhotos/chocolate-bar.jpg', '/defaultPhotos/gummy-bears.jpg',
      '/defaultPhotos/bon-bons.jpg',
-     '/defaultPhotos/jelly-beans.jpg' ]
+     '/defaultPhotos/jelly-beans.jpg',
+     '/defaultPhotos/peeps.jpg', '/defaultPhotos/skittles.jpg', '/defaultPhotos/sour-rainbows.jpg', '/defaultPhotos/twix.png', '/defaultPhotos/twizzlers.jpg', '/defaultPhotos/candy-corn.jpg',
+    '/defaultPhotos/fun-dip.jpg' ]
    },
 })
 

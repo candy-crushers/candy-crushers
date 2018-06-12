@@ -97,7 +97,7 @@ describe('Orders User routes', () => {
           .get('/api/user/orders')
           .expect(200)
           .then(res => {
-            expect(res.body[0].products[0].order_products.priceAtTime).to.equal(2.50)
+            expect(res.body[0].products[0].order_products.priceAtTime).to.equal(250)
           })
       })
     })
