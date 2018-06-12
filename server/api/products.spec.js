@@ -24,7 +24,7 @@ describe('Product routes', () => {
           expect(res.body[0].name).to.be.equal(newProduct.name);
           expect(res.body[0].description).to.be.equal(newProduct.description);
           expect(res.body[0].inventory).to.be.equal(newProduct.inventory);
-          expect(res.body[0].price).to.be.equal(newProduct.price);
+          expect(res.body[0].price).to.be.equal(149);
         })
       })
 
