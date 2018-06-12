@@ -56,7 +56,7 @@ export const changePasswordThunk = (user) =>
     axios.put('/auth/resetpass', user)
     .then(res =>
       dispatch(getUser(res.data)))
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
 /**
  * REDUCER
  */

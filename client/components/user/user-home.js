@@ -26,7 +26,7 @@ export class UserHome extends React.Component {
                 <Form.Input fluid label='email' placeholder={user.email} readOnly />
                 <Form.Field>
                   <label>New Password: </label>
-                  <input type="text" ref={input => this._password = input} />
+                  <input type="password" ref={input => this._password = input} />
                 </Form.Field>
                 <Button type='submit'>Update</Button>
               </Form>
