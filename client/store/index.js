@@ -16,7 +16,7 @@ const reducer = combineReducers({user, products, categories, singleProduct, orde
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: false})
+  createLogger({collapsed: true})
 ))
 const store = createStore(reducer, middleware)
 
