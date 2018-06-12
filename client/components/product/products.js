@@ -51,7 +51,7 @@ class Products extends React.Component {
   handleSearch = (event) => {
     if(event.target.value) {
       const showProducts = this.state.showProducts.filter(product =>
-        product.name.startsWith(event.target.value)
+        product.name.toLowerCase().startsWith(event.target.value)
       )
       this.setState({
         showProducts
@@ -87,9 +87,10 @@ class Products extends React.Component {
         </form>
         </div><br />
         <Grid columns={3} >
-        {products.length && products.map( (product) =>
-        (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>))
-      }
+        {products.length ? products.map( (product) =>
+        (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>)) :
+        <h2>Your filter did not match any Products</h2>
+        }
       </Grid>
       </Container>
     )
