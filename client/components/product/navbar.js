@@ -9,28 +9,25 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
   //console.log('total', this.props)
 
   (<div>
-    <Menu size='tiny' inverted color="red"  >
-        <Menu.Item>
-          <img src='/defaultPhotos/lolli-icon.png' />
-        </Menu.Item>
+    <Menu size='tiny' inverted color="red" id="navbar" >
       <Menu.Item>
-        <Link to='/products'>CANDY CRUSHERS</Link>
+        <img id="nav-logo" src='/defaultPhotos/lolli-icon.png' />
+        <Link to='/products'>     CANDY CRUSHERS</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to='/products'>Products</Link>
       </Menu.Item>
       {
         isLoggedIn &&
-        <Menu.Menu>
-          <Menu.Item>
-            <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
-          </Menu.Item>
-        </Menu.Menu>
+        <Menu.Item>
+          <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
+        </Menu.Item>
       }
       {
         isAdmin &&
-        <Menu.Menu>
-          <Menu.Item>
-            <Link to='/admin/dashboard'>Dashboard</Link>
-          </Menu.Item>
-        </Menu.Menu>
+        <Menu.Item>
+          <Link to='/admin/dashboard'>Dashboard</Link>
+        </Menu.Item>
       }
       <Menu.Menu position='right'>
         <Menu.Item>
@@ -38,19 +35,16 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
           <div className="cartNumber">
             <Icon name='cart' />
             {
-              cart.length && <p>{totalItemsInCart()}</p>
+              totalItemsInCart > 0 && <p>{totalItemsInCart}</p>
             }
           </div>
           </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to='/myAccount' > My Account </Link>
         </Menu.Item>
           {isLoggedIn ? (
             <Menu.Menu position='right'>
               {/* The navbar will show these links after you log in */}
               <Menu.Item>
-                <Link to="/home">Home</Link>
+                <Link to='/account' > My Account </Link>
               </Menu.Item>
               <Menu.Item>
               <a href="#" onClick={() => handleClick(userId, cart)}>
@@ -86,7 +80,7 @@ const mapState = state => {
     isAdmin: !!state.user.id && state.user.isAdmin,
     cart: state.cart,
     userId: state.user.id,
-    totalItemsInCart: totalItems
+    totalItemsInCart: totalItems()
   }
 }
 
