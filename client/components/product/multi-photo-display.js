@@ -9,7 +9,7 @@ function MultiPhotoDisplay (props) {
       <div className="photoBar" >
         {
           photos.map((photo, index) => {
-              return <div className="row" key={index}><img src={photo} className="smallPhoto" onClick={() => changeSelected(index)} /></div>
+              return <div className="row" key={photo}><img src={photo} className="smallPhoto" onClick={() => changeSelected(index)} /></div>
           })
         }
       </div>
@@ -17,5 +17,3 @@ function MultiPhotoDisplay (props) {
 }
 
 export default MultiPhotoDisplay
-
-{/* <MultiPhotoDisplay photos={product.images} selected={this.state.selected} changeSelected={this.changeSelectedPhoto}/> */}
