@@ -8,7 +8,7 @@ import MultiPhotoDisplay from './multi-photo-display';
 
 function AllProductsCard(props){
   const { id, images, name, price, description } = props.product
-  const index = Math.floor(Math.random() * 11)
+  const index = Math.floor(Math.random() * 12)
   return (
   <Link to={`/products/${id}`} >
   <Card >
