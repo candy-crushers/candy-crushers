@@ -31,7 +31,9 @@ const Product = db.define('product', {
      defaultValue : ['/defaultPhotos/lolies.jpg',
      '/defaultPhotos/chocolate-bar.jpg', '/defaultPhotos/gummy-bears.jpg',
      '/defaultPhotos/bon-bons.jpg',
-     '/defaultPhotos/jelly-beans.jpg' ]
+     '/defaultPhotos/jelly-beans.jpg',
+     '/defaultPhotos/peeps.jpg', '/defaultPhotos/skittles.jpg', '/defaultPhotos/sour-rainbows.jpg', '/defaultPhotos/twix.png', '/defaultPhotos/twizzlers.jpg', '/defaultPhotos/candy-corn.jpg',
+    '/defaultPhotos/fun-dip.jpg' ]
    },
 })
 

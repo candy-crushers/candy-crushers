@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {newOrderForGuestThunk, newOrderForUserThunk, createDeleteCartOnPurchaseThunk, createClearCartAction} from '../../store'
 import { injectStripe, CardElement } from 'react-stripe-elements'
-import { Form, Button } from 'semantic-ui-react'
+import { Segment, Form, Button } from 'semantic-ui-react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 
@@ -67,23 +67,27 @@ class Checkout extends React.Component {
   }
   render(){
     return (
-      <Form className="checkout" onSubmit={this.handleSubmit} onChange={this.handleChange}>
-        <Form.Field required>
-          <label htmlFor="email">Email: </label>
-          <input type="email" name="email" value={this.state.email} />
-        </Form.Field>
-        <Form.Field required>
-          <label htmlFor="shippingAddress">Shipping Address: </label>
-          <input type="text" name="shippingAddress" value={this.state.shippingAddress} />
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Card details
-            <CardElement />
-          </label>
-        </Form.Field>
-        <Button positive type="submit">Purchase</Button>
-      </Form>
+      <Segment id="checkout-form">
+        <Form className="checkout" onSubmit={this.handleSubmit} onChange={this.handleChange}>
+          <Form.Field>
+            <label htmlFor="email">Email: </label>
+            <input type="email" name="email" value={this.state.email} required />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="shippingAddress">Shipping Address: </label>
+            <input type="text" name="shippingAddress" value={this.state.shippingAddress} required />
+          </Form.Field>
+          <Form.Field>
+            <label>
+              Card details
+              <CardElement />
+            </label>
+          </Form.Field>
+          <div className="checkout-buttons">
+            <Button positive type="submit">Purchase</Button>
+          </div>
+        </Form>
+      </Segment>
     )
   }
 }
