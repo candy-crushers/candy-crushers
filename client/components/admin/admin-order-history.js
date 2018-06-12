@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createGetOrdersForAdminThunk } from '../../store';
-import { OrderRow, StatusFilterRadios } from '../'
+import {Table, Header, Container} from 'semantic-ui-react'
+import { OrderRow, StatusFilterRadios, OrderItemRow } from '../'
 
 class AdminOrderHistory extends Component {
   constructor(props){
@@ -32,17 +33,32 @@ class AdminOrderHistory extends Component {
     const { orders, match } = this.props
     const filteredOrders = this.filterOrders(orders)
     return (
-      <div className="order-history">
+      <Container>
+      <div className="order-history"><br />
         <h1>All Orders</h1>
         <StatusFilterRadios handleChange={this.handleRadioChange} checked={this.state.filter}/>
-        <div className="order-history-orders">
+        <Container><br />
+          <Table striped >
+            <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Order#</Table.HeaderCell>
+              <Table.HeaderCell>#Products</Table.HeaderCell>
+              <Table.HeaderCell>Subtotal</Table.HeaderCell>
+              <Table.HeaderCell>Order Date</Table.HeaderCell>
+              <Table.HeaderCell>Status</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
           {
-            filteredOrders.length ? filteredOrders.map(order => <OrderRow key={order.id} order={order} path={match.path} />)
-            : <p>there are no orders that match this filter</p>
+            filteredOrders.length ?
+            filteredOrders.map(order => <OrderItemRow key={order.id} order={order} />)
+            : <Table.Row></Table.Row>
           }
-        </div>
+         </Table.Body>
+        </Table>
+      </Container>
       </div>
-    )
+      </Container>)
   }
 }
 

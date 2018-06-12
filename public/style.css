@@ -137,3 +137,27 @@ form.checkout div, #auth-form.form div {
 
 /* -----Auth Forms------ */
 
+/* -----Radio Buttons Admin------ */
+
+.radioForm {
+  display: flex;
+  width: 60vw;
+  justify-content: space-between
+
+}
+
+/* -----Number Picker Wrapper------ */
+
+.numberPicker {
+  display: flex;
+  justify-content: space-between;
+  width: 150px
+
+}
+
+/* .numberPicker > * {
+  margin: 10px
+} */
+
+
+
