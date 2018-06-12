@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {deleteItem, editquantity} from '../../store'
 import { Link } from 'react-router-dom'
 import { Container, Image, Button, Icon } from 'semantic-ui-react';
+import {DisplayAmount} from '../'
 
 class Cart extends React.Component {
 
@@ -28,7 +29,7 @@ class Cart extends React.Component {
                 <Link to={'/products/' + cartItem.item.id} >
                   {cartItem.item.name}
                 </Link>
-                <h5>${cartItem.item.price}</h5>
+                <h5><DisplayAmount amount={cartItem.item.price}/></h5>
                 <form>
                   <input type="number" name="quantity" value={cartItem.quantity} onChange={(event) => this.changeQuantity(event, cartItem.item.id)} />
                 </form>
@@ -43,7 +44,7 @@ class Cart extends React.Component {
         }
         <hr />
         <div>
-          Subtotal: ${subtotal}
+          Subtotal: ${(subtotal/100).toFixed(2)}
         </div>
         {subtotal ? <div>
           <Link to={'/checkout'} >
@@ -61,14 +62,12 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const calculatesubtotal = () => {
-    return state.cart.reduce( (subtotal, cartItem) => subtotal +
-    (Number(cartItem.item.price) * cartItem.quantity * 100).toFixed(0) / 100
-    , 0 )
-  }
+  const subtotal = state.cart.reduce( (total, cartItem) => {
+    return (total + cartItem.item.price * cartItem.quantity)
+  }, 0 )
   return {
     cart: state.cart,
-    subtotal: calculatesubtotal()
+    subtotal
   }
 }
 

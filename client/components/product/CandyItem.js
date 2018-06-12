@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Item, Container, Button } from 'semantic-ui-react'
 import MultiPhotoDisplay from './multi-photo-display'
+import {DisplayAmount} from '../'
 
 class CandyItem extends Component {
   constructor(props){
@@ -44,7 +45,7 @@ class CandyItem extends Component {
                       <input type="number" name="quantity" value={quantity} onChange={handleChange} />
                       <Button color='pink' size="mini" type="submit">{text}</Button>
                     </form> }
-                    <p>{`price : ${price}`}</p>
+                    <p>price : <DisplayAmount amount={price} /></p>
                 </Item.Extra>
             </Item.Content>
         </Item>
