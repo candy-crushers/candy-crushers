@@ -137,6 +137,20 @@ form.checkout div, #auth-form.form div {
 
 /* -----Auth Forms------ */
 
+.ui.vertical.menu .item > i.icon.left {
+  float: none;
+  margin: 0 .5em 0 -.5em;
+}
+
+#admin-dashboard {
+  margin: 2em auto;
+  width: 95vw;
+}
+
+#dashboard-right {
+  margin-left: 1em;
+}
+
 /* -----Radio Buttons Admin------ */
 
 .radioForm {
@@ -158,6 +172,3 @@ form.checkout div, #auth-form.form div {
 /* .numberPicker > * {
   margin: 10px
 } */
-
-
-
