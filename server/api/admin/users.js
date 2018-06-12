@@ -38,3 +38,21 @@ router.delete('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:id/triggerresetpass', async (req, res, next) => {
+  try{
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        console.log('No such user found:', req.body.email)
+        res.status(401).send('Wrong username and/or password')
+    } else {
+      const updatedUser = await user.update({isVerified: false},{
+        returning: true,
+        plain: true
+      })
+      res.json(updatedUser);
+    }
+  } catch (err) {
+    next(err)
+  }
+})

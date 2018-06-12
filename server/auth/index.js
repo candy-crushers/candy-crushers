@@ -18,6 +18,21 @@ router.post('/login', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/resetpass', async (req, res, next) => {
+  try {
+    const user = await User.findOne({where: {email: req.body.email}});
+    if (!user) {
+        console.log('No such user found:', req.body.email)
+        res.status(401).send('Wrong username and/or password')
+    } else {
+      await user.update({password: req.body.password , isVerified: req.body.isVerified})
+      req.login(user, err => (err ? next(err) : res.json(user)))
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {

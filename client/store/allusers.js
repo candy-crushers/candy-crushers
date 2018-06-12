@@ -37,6 +37,13 @@ export const changeAdminStatus = (user) =>
       dispatch(editUser(res.data)))
     .catch(err => console.log(err))
 
+export const changePasswordTriggerThunk = (user) =>
+  dispatch =>
+    axios.put(`/api/admin/users/${user.id}/triggerresetpass`)
+    .then(res =>
+      dispatch(editUser(res.data)))
+    .catch(err => console.log(err))
+
 export const deleteUserThunk = (userId) =>
   dispatch =>
     axios.delete(`/api/admin/users/${userId}`)

@@ -9,7 +9,7 @@ describe('UserHome', () => {
   let userHome
 
   beforeEach(() => {
-    userHome = shallow(<UserHome email="cody@email.com" />)
+    userHome = shallow(<UserHome user={{email: "cody@email.com", isVerified: true }}  />)
   })
 
   it('renders the email in an h3', () => {

@@ -150,3 +150,25 @@ form.checkout div, #auth-form.form div {
 #dashboard-right {
   margin-left: 1em;
 }
+
+/* -----Radio Buttons Admin------ */
+
+.radioForm {
+  display: flex;
+  width: 60vw;
+  justify-content: space-between
+
+}
+
+/* -----Number Picker Wrapper------ */
+
+.numberPicker {
+  display: flex;
+  justify-content: space-between;
+  width: 150px
+
+}
+
+/* .numberPicker > * {
+  margin: 10px
+} */
