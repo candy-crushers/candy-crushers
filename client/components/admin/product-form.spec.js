@@ -18,6 +18,7 @@ describe('<ProductForm> Component', () => {
         description: 'Oat cake soufflé powder carrot cake gummi bears.',
         price: 1.99,
         inventory: 100,
+        categories: []
       }
       const productForm = shallow(<ProductForm updating />)
       productForm.setProps({product}) // simulate receiving new props from ComponentDidMount

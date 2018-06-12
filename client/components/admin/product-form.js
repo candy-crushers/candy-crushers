@@ -28,7 +28,6 @@ class ProductForm extends Component {
   }
 
   handleChange = (event) => {
-      console.log(this.state);
       this.setState({
         [event.target.name]: event.target.value,
       })
@@ -44,7 +43,6 @@ class ProductForm extends Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div id="add-product">
         <h1>{this.props.updating ? 'Edit Product' : 'Add a New Product'}</h1>
@@ -87,7 +85,7 @@ class ProductForm extends Component {
               fluid
               multiple
               selection
-              options={this.props.categories.map(category => ({text: category.name, value: category.id}) ) }
+              options={this.props.categories && this.props.categories.map(category => ({text: category.name, value: category.id}) ) }
             />
           </Form.Field>
           <Button type="submit" positive floated="right">{this.props.updating ? 'Save Changes' : 'Add Product'}</Button>
