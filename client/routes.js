@@ -25,17 +25,17 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path='/cart' component={Cart} />
         <Route exact path='/checkout' component={StripeCheckout} />
-        <Route path='/checkout/confirmation' component={Confirmation} />
         {
           isLoggedIn &&
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            {/* <Route path="/home" component={UserHome} /> */}
             {
               isUser &&
               <Switch>
                 <Route exact path="/orders" component={UserOrderHistory} />
                 <Route path="/orders/:id" component={UserSingleOrder} />
+                <Route path="/account" render={() => <div>Hi</div>} />
               </Switch>
             }
             {

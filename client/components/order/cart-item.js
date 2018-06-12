@@ -31,7 +31,7 @@ class CartItem extends Component {
           <Table.Cell>{quantity}</Table.Cell>
           <Table.Cell>${item.price}</Table.Cell>
           <Table.Cell>${subtotal}</Table.Cell>
-          <Table.Cell><Button size="mini" color="blue" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
+          <Table.Cell><Button size="mini" color="red" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
         </Table.Row>)
 
 }

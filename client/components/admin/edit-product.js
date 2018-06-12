@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ProductForm } from '../'
-import { createPutProductThunk, fetchSingleProduct } from '../../store'
+import { createPutProductThunk, fetchSingleProduct, fetchCategories } from '../../store'
 
 class EditProduct extends Component {
 
   componentDidMount () {
     const { getProduct, match} = this.props
     getProduct(match.params.id)
+    this.props.fetchCategories()
   }
 
   render () {
-    const { product, putProduct } = this.props
+    const { product, putProduct, categories } = this.props
 
     return (
       <div>
-        <ProductForm product={product} updateOrCreate={putProduct} updating />
+        <ProductForm product={product} updateOrCreate={putProduct} updating categories={categories} />
       </div>
     )
   }
@@ -24,11 +25,13 @@ class EditProduct extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.singleProduct,
+    categories: state.categories
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    fetchCategories: () => dispatch(fetchCategories()),
     getProduct: (id) => {
       dispatch(fetchSingleProduct(id))
     },
