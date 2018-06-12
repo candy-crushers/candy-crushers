@@ -12,14 +12,14 @@ class CartItem extends Component {
     const { deleteItem } = this.props
     const { item, quantity } = this.props.item
     const subtotal = quantity * item.price
-
+    //const index = Math.floor(Math.random() * 10)
 
     return(
           <Table.Row  >
             <Table.Cell >
             {<Link to={'/products/' + item.id} >
               <Header as='h4' image>
-              <Image src={item.images[0]} rounded size='mini' />
+              <Image src={item.images[3]} rounded size='mini' />
               <Header.Content>
               {item.name}
               {/* <Header.Subheader>unit price {item.price}</Header.Subheader> */}
@@ -31,7 +31,7 @@ class CartItem extends Component {
           <Table.Cell>{quantity}</Table.Cell>
           <Table.Cell>${item.price}</Table.Cell>
           <Table.Cell>${subtotal}</Table.Cell>
-          <Table.Cell><Button size="mini" color="purple" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
+          <Table.Cell><Button size="mini" color="blue" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
         </Table.Row>)
 
 }

@@ -146,8 +146,18 @@ form.checkout div, #auth-form.form div {
 
 }
 
-/* .radioForm input {
-  display: inline
+/* -----Number Picker Wrapper------ */
+
+.numberPicker {
+  display: flex;
+  justify-content: space-between;
+  width: 150px
+
+}
+
+/* .numberPicker > * {
+  margin: 10px
 } */
+
 
 
