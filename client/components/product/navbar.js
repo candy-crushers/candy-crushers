@@ -16,21 +16,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
       <Menu.Item>
         <Link to='/products'>CANDY CRUSHERS</Link>
       </Menu.Item>
+      <Menu.Item>
+        <Link to='/products'>Products</Link>
+      </Menu.Item>
       {
         isLoggedIn &&
-        <Menu.Menu>
-          <Menu.Item>
-            <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
-          </Menu.Item>
-        </Menu.Menu>
+        <Menu.Item>
+          <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
+        </Menu.Item>
       }
       {
         isAdmin &&
-        <Menu.Menu>
-          <Menu.Item>
-            <Link to='/admin/dashboard'>Dashboard</Link>
-          </Menu.Item>
-        </Menu.Menu>
+        <Menu.Item>
+          <Link to='/admin/dashboard'>Dashboard</Link>
+        </Menu.Item>
       }
       <Menu.Menu position='right'>
         <Menu.Item>
