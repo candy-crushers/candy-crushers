@@ -18,7 +18,6 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-
 /**
  * THUNK CREATORS
  */
@@ -56,6 +55,12 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export const changePasswordThunk = (user) =>
+  dispatch =>
+    axios.put('/auth/resetpass', user)
+    .then(res =>
+      dispatch(getUser(res.data)))
+    .catch(err => console.error(err))
 /**
  * REDUCER
  */

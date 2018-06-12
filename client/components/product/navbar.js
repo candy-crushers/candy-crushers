@@ -9,9 +9,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
   //console.log('total', this.props)
 
   (<div>
-    <Menu size='tiny' inverted  >
+    <Menu size='tiny' inverted color="red"  >
+        <Menu.Item>
+          <img src='./defaultPhotos/lolli-icon.png' />
+        </Menu.Item>
       <Menu.Item>
-        <Link to='/products'>CANDY<br />CRUSHERS</Link>
+        <Link to='/products'>CANDY CRUSHERS</Link>
       </Menu.Item>
       {
         isLoggedIn &&

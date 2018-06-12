@@ -36,6 +36,10 @@ const User = db.define('user', {
   },
   cart: {
     type: Sequelize.JSON
+  },
+  isVerified: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 })
 

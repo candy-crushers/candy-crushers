@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchUsersThunk, changeAdminStatus, deleteUserThunk } from '../../store'
-import {Checkbox} from 'semantic-ui-react'
+import { fetchUsersThunk, changeAdminStatus, changePasswordTriggerThunk,  deleteUserThunk } from '../../store'
+import {Checkbox, Container} from 'semantic-ui-react'
 
 class AdminUsers extends React.Component {
 
@@ -10,9 +10,10 @@ class AdminUsers extends React.Component {
   }
 
   render() {
-    const {users, changeAdminStatus, deleteUser, currentUser} = this.props
+    const {users, changeAdminStatus, changePassword, deleteUser, currentUser} = this.props
     return (
-      <div>
+      <div><br /><br />
+      <Container><br />
         {users.length && users.map( user =>
           (
           <div key={user.id}>
@@ -25,6 +26,12 @@ class AdminUsers extends React.Component {
                 onChange={() => changeAdminStatus({...user, isAdmin: !user.isAdmin})}
                 toggle
               />
+              <Checkbox
+                label='Password Reset'
+                checked={!user.isVerified}
+                onChange={() => changePassword(user) }
+                radio
+              />
             <div>
               {currentUser.id !== user.id ? <button type="button" onClick={() => deleteUser(user.id)}>Delete</button> :
               null }
@@ -32,6 +39,7 @@ class AdminUsers extends React.Component {
           </div>
           )
         )}
+      </Container>
       </div>
     )
   }
@@ -49,6 +57,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => dispatch(fetchUsersThunk()),
     changeAdminStatus: (user) => dispatch(changeAdminStatus(user)),
+    changePassword: (user) => dispatch(changePasswordTriggerThunk(user)),
     deleteUser: (userId) => dispatch(deleteUserThunk(userId))
   }
 }
