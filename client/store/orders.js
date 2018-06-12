@@ -53,8 +53,9 @@ export const newOrderForGuestThunk = (order) => {
       const {data: newOrder} = await axios.post('/api/guest/orders', order)
       dispatch(newOrderAction(newOrder))
       await sendConfirmationEmail(newOrder)
+      return newOrder
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 }
@@ -66,8 +67,9 @@ export const newOrderForUserThunk = (order) => {
       const {data: newOrder} = await axios.post(`/api/users/${userId}/orders`, order)
       dispatch(newOrderAction(newOrder))
       await sendConfirmationEmail(newOrder)
+      return newOrder
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 }
