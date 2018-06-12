@@ -1,4 +1,5 @@
 import React from 'react'
+import {DisplayAmount} from '../'
 
 const OrderDetail = ({ order }) => {
   if (!order.id) return <div />
@@ -16,7 +17,7 @@ const OrderDetail = ({ order }) => {
         <h3>Order Summary</h3>
         <p>{order.status}</p>
         <p>Ordered on {order.orderDate}</p>
-        <p>Subtotal: ${order.subtotal}</p>
+        <p>Subtotal: <DisplayAmount amount={order.subtotal} /></p>
       </div>
     </div>
   )

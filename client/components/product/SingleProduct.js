@@ -32,10 +32,10 @@ class SingleProduct extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const quantity = this.state.quantity
-    const item = {item : this.props.singleProduct, quantity}
+    const item = {item : this.props.singleProduct, quantity: Number(quantity)}
     this.props.addToCart(item)
     this.setState({
-      quantity : ''
+      quantity : 1
     })
   }
 
