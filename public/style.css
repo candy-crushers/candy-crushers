@@ -94,7 +94,17 @@ form.checkout div, #auth-form.form div {
 /* -----NAVBAR------ */
 
 .nav-bar {
-  background-color: hotpink
+  background-color: hotpink;
+}
+
+#navbar {
+  border-radius: 0;
+  margin-bottom: 0.5em;
+}
+
+#nav-logo {
+  margin-right: 0.5em;
+  margin-left: -.5em;
 }
 
 /* -----CART PAGE------ */

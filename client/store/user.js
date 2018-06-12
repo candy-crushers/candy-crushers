@@ -39,7 +39,7 @@ export const auth = (email, password, method) =>
         if (res.data.isAdmin) {
           history.push('/admin/dashboard')
         } else {
-          history.push('/home')
+          history.push('/products')
         }
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
