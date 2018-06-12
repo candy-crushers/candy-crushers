@@ -4,6 +4,7 @@ import {deleteItem, editquantity} from '../../store'
 import { Link } from 'react-router-dom'
 import { Container, Image, Button, Icon, Item, Table } from 'semantic-ui-react';
 import { CartItem } from '../'
+import {DisplayAmount} from '../'
 
 class Cart extends React.Component {
 
@@ -43,10 +44,8 @@ class Cart extends React.Component {
         <hr /><br />
         <div className="subTotal">
         <div>
-          <h2>Subtotal: ${subtotal}</h2>
+          <h2>Subtotal: <DisplayAmount amount={subtotal}/></h2>
         </div><br />
-
-
         {subtotal ? <div>
           <Link to={'/checkout'} >
             <Button animated='vertical' color="teal" size="massive">
@@ -64,15 +63,12 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const calculatesubtotal = () => {
-    return state.cart.reduce( (subtotal, cartItem) => subtotal +
-    (Number(cartItem.item.price) * cartItem.quantity * 100).toFixed(0) / 100
-    , 0 )
-  }
+  const subtotal = state.cart.reduce( (total, cartItem) => {
+    return (total + cartItem.item.price * cartItem.quantity)
+  }, 0 )
   return {
     cart: state.cart,
-    subtotal: calculatesubtotal(),
-
+    subtotal
   }
 }
 

@@ -96,13 +96,12 @@ class Checkout extends React.Component {
  * CONTAINER
  */
 const mapStateToProps = (state) => {
-    const calculatesubtotal = () =>
-      state.cart.reduce( (subtotal, cartItem) => subtotal +
-      (Number(cartItem.item.price) * cartItem.quantity * 100).toFixed(0) / 100
-      , 0 )
+    const subtotal = state.cart.reduce( (total, cartItem) => {
+      return (total + cartItem.item.price * cartItem.quantity)
+    }, 0 )
     const getProductsInCart = () => state.cart.map( cartItem => ({ id: cartItem.item.id, quantity:cartItem.quantity}) )
     return {
-      subtotal: calculatesubtotal(),
+      subtotal,
       productsInCart: getProductsInCart(),
       user: state.user
     }

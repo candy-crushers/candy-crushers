@@ -8,7 +8,7 @@ const Order = db.define('order', {
      allowNull : false,
    },
    subtotal : {
-     type : Sequelize.FLOAT,
+     type : Sequelize.INTEGER,
      allowNull : false
    },
    shippingAddress : {

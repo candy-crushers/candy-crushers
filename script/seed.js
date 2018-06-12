@@ -41,7 +41,7 @@ async function seed () {
       return Promise.all(randomProducts.map(product => orderInst.addProduct(product, {
         through: {
           priceAtTime: product.price,
-          quantity: randomQuantity()
+          quantity: 1
         }
       })))
     })
