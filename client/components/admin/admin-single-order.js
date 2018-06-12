@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { createGetOrderForAdminThunk, createEditOrderForAdminThunk } from '../../store'
 import { connect } from 'react-redux'
-import { OrderDetail, OrderProductDetails, ChangeStatusForm } from '../'
+import { OrderDetailAdmin, OrderProductDetails, ChangeStatusForm } from '../'
+import { Container, Segment } from 'semantic-ui-react'
 
 class AdminSingleOrder extends Component {
   constructor(props){
@@ -22,24 +23,20 @@ class AdminSingleOrder extends Component {
     })
   }
 
-  handleEdit = (event) => {
-    event.preventDefault()
-    this.props.updateOrderStatus(this.props.match.params.id, {status: this.state.status})
+  handleEdit = (event, data) => {
+    this.props.updateOrderStatus(this.props.match.params.id, {status: data.value} )
   }
 
   render () {
     const { order } = this.props
     return (
       <div>
-        <h1>Order Details</h1>
-        <ChangeStatusForm
-          order={order}
-          status={this.state.status}
-          handleChange={this.handleChange}
-          handleEdit={this.handleEdit}
-          />
-        <OrderDetail order={order} />
-        <OrderProductDetails products={order.products} />
+        <Container><br /><br />
+        <Segment>
+        <h1>Order #{order.id} Details</h1>
+        <OrderDetailAdmin order={order} changeStatus={this.handleEdit} />
+        </Segment>
+        </Container>
       </div>
     )
   }
@@ -55,7 +52,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getOrder: (id) => dispatch(createGetOrderForAdminThunk(id)),
-    updateOrderStatus: (id, status) => dispatch(createEditOrderForAdminThunk(id, status))
+    updateOrderStatus: (id, status) => {
+      dispatch(createEditOrderForAdminThunk(id, status))
+    }
   }
 }
 
