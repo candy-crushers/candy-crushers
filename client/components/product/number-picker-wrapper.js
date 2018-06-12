@@ -48,13 +48,13 @@ class NumberPickerWrapper extends Component {
     const quantity = this.state.quantity
     return(
       <div>
-      <Segment.Group horizontal >
+      <div className="numberPicker" >
         <p>quantity:</p>
         <Icon name='minus square' onClick={(e) => this.minus(e) }/>
           <p>{quantity}</p>
         <Icon name='plus square' onClick={(e) => this.plus(e) }/>
-      </Segment.Group>
-        <Button size='mini' color='pink' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
+      </div>
+        <Button size='mini' color='blue' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
         </div>)
 
   }

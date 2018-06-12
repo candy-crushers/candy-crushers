@@ -95,6 +95,17 @@ export const createSaveCartOnLogoutThunk = (userId, cart) => {
   }
 }
 
+export const createDeleteCartOnPurchaseThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/user/users/${userId}`, {cart: null})
+      dispatch(createClearCartAction())
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -102,9 +113,9 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GOT_CART_FROM_STORAGE:
       // this will update the quantities of the arrays when the same item exists
-      return mergeCarts(action.cart, state)
+      return mergeCarts(action.cart, [...state])
     case ADD_ITEM:
-      return mergeCarts(state,[action.item]);
+      return mergeCarts([...state],[action.item]);
     case EDIT_QUANTITY:
       return state.map(cartItem => {
         if (cartItem.item.id !== Number(action.item.id)) {

@@ -5,11 +5,16 @@ import {Link} from 'react-router-dom'
 import {createSaveCartOnLogoutThunk} from '../../store'
 import {Menu, Icon} from 'semantic-ui-react'
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (
-  <div>
-    <Menu size='tiny' inverted  >
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCart }) =>
+  //console.log('total', this.props)
+
+  (<div>
+    <Menu size='tiny' inverted color="red"  >
+        <Menu.Item>
+          <img src='./defaultPhotos/lolli-icon.png' />
+        </Menu.Item>
       <Menu.Item>
-        <Link to='/products'>CANDY<br />CRUSHERS</Link>
+        <Link to='/products'>CANDY CRUSHERS</Link>
       </Menu.Item>
       {
         isLoggedIn &&
@@ -30,7 +35,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (
       <Menu.Menu position='right'>
         <Menu.Item>
           <Link to='/cart' >
-            <Icon name='cart arrow down' />
+          <div className="cartNumber">
+            <Icon name='cart' />
+            {
+              cart.length && <p>{totalItemsInCart()}</p>
+            }
+          </div>
           </Link>
         </Menu.Item>
         <Menu.Item>
@@ -61,17 +71,22 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId }) => (
           )}
       </Menu.Menu >
     </Menu>
-    <hr />
   </div>
 )
 
 
 const mapState = state => {
+  const totalItems = () => {
+    let total = 0;
+    state.cart.forEach((item) => total += item.quantity)
+    return total
+  }
   return {
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.id && state.user.isAdmin,
     cart: state.cart,
     userId: state.user.id,
+    totalItemsInCart: totalItems
   }
 }
 

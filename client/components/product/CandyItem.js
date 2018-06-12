@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Item, Container, Button } from 'semantic-ui-react'
 import MultiPhotoDisplay from './multi-photo-display'
 
+
+
 class CandyItem extends Component {
   constructor(props){
     super(props)
@@ -9,6 +11,7 @@ class CandyItem extends Component {
       selected : 0
     }
   }
+
 
   changeSelectedPhoto = (index) => {
     this.setState({
@@ -36,15 +39,15 @@ class CandyItem extends Component {
           </Item.Extra>
           </div>
             <Item.Content verticalAlign='middle' >
-              <Item.Header as='h1'>{name}</Item.Header>git
-              <Item.Description>{description}</Item.Description><br />
+              <Item.Header as='h1'>{name}</Item.Header>
+              <Item.Description>{description}</Item.Description><br /><br />
                 <Item.Extra>
+                    <p>{`price : ${price}`}</p><br />
                   { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
                   { (text && !outOfStock) && <form onSubmit={handleSubmit} >
-                      <input type="number" name="quantity" value={quantity} onChange={handleChange} />
-                      <Button color='pink' size="mini" type="submit">{text}</Button>
+                      <input type="number" name="quantity" value={quantity} onChange={handleChange} /><br /><br />
+                      <Button color='blue' size="mini" type="submit">{text}</Button>
                     </form> }
-                    <p>{`price : ${price}`}</p>
                 </Item.Extra>
             </Item.Content>
         </Item>
