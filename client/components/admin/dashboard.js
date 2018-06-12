@@ -1,6 +1,7 @@
 import React from 'react'
 import AdminCategories from './categories'
 import AdminUsers from './users'
+import AdminProducts from './admin-products'
 import { Grid, Menu, Icon } from 'semantic-ui-react'
 import { Route, NavLink } from 'react-router-dom'
 
@@ -10,7 +11,7 @@ const Dashboard = () => {
         <Grid>
           <Grid.Column stretched width={12}>
             <div id="dashboard-right">
-              {/* <Route path="/admin/dashboard/products" component={AdminProducts} /> */}
+              <Route path="/admin/dashboard/products" component={AdminProducts} />
               <Route path="/admin/dashboard/categories" component={AdminCategories} />
               {/* <Route path="/admin/dashboard/orders" component={AdminOrders} /> */}
               <Route path="/admin/dashboard/users" component={AdminUsers} />

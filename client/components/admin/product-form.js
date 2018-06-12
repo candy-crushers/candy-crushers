@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Popup } from 'semantic-ui-react'
+import { Form, Button, Popup, Dropdown } from 'semantic-ui-react'
 
 class ProductForm extends Component {
   constructor () {
@@ -10,19 +10,28 @@ class ProductForm extends Component {
       price: 0,
       inventory: 0,
       images: '',
+      selectedCategories: []
     }
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.product && nextProps.product.id) {
-      this.setState(nextProps.product)
+      const selectedCategories = nextProps.product.categories.map( category => category.id);
+      this.setState({...nextProps.product, selectedCategories});
     }
   }
 
-  handleChange = (event) => {
+  handleCategories = (event,{value}) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      selectedCategories: value
     })
+  }
+
+  handleChange = (event) => {
+      console.log(this.state);
+      this.setState({
+        [event.target.name]: event.target.value,
+      })
   }
 
   handleSubmit = (event) => {
@@ -35,6 +44,7 @@ class ProductForm extends Component {
   }
 
   render () {
+    console.log(this.state);
     return (
       <div id="add-product">
         <h1>{this.props.updating ? 'Edit Product' : 'Add a New Product'}</h1>
@@ -66,6 +76,18 @@ class ProductForm extends Component {
               position='top right'
               size="mini"
               flowing
+            />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="categories">Categories</label>
+            <Dropdown
+              value={this.state.selectedCategories}
+              placeholder='Select Category'
+              onChange={this.handleCategories}
+              fluid
+              multiple
+              selection
+              options={this.props.categories.map(category => ({text: category.name, value: category.id}) ) }
             />
           </Form.Field>
           <Button type="submit" positive floated="right">{this.props.updating ? 'Save Changes' : 'Add Product'}</Button>
