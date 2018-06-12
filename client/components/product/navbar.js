@@ -11,7 +11,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
   (<div>
     <Menu size='tiny' inverted color="red"  >
         <Menu.Item>
-          <img src='./defaultPhotos/lolli-icon.png' />
+          <img src='/defaultPhotos/lolli-icon.png' />
         </Menu.Item>
       <Menu.Item>
         <Link to='/products'>CANDY CRUSHERS</Link>
