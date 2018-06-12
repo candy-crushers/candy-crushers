@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import {Segment} from 'semantic-ui-react'
 
 function StatusFilterRadios(props){
   const { handleChange, checked } = props
   return (
-      <form>
-        <p>Filter orders by status:</p>
-        <div>
+    <Segment >
+      <p>Show:</p>
+      <form >
+        <div className="radioForm">
           <input type="radio" value="all" checked={checked === "all"}  onChange={handleChange}/>
           <label htmlFor="all">all</label>
 
@@ -27,7 +29,8 @@ function StatusFilterRadios(props){
           <input type="radio" value="Delivered" checked={checked === "Delivered"} onChange={handleChange} />
           <label htmlFor="Delivered">Delivered</label>
         </div>
-      </form>)
+      </form>
+    </Segment>)
 }
 
 export default StatusFilterRadios

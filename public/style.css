@@ -137,3 +137,17 @@ form.checkout div, #auth-form.form div {
 
 /* -----Auth Forms------ */
 
+/* -----Radio Buttons Admin------ */
+
+.radioForm {
+  display: flex;
+  width: 60vw;
+  justify-content: space-between
+
+}
+
+/* .radioForm input {
+  display: inline
+} */
+
+
