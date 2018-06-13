@@ -71,10 +71,11 @@ const mergeCarts = (userCart, guestCart) => {
 }
 
 export const getCartFromStorageThunk = (user) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     let cart = []
     if (user.id && user.cart) {
       cart = user.cart
+      await axios.put(`/api/user/users/${user.id}`, {cart: null})
     } else if (localStorage.hasOwnProperty('cart')) {
       cart = JSON.parse(localStorage.getItem('cart'))
       localStorage.removeItem('cart')
@@ -95,7 +96,7 @@ export const createSaveCartOnLogoutThunk = (userId, cart) => {
   }
 }
 
-export const createDeleteCartOnPurchaseThunk = (userId) => {
+export const createDeleteCartThunk = (userId) => {
   return async (dispatch) => {
     try {
       await axios.put(`/api/user/users/${userId}`, {cart: null})
