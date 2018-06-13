@@ -35,7 +35,7 @@ class AdminOrderHistory extends Component {
 }
 
   render () {
-    const { orders, match } = this.props
+    const { orders, match, history } = this.props
     const filteredOrders = this.filterOrders(orders)
     return (
       <div>
@@ -57,7 +57,7 @@ class AdminOrderHistory extends Component {
           <Table.Body>
           {
             filteredOrders.length ?
-            filteredOrders.map(order => <OrderItemRow key={order.id} order={order} changeStatus={this.handleEdit}/>)
+            filteredOrders.map(order => <OrderItemRow key={order.id} order={order} changeStatus={this.handleEdit} history={history} />)
             : <Table.Row><Table.HeaderCell><br />No orders match this status</Table.HeaderCell></Table.Row>
           }
          </Table.Body>

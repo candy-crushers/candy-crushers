@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const generateId = (length) => Math.floor(Math.random() * length) + 1
 const generatePrice = () => {
-  const priceInt = Math.floor(Math.random() * 30) + 1;
+  const priceInt = Math.floor(Math.random() * 3) + 1;
   const decimal = Math.random().toFixed(2);
   return priceInt + Number(decimal);
 }

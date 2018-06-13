@@ -5,17 +5,13 @@ import {ChangeStatusForm, DisplayAmount} from '../'
 
 
 function OrderItemRow(props){
-  const { order } = props
+  const { order, history } = props
   return (
-      <Table.Row  >
+      <Table.Row onClick={() => history.push(`/admin/dashboard/orders/${order.id}`)}>
         <Table.Cell >
         {<Link to={'/admin/dashboard/orders/' + order.id} >
-          <Header as='h4' >
-            <Header.Content>
-              click to view order <br />#{order.id}
-            </Header.Content>
-          </Header>
-          </Link>}
+          <Header as='h4' >#{order.id}</Header>
+         </Link>}
         </Table.Cell>
         <Table.Cell>{order.products.length}</Table.Cell>
         <Table.Cell><DisplayAmount amount={order.subtotal} /></Table.Cell>
