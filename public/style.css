@@ -125,6 +125,12 @@ form.checkout div, #auth-form.form div {
   flex-direction: column
 }
 
+/* -----Products------ */
+
+#products-filters {
+  margin: 1em 0;
+}
+
 /* -----ORDERS------ */
 
 .order-history {
