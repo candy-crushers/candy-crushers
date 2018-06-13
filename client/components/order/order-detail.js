@@ -31,7 +31,7 @@ function OrderDetailUser({ order, hasLink }){
           </Grid.Column>
           <Grid.Column>
             <Menu text fluid vertical floated="right">
-              <Menu.Item className='header'>Oder Total:</Menu.Item>
+              <Menu.Item className='header'>Order Total:</Menu.Item>
               <Menu.Item><DisplayAmount amount={order.subtotal} /></Menu.Item>
             </Menu>
           </Grid.Column>
