@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {newOrderForGuestThunk, newOrderForUserThunk, createDeleteCartOnPurchaseThunk, createClearCartAction} from '../../store'
+import {newOrderForGuestThunk, newOrderForUserThunk, createDeleteCartThunk, createClearCartAction} from '../../store'
 import { injectStripe, CardElement } from 'react-stripe-elements'
 import { Segment, Form, Button, Header, Dimmer, Loader, Message } from 'semantic-ui-react'
 import axios from 'axios'
@@ -157,7 +157,7 @@ const mapDispatchToProps = (dispatch) => {
     newOrderForGuest: (order) => dispatch(newOrderForGuestThunk(order)),
     newOrderForUser: (order) => dispatch(newOrderForUserThunk(order)),
     deleteCart: (id) => {
-      dispatch(createDeleteCartOnPurchaseThunk(id))
+      dispatch(createDeleteCartThunk(id))
     },
     clearCart: () => {
       dispatch(createClearCartAction())
