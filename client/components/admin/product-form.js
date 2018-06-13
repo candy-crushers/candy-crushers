@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Popup, Dropdown } from 'semantic-ui-react'
+import { Form, Button, Popup, Dropdown, Message } from 'semantic-ui-react'
 
 class ProductForm extends Component {
   constructor () {
@@ -7,10 +7,11 @@ class ProductForm extends Component {
     this.state = {
       name: '',
       description: '',
-      price: 0,
-      inventory: 0,
+      price: 1.00,
+      inventory: 1,
       images: '',
-      selectedCategories: []
+      selectedCategories: [],
+      errorMsg: '',
     }
   }
 
@@ -28,18 +29,23 @@ class ProductForm extends Component {
   }
 
   handleChange = (event) => {
-      this.setState({
-        [event.target.name]: event.target.value,
-      })
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const {...product} = this.state
+    const {errorMsg, ...product} = this.state
     // if none are supplied, delete the image so the default picture will be supplied
     if (!product.images) delete product.images
-
-    this.props.updateOrCreate(product)
+    if (this.state.selectedCategories.length === 0) {
+      this.setState({
+        errorMsg: 'At least one category must be added'
+      })
+    } else {
+      this.props.updateOrCreate(product)
+    }
   }
 
   render () {
@@ -49,11 +55,11 @@ class ProductForm extends Component {
         <Form onSubmit={this.handleSubmit} onChange={this.handleChange}>
           <Form.Field>
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" value={this.state.name} />
+            <input type="text" name="name" value={this.state.name} required />
           </Form.Field>
           <Form.Field>
             <label htmlFor="description">Description</label>
-            <textarea name="description" rows="7" value={this.state.description} />
+            <textarea name="description" rows="7" value={this.state.description} required />
           </Form.Field>
           <Form.Group widths="equal">
             <Form.Field>
@@ -62,7 +68,7 @@ class ProductForm extends Component {
             </Form.Field>
             <Form.Field>
               <label htmlFor="inventory">Inventory</label>
-              <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} />
+              <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} required />
             </Form.Field>
           </Form.Group>
           <Form.Field>
@@ -88,6 +94,9 @@ class ProductForm extends Component {
               options={this.props.categories && this.props.categories.map(category => ({text: category.name, value: category.id}) ) }
             />
           </Form.Field>
+          {this.state.errorMsg && (
+            <Message negative>{this.state.errorMsg}</Message>
+          )}
           <Button type="submit" positive floated="right">{this.props.updating ? 'Save Changes' : 'Add Product'}</Button>
         </Form>
       </div>

@@ -181,6 +181,8 @@ form.checkout div, #auth-form.form div {
   margin: 0 .5em 0 -.5em;
 }
 
+/* -----Dashboard------ */
+
 #admin-dashboard {
   margin: 2em auto;
   width: 95vw;
@@ -188,6 +190,12 @@ form.checkout div, #auth-form.form div {
 
 #dashboard-right {
   margin-left: 1em;
+}
+
+#products-header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
 }
 
 /* -----Radio Buttons Admin------ */
