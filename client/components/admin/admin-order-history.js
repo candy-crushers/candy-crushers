@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createGetOrdersForAdminThunk, createEditOrderForAdminThunk } from '../../store';
-import {Table, Header, Container} from 'semantic-ui-react'
+import {Table, Header, Container, Segment} from 'semantic-ui-react'
 import { OrderRow, StatusFilterRadios, OrderItemRow, ChangeStatusForm } from '../'
 
 class AdminOrderHistory extends Component {
@@ -21,6 +21,11 @@ class AdminOrderHistory extends Component {
     this.props.updateOrderStatus(id, {status: data} )
   }
 
+  handleRadioChange = (event) => {
+    const filter = event.target.value
+    this.setState({ filter })
+  }
+
   filterOrders = (orders) => {
     if(this.state.filter === 'all'){
       return orders
@@ -36,6 +41,7 @@ class AdminOrderHistory extends Component {
       <Container>
       <div className="order-history"><br />
         <h1>All Orders</h1>
+        <StatusFilterRadios handleChange={this.handleRadioChange} checked={this.state.filter}/>
         <Container><br />
           <Table striped >
             <Table.Header>
@@ -51,7 +57,7 @@ class AdminOrderHistory extends Component {
           {
             filteredOrders.length ?
             filteredOrders.map(order => <OrderItemRow key={order.id} order={order} changeStatus={this.handleEdit}/>)
-            : <Table.Row></Table.Row>
+            : <Table.Row><Table.HeaderCell><br />No orders match this status</Table.HeaderCell></Table.Row>
           }
          </Table.Body>
         </Table>
