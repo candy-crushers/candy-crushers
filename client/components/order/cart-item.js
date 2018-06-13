@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, Button, Table, Header, Image } from 'semantic-ui-react'
+import { Icon, Button, Table, Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import {DisplayAmount} from '../'
 
@@ -19,7 +19,7 @@ class CartItem extends Component {
             <Table.Cell >
             {<Link to={'/products/' + item.id} >
               <Header as='h4' image>
-              <Image src={item.images[3]} rounded size='mini' />
+              <Image src={item.images[4]} rounded size='mini' />
               <Header.Content>
               {item.name}
               {/* <Header.Subheader>unit price {item.price}</Header.Subheader> */}
@@ -28,7 +28,13 @@ class CartItem extends Component {
             </Link>}
         </Table.Cell>
 
-          <Table.Cell><input onChange={(e) => handleChange(e, item.id)} type="number" min="0" step="1" value={quantity}/></Table.Cell>
+          <Table.Cell>
+          <div className="cartPicker">
+          <Icon name='minus square' onClick={(e) => handleChange(e, item.id, (quantity - 1)) }/>
+          <p>{quantity}</p>
+          <Icon name='plus square' onClick={(e) => handleChange(e, item.id, (quantity + 1)) }/>
+          </div>
+            </Table.Cell>
           <Table.Cell><DisplayAmount amount={item.price} /></Table.Cell>
           <Table.Cell><DisplayAmount amount={subtotal} /></Table.Cell>
           <Table.Cell><Button size="mini" color="blue" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
