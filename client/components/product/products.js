@@ -51,7 +51,7 @@ class Products extends React.Component {
   handleSearch = (event) => {
     if(event.target.value) {
       const showProducts = this.state.showProducts.filter(product =>
-        product.name.toLowerCase().startsWith(event.target.value)
+        product.name.toLowerCase().startsWith(event.target.value.toLowerCase())
       )
       this.setState({
         showProducts
