@@ -12,11 +12,11 @@ import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <StripeProvider apiKey='pk_test_VblhkRCu9JAu9DKQxuxYQ2JG' > */}
+    <StripeProvider apiKey='pk_test_VblhkRCu9JAu9DKQxuxYQ2JG' >
       <Router history={history}>
           <App />
       </Router>
-    {/* </StripeProvider> */}
+    </StripeProvider>
   </Provider>,
   document.getElementById('app')
 )

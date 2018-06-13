@@ -27,7 +27,6 @@ class NumberPickerWrapper extends Component {
 
   plus(event){
     event.preventDefault()
-    console.log(this.props.product.inventory)
     if(this.state.quantity < this.props.product.inventory) {
       this.setState({
         quantity : this.state.quantity + 1
