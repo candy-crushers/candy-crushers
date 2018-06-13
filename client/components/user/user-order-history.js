@@ -5,6 +5,7 @@ import { OrderRow, OrderDetailUser } from '../'
 import { Container, Segment } from 'semantic-ui-react'
 
 
+
 class UserOrderHistory extends Component {
 
   componentDidMount () {
