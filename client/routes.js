@@ -29,7 +29,6 @@ class Routes extends Component {
           isLoggedIn &&
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            {/* <Route path="/home" component={UserHome} /> */}
             {
               isUser &&
               <Switch>
@@ -43,8 +42,6 @@ class Routes extends Component {
               isAdmin &&
               <Switch>
                 {/* Routes placed here are only available for logged in admins */}
-                <Route exact path="/admin/orders" component={AdminOrderHistory} />
-                <Route path="/admin/orders/:id" component={AdminSingleOrder} />
                 <Route path="/admin/dashboard" component={Dashboard} />
               </Switch>
             }
