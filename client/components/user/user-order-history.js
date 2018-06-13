@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createGetOrdersForUserThunk } from '../../store';
-import { OrderRow } from '../'
-import OrderDetailUser from '../order/order-detail';
-import { Segment, Container } from 'semantic-ui-react'
+import { OrderRow, OrderDetailUser } from '../'
+import { Container, Segment } from 'semantic-ui-react'
+
+>>>>>>> 363112343f210402572c76b2da1f8668b7cf2c14
 
 class UserOrderHistory extends Component {
 
@@ -15,11 +16,15 @@ class UserOrderHistory extends Component {
     const { orders } = this.props
     return (
       <div>
-        <Container><br /><br />
-        <h1>My Order History</h1><br />
+        <Container>
+        <br />
+        <h1>My Order History</h1>
         <div>
           {
-            orders.length > 0 && orders.map(order => <div key={order.id}><Segment><OrderDetailUser key={order.id} order={order} /></Segment><br /><br /></div>)
+            orders.length > 0 && orders.map(order =>
+              <div><br />
+               <Segment inverted color='blue' tertiary><OrderDetailUser key={order.id} order={order} /></Segment>
+               </div>)
           }
         </div>
         </Container>

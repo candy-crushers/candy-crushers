@@ -37,7 +37,7 @@ export const auth = (email, password, method) =>
         dispatch(getUser(res.data))
         dispatch(getCartFromStorageThunk(res.data))
         if (res.data.isAdmin) {
-          history.push('/admin/dashboard')
+          history.push('/admin/dashboard/orders')
         } else {
           history.push('/products')
         }

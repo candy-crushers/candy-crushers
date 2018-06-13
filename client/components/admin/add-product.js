@@ -28,8 +28,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchCategories: () => dispatch(fetchCategories()),
     postProduct: (product) => {
       dispatch(createPostProductThunk(product))
-        .then((newProductId) => {
-          ownProps.history.push(`/products/${newProductId}`)
+        .then(() => {
+          ownProps.history.push(`/admin/dashboard/products`)
         })
     }
   }

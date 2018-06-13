@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     putProduct: (product) => {
       dispatch(createPutProductThunk(product))
         .then(() => {
-          ownProps.history.push(`/products/${product.id}`)
+          ownProps.history.push(`/admin/dashboard/products`)
         })
     }
   }

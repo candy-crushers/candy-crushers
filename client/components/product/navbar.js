@@ -18,15 +18,15 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
         <Link to='/products'>Products</Link>
       </Menu.Item>
       {
-        isLoggedIn &&
+        (isLoggedIn && !isAdmin) &&
         <Menu.Item>
-          <Link to={isAdmin ? '/admin/orders/' : '/orders'}>Orders</Link>
+          <Link to='/orders'>Orders</Link>
         </Menu.Item>
       }
       {
         isAdmin &&
         <Menu.Item>
-          <Link to='/admin/dashboard'>Dashboard</Link>
+          <Link to='/admin/dashboard/orders'>Dashboard</Link>
         </Menu.Item>
       }
       <Menu.Menu position='right'>

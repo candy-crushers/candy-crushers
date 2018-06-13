@@ -35,10 +35,17 @@ describe('<ProductForm> Component', () => {
       expect(productForm.find('Button').render().text()).to.equal('Add Product')
     })
 
-    it('starts without any data', () => {
+    it('starts without any identifying data', () => {
       const productForm = shallow(<ProductForm />)
       expect(productForm.state().name).to.be.empty
-      expect(productForm.state().price).to.equal(0)
+      expect(productForm.state().description).to.be.empty
+      expect(productForm.state().selectedCategories.length).to.equal(0)
+    })
+
+    it('starts with a default for price and inventory', () => {
+      const productForm = shallow(<ProductForm />)
+      expect(productForm.state().price).to.equal(1)
+      expect(productForm.state().inventory).to.equal(1)
     })
   })
 })

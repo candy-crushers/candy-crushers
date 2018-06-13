@@ -1,6 +1,4 @@
 import axios from 'axios'
-import history from '../history'
-
 
 // action types
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
@@ -34,7 +32,7 @@ dispatch =>
 export const createPostProductThunk = (product) => {
   return async (dispatch) => {
     try {
-      const { data: newProduct } = await axios.post('/api/products', product)
+      const { data: newProduct } = await axios.post('/api/admin/products', product)
       dispatch(createAddProductAction(newProduct))
 
       return newProduct.id
@@ -47,7 +45,7 @@ export const createPostProductThunk = (product) => {
 export const createPutProductThunk = (product) => {
   return async (dispatch) => {
     try {
-      const { data: updatedProduct } = await axios.put(`/api/products/${product.id}`, product)
+      const { data: updatedProduct } = await axios.put(`/api/admin/products/${product.id}`, product)
       dispatch(createEditProductAction(updatedProduct))
     } catch (error) {
       console.error(error)
