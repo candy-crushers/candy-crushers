@@ -23,7 +23,6 @@ router.put('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     const { status } = req.body
-    console.log('in api', req.body)
     await Order.update({ status }, {
       where : {
         id
