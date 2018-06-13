@@ -6,13 +6,12 @@ import {createSaveCartOnLogoutThunk} from '../../store'
 import {Menu, Icon} from 'semantic-ui-react'
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCart }) =>
-  //console.log('total', this.props)
 
   (<div>
     <Menu size='tiny' inverted color="red" id="navbar" >
       <Menu.Item>
         <img id="nav-logo" src='/defaultPhotos/lolli-icon.png' />
-        <Link to='/products'>     CANDY CRUSHERS</Link>
+        <Link to='/products'>CANDY CRUSHERS</Link>
       </Menu.Item>
       <Menu.Item>
         <Link to='/products'>Products</Link>
@@ -20,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
       {
         (isLoggedIn && !isAdmin) &&
         <Menu.Item>
-          <Link to='/orders'>Orders</Link>
+          <Link to='/orders'>My Orders</Link>
         </Menu.Item>
       }
       {
@@ -43,9 +42,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, cart, userId, totalItemsInCa
           {isLoggedIn ? (
             <Menu.Menu position='right'>
               {/* The navbar will show these links after you log in */}
-              <Menu.Item>
-                <Link to='/account' > My Account </Link>
-              </Menu.Item>
               <Menu.Item>
               <a href="#" onClick={() => handleClick(userId, cart)}>
                 Logout
