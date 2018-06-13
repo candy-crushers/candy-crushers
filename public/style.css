@@ -133,10 +133,6 @@ form.checkout div, #auth-form.form div {
 
 /* -----ORDERS------ */
 
-.order-history {
-  margin: 1em 2em;
-}
-
 .order-history-orders {
   display: flex;
   flex-wrap: wrap;
@@ -198,23 +194,11 @@ form.checkout div, #auth-form.form div {
   margin-left: 1em;
 }
 
-#products-header {
+#products-header, #categories-header, #users-header, #orders-header {
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
 }
 
-#categories-header {
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-}
-
-#users-header {
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-}
 /* -----Radio Buttons Admin------ */
 
 .radioForm {

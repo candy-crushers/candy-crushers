@@ -38,9 +38,10 @@ class AdminOrderHistory extends Component {
     const { orders, match } = this.props
     const filteredOrders = this.filterOrders(orders)
     return (
-      <Container>
-      <div className="order-history"><br />
-        <h1>All Orders</h1>
+      <div>
+        <div id="users-header">
+          <Header color="pink" as="h1">All Orders</Header>
+        </div>
         <StatusFilterRadios handleChange={this.handleRadioChange} checked={this.state.filter}/>
         <Container><br />
           <Table striped >
@@ -63,7 +64,7 @@ class AdminOrderHistory extends Component {
         </Table>
       </Container>
       </div>
-      </Container>)
+    )
   }
 }
 

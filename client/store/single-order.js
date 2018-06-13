@@ -49,7 +49,7 @@ export const createEditOrderForAdminThunk = (id, status) => {
     try {
       await axios.put(`/api/admin/orders/${id}`, status)
       dispatch(editOrderForAdminAction(status))
-      await sendStatusChangeEmail(status, id)
+      await sendStatusChangeEmail(status.status, id)
     } catch (error) {
       console.error(error)
     }
