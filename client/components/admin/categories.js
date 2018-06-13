@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {fetchCategories, addCategory, editCategory, deleteCategory} from '../../store'
-import { Modal, Button, Form} from 'semantic-ui-react'
+import { Modal, Button, Form, Header, Table, Container} from 'semantic-ui-react'
 
 class AdminCategories extends React.Component {
   constructor(){
@@ -33,33 +33,52 @@ class AdminCategories extends React.Component {
     const {categories, deleteCategory} = this.props;
     return (
       <div>
-        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-          <label htmlFor='name'>Category Name:</label>
-            <input type="text" name="name" value={this.state.name}/>
-          <button type="submit">Add</button>
-        </form>
-        {categories.length && categories.map((category) =>
-          (
-            <div key={category.id}>
-              <div>
-               {category.name}
-              </div>
-              <Modal trigger ={<Button>Edit</Button>} closeIcon >
-                <Modal.Header>Edit Category</Modal.Header>
-                <Form onSubmit={() => this.editSubmit(category.id)} >
-                  <Form.Field>
-                    <label>Category Name</label>
-                    <input type="text" placeholder={category.name} ref={input => this._name = input} />
-                  </Form.Field>
-                  <Button type='submit'>Submit</Button>
-                </Form>
-              </Modal>
-              <div>
-                <button type="button" onClick={() => deleteCategory(category.id)}>Delete</button>
-              </div>
-            </div>
-          ))
-        }
+        <div id="categories-header">
+          <Header color="pink" as="h1">Categories</Header>
+          <Modal trigger ={<Button primary>{`Add Category`}</Button>} closeIcon >
+            <Modal.Header>New Category Name </Modal.Header>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field inline >
+                  <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+              </Form.Field>
+              <Button primary>Add</Button>
+            </Form>
+          </Modal>
+        </div>
+        <Table striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Edit</Table.HeaderCell>
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+          {categories.length && categories.map((category) =>
+            (
+                <Table.Row key={category.id}>
+                  <Table.Cell>
+                    {category.name}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Modal trigger ={<Button>Edit</Button>} closeIcon >
+                      <Modal.Header>Edit Category Name</Modal.Header>
+                      <Form onSubmit={() => this.editSubmit(category.id)} >
+                        <Form.Field inline>
+                          <input type="text" placeholder={category.name} ref={input => this._name = input} />
+                        </Form.Field>
+                        <Button primary color="pink">Edit</Button>
+                      </Form>
+                    </Modal>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button color="red" onClick={() => deleteCategory(category.id)}>Delete</Button>
+                  </Table.Cell>
+                </Table.Row>
+            ))
+          }
+          </Table.Body>
+        </Table>
       </div>
     )
   }

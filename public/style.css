@@ -204,6 +204,12 @@ form.checkout div, #auth-form.form div {
   /* align-items: center; */
 }
 
+#categories-header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
 /* -----Radio Buttons Admin------ */
 
 .radioForm {
