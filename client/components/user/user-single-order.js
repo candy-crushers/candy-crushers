@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { OrderProductDetails } from '../'
 import { OrderDetail } from '../'
 import { Container, Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class UserSingleOrder extends Component {
 
@@ -17,6 +18,7 @@ class UserSingleOrder extends Component {
       <div><br /><br />
         <Container>
           <h1>Order Details</h1>
+          <Link to='/orders'>back to all orders</Link>
             <Segment>
             <Container>
               <OrderDetail order={order} />

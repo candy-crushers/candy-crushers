@@ -4,15 +4,16 @@ import { Table, Header, Image, Grid, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-function OrderDetailUser({ order }){
+function OrderDetailUser({ order, hasLink }){
   if (!order.id) return <div />
   const addrLine1Indx = order.shippingAddress.indexOf(',')
   const address = order.shippingAddress.slice(0, addrLine1Indx) + order.shippingAddress.slice(addrLine1Indx + 1)
   return (
     <div>
       <Menu text fluid vertical>
+          <Link to={`/orders/${order.id}`}>
           <Menu.Item className='header'>Order Number:</Menu.Item>
-          <Menu.Item>{order.id}</Menu.Item>
+          <Menu.Item>{order.id}</Menu.Item></Link>
       </Menu>
       <Grid>
         <Grid.Row columns={3}>

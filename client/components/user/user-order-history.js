@@ -23,7 +23,7 @@ class UserOrderHistory extends Component {
           {
             orders.length > 0 && orders.map(order =>
               <div><br />
-               <Segment inverted color='blue' tertiary><OrderDetailUser key={order.id} order={order} /></Segment>
+               <Segment><OrderDetailUser key={order.id} order={order} hasLink={true}/></Segment>
                </div>)
           }
         </div>
