@@ -35,7 +35,7 @@ describe('SingleProduct Reducer', () => {
       }
 
       beforeEach(() => {
-        mockAxios.onPost('/api/products').replyOnce(201, fakeProduct)
+        mockAxios.onPost('/api/admin/products').replyOnce(201, fakeProduct)
       })
 
       it('eventually dispatches the ADD_SINGLE_USER action', () => {
@@ -63,7 +63,7 @@ describe('SingleProduct Reducer', () => {
           price: 1.99,
           inventory: 100,
         }
-        mockAxios.onPut('/api/products/1').replyOnce(200)
+        mockAxios.onPut('/api/admin/products/1').replyOnce(200)
         return store.dispatch(createPutProductThunk(fakeProduct))
           .then(() => {
             const actions = store.getActions()

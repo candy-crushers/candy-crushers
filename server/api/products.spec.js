@@ -4,7 +4,7 @@ const db = require('../db')
 const app = require('../index')
 const { Product, User } = require('../db/models')
 
-describe('Product routes', () => {
+describe('Visitor Product routes', () => {
   describe('/api/products without authorization', () => {
     it('GET /api/products returns products from the DB', () => {
       const newProduct = {
@@ -28,7 +28,7 @@ describe('Product routes', () => {
         })
       })
 
-    it('POST /api/products as an unauthorized user receives a 401', () => {
+    it('POST /api/admin/products as an unauthorized user receives a 401', () => {
       const productToCreate = {
         name: 'Kit-Kat',
         description: 'Oat cake soufflé powder carrot cake gummi bears. Cotton candy danish jelly-o wafer gummi bears cookie topping. Croissant icing jelly lemon drops muffin lollipop croissant jelly macaroon. Sweet roll candy topping icing cake candy cupcake chocolate. Jujubes fruitcake halvah. Cotton candy sugar plum lollipop. Powder topping marzipan. Marzipan icing muffin. Macaroon lemon drops candy canes gummi bears.',
@@ -37,7 +37,7 @@ describe('Product routes', () => {
       }
 
       return request(app)
-        .post('/api/products', productToCreate)
+        .post('/api/admin/products', productToCreate)
         .expect(401)
         .then(res => {
           expect(res.body).to.be.empty
@@ -51,10 +51,11 @@ describe('Product routes', () => {
         .get('/api/products/1')
         .expect(200)
     })
-    it('PUT /api/products/:id receives a 401', () => {
+
+    it('PUT /api/admin/products/:id receives a 401', () => {
       const updates = {name: 'Snickers'}
       return request(app)
-        .put('/api/products/1')
+        .put('/api/admin/products/1')
         .send(updates)
         .expect(401)
         .then(res => {
@@ -82,9 +83,9 @@ describe('Product routes', () => {
           .send(user)
     })
 
-    it('POST /api/products creates a product in the DB', () => {
+    it('POST /api/admin/products creates a product in the DB', () => {
       return authRequest
-        .post('/api/products')
+        .post('/api/admin/products')
         .send(productToCreate)
         .expect(201)
         .then(res => {
@@ -93,13 +94,13 @@ describe('Product routes', () => {
         })
     })
 
-    it('PUT /api/products/:id edits a product in the DB', async () => {
+    it('PUT /api/admin/products/:id edits a product in the DB', async () => {
       const updates = {name: 'Snickers',description: 'Oat cake soufflé powder carrot cake gummi bears. Cotton candy danish jelly-o wafer gummi bears cookie topping. Croissant icing jelly lemon drops muffin lollipop croissant jelly macaroon. Sweet roll candy topping icing cake candy cupcake chocolate. Jujubes fruitcake halvah. Cotton candy sugar plum lollipop. Powder topping marzipan. Marzipan icing muffin. Macaroon lemon drops candy canes gummi bears.',
       price: 1.99,
       inventory: 100,selectedCategories: []}
       const product = await Product.create(productToCreate)
       return authRequest
-        .put(`/api/products/${product.id}`)
+        .put(`/api/admin/products/${product.id}`)
         .send(updates)
         .expect(200)
         .then(res => {
