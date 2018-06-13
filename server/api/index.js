@@ -9,8 +9,7 @@ router.use('/email', require('./email'))
 router.use('/checkout', require('./checkout'))
 router.use('/user/users/:id', isCurrentUser, require('./user/users'))
 router.use('/user/orders', isLoggedIn, require('./user/orders'))
-router.use('/admin/orders', isAdmin, require('./admin/orders'))
-router.use('/admin/users', isAdmin, require('./admin/users'))
+router.use('/admin', isAdmin, require('./admin'))
 router.use('/guest/orders', require('./guest/orders'));
 
 router.use((req, res, next) => {
