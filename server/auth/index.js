@@ -12,7 +12,11 @@ router.post('/login', (req, res, next) => {
         console.log('Incorrect password for user:', req.body.email)
         res.status(401).send('Wrong username and/or password')
       } else {
-        req.login(user, err => (err ? next(err) : res.json(user)))
+        if(user.isVerified) {
+          req.login(user, err => (err ? next(err) : res.json(user)))
+        } else {
+          res.status(401).send('Password has expired. Reset Password');
+        }
       }
     })
     .catch(next)
