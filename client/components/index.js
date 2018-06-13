@@ -40,3 +40,5 @@ export {default as CheckoutProductDetails} from './checkout/checkout-product-det
 export {default as CheckoutSummary} from './checkout/checkout-summary'
 export {default as AdminProductRow} from './admin/admin-product-row'
 export {default as AdminProductTable} from './admin/admin-product-table'
+export {default as OrderDetailAdmin} from './admin/order-detail-admin'
+export {default as ConfirmationSummary} from './checkout/confirmation-summary'

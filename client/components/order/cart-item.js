@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Item, Button, Table, Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import {DisplayAmount} from '../'
 
 class CartItem extends Component {
   constructor (props){
@@ -29,9 +30,10 @@ class CartItem extends Component {
         </Table.Cell>
 
           <Table.Cell>{quantity}</Table.Cell>
-          <Table.Cell>${item.price}</Table.Cell>
-          <Table.Cell>${subtotal}</Table.Cell>
+          <Table.Cell><DisplayAmount amount={item.price} /></Table.Cell>
+          <Table.Cell><DisplayAmount amount={subtotal} /></Table.Cell>
           <Table.Cell><Button size="mini" color="blue" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
+
         </Table.Row>)
 
 }

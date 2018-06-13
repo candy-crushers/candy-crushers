@@ -25,7 +25,6 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path='/cart' component={Cart} />
         <Route exact path='/checkout' component={StripeCheckout} />
-        <Route path='/checkout/confirmation' component={Confirmation} />
         {
           isLoggedIn &&
           <Switch>

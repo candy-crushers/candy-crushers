@@ -64,7 +64,7 @@ class ProductForm extends Component {
           <Form.Group widths="equal">
             <Form.Field>
               <label htmlFor="price">Price</label>
-              <input type="number" min="0.00" step="0.01" name="price" value={this.state.price} required />
+              <input type="number" min="0.00" step="0.01" name="price" value={Number((this.state.price/100).toFixed(2))} />
             </Form.Field>
             <Form.Field>
               <label htmlFor="inventory">Inventory</label>

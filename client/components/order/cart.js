@@ -36,7 +36,7 @@ class Cart extends React.Component {
     <Table.Body>
       {
        cart.map((item) => {
-         return <CartItem deleteItem={deleteItem} item={item} key={item.id}/>
+         return <CartItem deleteItem={deleteItem} item={item} key={item.item.id}/>
        })
       }
     </Table.Body>
@@ -48,7 +48,7 @@ class Cart extends React.Component {
         </div><br />
         {subtotal ? <div>
           <Link to={'/checkout'} >
-            <Button animated='vertical' color="teal" size="massive">
+            <Button animated='vertical' color="blue" size="massive">
               <Button.Content hidden>Checkout</Button.Content>
               <Button.Content visible>
                 <Icon name='payment' />
@@ -80,34 +80,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
-
-
-  {/* <Image src={cartItem.item.images[0]} size='small' />
-                <Link to={'/products/' + cartItem.item.id} >
-                  {cartItem.item.name}
-                </Link>
-                <h5>${cartItem.item.price}</h5>
-                <form>
-                  <input type="number" name="quantity" value={cartItem.quantity} onChange={(event) => this.changeQuantity(event, cartItem.item.id)} />
-                </form>
-                <button
-                  type='button'
-                  onClick={() => deleteItem(cartItem.item.id)}
-                >
-                Delete
-                </button> */}
-
-
-
-                // <Container>
-                // <div className="cartItemContainer">
-                //   <Item.Group>
-                //   {cart.length ? cart.map( cartItem =>
-                //     (
-                //       <div key={cartItem.item.id} className="cartItemWrapper">
-                //         <CartItem item={cartItem} deleteItem={deleteItem}/>
-                //       </div>
-                //     )) : <div>Cart is Empty :(</div>
-                //   }
-                //   </Item.Group>
-                //   </div>
