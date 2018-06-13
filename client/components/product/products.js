@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, fetchCategories, setCategory} from '../../store'
-import { Link } from 'react-router-dom'
-import {Container, Image, Segment, Grid } from 'semantic-ui-react'
+import {Container, Grid, Input, Dropdown } from 'semantic-ui-react'
 import {AllProductsCard} from '../';
 
 
@@ -32,9 +31,9 @@ class Products extends React.Component {
       !!product.categories.filter( category => category.id === Number(categoryId)).length)
   }
 
-  handleChange = async (event) => {
-    const activeCategory = this.props.categories.filter(category => category.id === Number(event.target.value))[0]
-    if(activeCategory) {
+  handleChange = async (event, { value }) => {
+    const activeCategory = this.props.categories.find(category => category.id === value)
+    if (activeCategory) {
       await this.props.setCategory(activeCategory)
       const showProducts = this.filterProducts(this.props.selectedCategory.id)
       this.setState({
@@ -51,7 +50,7 @@ class Products extends React.Component {
   handleSearch = (event) => {
     if(event.target.value) {
       const showProducts = this.state.showProducts.filter(product =>
-        product.name.toLowerCase().startsWith(event.target.value)
+        product.name.toLowerCase().startsWith(event.target.value.toLowerCase())
       )
       this.setState({
         showProducts
@@ -69,29 +68,29 @@ class Products extends React.Component {
     const products = this.state.showProducts;
     return (
       <Container >
-        <div>
-        {/* <Link to="/admin/products/add">Add Product</Link> */}
-        <select onChange={this.handleChange} value={selectedCategory.id}>
-          <option value={null}>Select Category</option>
-          {categories.map( category =>
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          )}
-        </select>
-        <form onChange={this.handleSearch}>
-          <label>Search: </label>
-          <input
-           type="text"
-          />
-        </form>
-        </div><br />
-        <Grid columns={3} >
-        {products.length ? products.map( (product) =>
-        (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>)) :
-        <h2>Your filter did not match any Products</h2>
-        }
-      </Grid>
+        <Grid columns="equal" id="products-filters">
+          <Grid.Column width={9}>
+            <form onChange={this.handleSearch}>
+              <Input name="search" type="text" icon="search" placeholder="Search..." fluid />
+            </form>
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Dropdown
+              placeholder='Filter by category'
+              fluid
+              selection
+              options={[{text:'all', value: null}, ...categories.map(category => ({text: category.name, value: category.id}))]}
+              onChange={this.handleChange}
+              value={selectedCategory.id}
+            />
+          </Grid.Column>
+        </Grid><br />
+        <Grid columns={3}>
+          {products.length ? products.map( (product) =>
+          (<Grid.Column width={5} key={product.id}><AllProductsCard product={product} key={product.id} /></Grid.Column>)) :
+          <h2>Your filter did not match any Products</h2>
+          }
+        </Grid>
       </Container>
     )
   }
