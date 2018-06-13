@@ -40,3 +40,4 @@ export {default as CheckoutProductDetails} from './checkout/checkout-product-det
 export {default as CheckoutSummary} from './checkout/checkout-summary'
 export {default as OrderDetailAdmin} from './admin/order-detail-admin'
 export {default as ConfirmationSummary} from './checkout/confirmation-summary'
+export {default as OrderDetailUser} from './order/order-detail'
