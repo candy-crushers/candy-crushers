@@ -61,13 +61,13 @@ class AdminCategories extends React.Component {
                     {category.name}
                   </Table.Cell>
                   <Table.Cell>
-                    <Modal trigger ={<Button>Edit</Button>} closeIcon >
+                    <Modal trigger ={<Button color="pink">Edit</Button>} closeIcon >
                       <Modal.Header>Edit Category Name</Modal.Header>
                       <Form onSubmit={() => this.editSubmit(category.id)} >
                         <Form.Field inline>
                           <input type="text" placeholder={category.name} ref={input => this._name = input} />
                         </Form.Field>
-                        <Button primary color="pink">Edit</Button>
+                        <Button color="pink">Edit</Button>
                       </Form>
                     </Modal>
                   </Table.Cell>
