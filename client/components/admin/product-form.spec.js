@@ -16,7 +16,7 @@ describe('<ProductForm> Component', () => {
         id: 1,
         name: 'Kit-Kat',
         description: 'Oat cake soufflé powder carrot cake gummi bears.',
-        price: 1.99,
+        price: 199,
         inventory: 100,
         categories: []
       }
