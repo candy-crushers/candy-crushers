@@ -34,7 +34,6 @@ class Routes extends Component {
               <Switch>
                 <Route exact path="/orders" component={UserOrderHistory} />
                 <Route path="/orders/:id" component={UserSingleOrder} />
-                <Route path="/account" render={() => <div>Hi</div>} />
                 <Redirect to="/products" />
               </Switch>
             }
