@@ -18,11 +18,13 @@ class ProductForm extends Component {
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.product && nextProps.product.id) {
       const selectedCategories = nextProps.product.categories.map( category => category.id);
-      this.setState({...nextProps.product, selectedCategories});
+      const product = {...nextProps.product, selectedCategories}
+      product.price = Number((product.price / 100).toFixed(2))
+      this.setState(product)
     }
   }
 
-  handleCategories = (event,{value}) => {
+  handleCategories = (event, {value}) => {
     this.setState({
       selectedCategories: value
     })
@@ -64,11 +66,11 @@ class ProductForm extends Component {
           <Form.Group widths="equal">
             <Form.Field>
               <label htmlFor="price">Price</label>
-              <input type="number" min="0.00" step="0.01" name="price" value={Number((this.state.price/100).toFixed(2))} />
+              <input type="number" min="0.00" step="0.01" name="price" value={this.state.price} onChange={() => {}} />
             </Form.Field>
             <Form.Field>
               <label htmlFor="inventory">Inventory</label>
-              <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} required />
+              <input type="number" min="0" step="1" name="inventory" value={this.state.inventory} required onChange={() => {}} />
             </Form.Field>
           </Form.Group>
           <Form.Field>
