@@ -8,9 +8,8 @@ class CartItem extends Component {
     super(props)
   }
 
-
   render(){
-    const { deleteItem } = this.props
+    const { deleteItem, handleChange } = this.props
     const { item, quantity } = this.props.item
     const subtotal = quantity * item.price
     //const index = Math.floor(Math.random() * 10)
@@ -29,7 +28,7 @@ class CartItem extends Component {
             </Link>}
         </Table.Cell>
 
-          <Table.Cell>{quantity}</Table.Cell>
+          <Table.Cell><input onChange={(e) => handleChange(e, item.id)} type="number" min="0" step="1" value={quantity}/></Table.Cell>
           <Table.Cell><DisplayAmount amount={item.price} /></Table.Cell>
           <Table.Cell><DisplayAmount amount={subtotal} /></Table.Cell>
           <Table.Cell><Button size="mini" color="blue" floated='right' onClick={() => deleteItem(item.id)} >Delete</Button></Table.Cell>
@@ -40,10 +39,3 @@ class CartItem extends Component {
 }
 
 export default CartItem
-
-
-
-
-
-
-

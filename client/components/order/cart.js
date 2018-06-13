@@ -3,14 +3,12 @@ import {connect} from 'react-redux'
 import {deleteItem, editquantity} from '../../store'
 import { Link } from 'react-router-dom'
 import { Container, Image, Button, Icon, Item, Table } from 'semantic-ui-react';
-import { CartItem } from '../'
-import {DisplayAmount} from '../'
+import { CartItem, DisplayAmount } from '../'
 
 class Cart extends React.Component {
 
   changeQuantity = (event, id) => {
-    event.preventDefault()
-    if(event.target.value > 0){
+    if (event.target.value > 0){
       this.props.editquantity({
         id,
         quantity: event.target.value
@@ -36,7 +34,7 @@ class Cart extends React.Component {
     <Table.Body>
       {
        cart.map((item) => {
-         return <CartItem deleteItem={deleteItem} item={item} key={item.item.id}/>
+         return <CartItem deleteItem={deleteItem} item={item} key={item.item.id} handleChange={this.changeQuantity} />
        })
       }
     </Table.Body>
