@@ -64,6 +64,12 @@ form.checkout div, #auth-form.form div {
   display: flex;
 }
 
+.cartPicker {
+  display: flex;
+  justify-content: space-between;
+  width: 75px
+}
+
 /* -----MULTI-PHOTO-DISPLAY------ */
 
 .multiPhoto {

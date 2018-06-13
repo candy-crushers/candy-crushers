@@ -7,11 +7,11 @@ import { CartItem, DisplayAmount } from '../'
 
 class Cart extends React.Component {
 
-  changeQuantity = (event, id) => {
-    if (event.target.value > 0){
+  changeQuantity = (event, id, diff) => {
+    if (diff > 0){
       this.props.editquantity({
         id,
-        quantity: event.target.value
+        quantity: diff
       });
     }
   }
