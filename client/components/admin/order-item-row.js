@@ -9,7 +9,7 @@ function OrderItemRow(props){
   return (
       <Table.Row  >
         <Table.Cell >
-        {<Link to={'/admin/orders/' + order.id} >
+        {<Link to={'/admin/dashboard/orders/' + order.id} >
           <Header as='h4' >
             <Header.Content>
               click to view order <br />#{order.id}
