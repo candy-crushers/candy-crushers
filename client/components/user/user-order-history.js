@@ -4,7 +4,7 @@ import { createGetOrdersForUserThunk } from '../../store';
 import { OrderRow, OrderDetailUser } from '../'
 import { Container, Segment } from 'semantic-ui-react'
 
->>>>>>> 363112343f210402572c76b2da1f8668b7cf2c14
+
 
 class UserOrderHistory extends Component {
 

@@ -1,10 +1,6 @@
 import React from 'react'
 import {DisplayAmount} from '../'
-<<<<<<< HEAD
 import { Table, Header, Image, Grid, Menu } from 'semantic-ui-react'
-=======
-import { Table } from 'semantic-ui-react'
->>>>>>> 363112343f210402572c76b2da1f8668b7cf2c14
 import { Link } from 'react-router-dom'
 
 
@@ -14,7 +10,6 @@ function OrderDetailUser({ order }){
   const address = order.shippingAddress.slice(0, addrLine1Indx) + order.shippingAddress.slice(addrLine1Indx + 1)
   return (
     <div>
-<<<<<<< HEAD
       <Menu text fluid vertical>
           <Menu.Item className='header'>Order Number:</Menu.Item>
           <Menu.Item>{order.id}</Menu.Item>
@@ -60,39 +55,6 @@ function OrderDetailUser({ order }){
             <Image src={product.images[7]} rounded size='mini' />
             </Header>
             </Table.Cell>
-=======
-    <Table striped>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Order Date</Table.HeaderCell>
-          <Table.HeaderCell>Shipped To</Table.HeaderCell>
-          <Table.HeaderCell >Total</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-      <Table.Row>
-              <Table.Cell>{order.orderDate}</Table.Cell>
-              <Table.Cell>{address}</Table.Cell>
-              <Table.Cell>{<DisplayAmount amount={order.subtotal} />}</Table.Cell>
-            </Table.Row>
-
-      </Table.Body>
-      </Table>
-
-    <Table striped>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Quantity</Table.HeaderCell>
-          <Table.HeaderCell >Price</Table.HeaderCell>
-          <Table.HeaderCell >Subtotal</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {
-          order.products.map((product) =>{
-            return (<Table.Row key={product.id}>
-            <Table.Cell>{product.images[7]}</Table.Cell>
->>>>>>> 363112343f210402572c76b2da1f8668b7cf2c14
               <Table.Cell>{product.name}</Table.Cell>
               <Table.Cell>{product.order_products.quantity}</Table.Cell>
               <Table.Cell>{<DisplayAmount amount={product.price} />}</Table.Cell>

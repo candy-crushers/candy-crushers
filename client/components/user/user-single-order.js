@@ -3,6 +3,7 @@ import { createGetOrderForUserThunk } from '../../store'
 import { connect } from 'react-redux'
 import { OrderProductDetails } from '../'
 import { OrderDetail } from '../'
+import { Container, Segment } from 'semantic-ui-react'
 
 class UserSingleOrder extends Component {
 
@@ -13,10 +14,16 @@ class UserSingleOrder extends Component {
   render () {
     const { order } = this.props
     return (
-      <div>
-        <h1>Order Details</h1>
-        <OrderDetail order={order} />
-        <OrderProductDetails products={order.products} />
+      <div><br /><br />
+        <Container>
+          <h1>Order Details</h1>
+            <Segment>
+            <Container>
+              <OrderDetail order={order} />
+              <OrderProductDetails products={order.products} />
+              </Container>
+            </Segment>
+        </Container>
       </div>
     )
   }
