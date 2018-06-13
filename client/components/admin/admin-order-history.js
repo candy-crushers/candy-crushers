@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createGetOrdersForAdminThunk } from '../../store';
+import { createGetOrdersForAdminThunk, createEditOrderForAdminThunk } from '../../store';
 import {Table, Header, Container} from 'semantic-ui-react'
-import { OrderRow, StatusFilterRadios, OrderItemRow } from '../'
+import { OrderRow, StatusFilterRadios, OrderItemRow, ChangeStatusForm } from '../'
 
 class AdminOrderHistory extends Component {
   constructor(props){
@@ -16,9 +16,9 @@ class AdminOrderHistory extends Component {
     this.props.getOrders()
   }
 
-  handleRadioChange = (event) => {
-    const filter = event.target.value
-    this.setState({ filter })
+
+  handleEdit = (event, data, id) => {
+    this.props.updateOrderStatus(id, {status: data} )
   }
 
   filterOrders = (orders) => {
@@ -36,7 +36,6 @@ class AdminOrderHistory extends Component {
       <Container>
       <div className="order-history"><br />
         <h1>All Orders</h1>
-        <StatusFilterRadios handleChange={this.handleRadioChange} checked={this.state.filter}/>
         <Container><br />
           <Table striped >
             <Table.Header>
@@ -51,7 +50,7 @@ class AdminOrderHistory extends Component {
           <Table.Body>
           {
             filteredOrders.length ?
-            filteredOrders.map(order => <OrderItemRow key={order.id} order={order} />)
+            filteredOrders.map(order => <OrderItemRow key={order.id} order={order} changeStatus={this.handleEdit}/>)
             : <Table.Row></Table.Row>
           }
          </Table.Body>
@@ -70,7 +69,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getOrders: () => dispatch(createGetOrdersForAdminThunk())
+    getOrders: () => dispatch(createGetOrdersForAdminThunk()),
+    updateOrderStatus: (id, status) => {
+      dispatch(createEditOrderForAdminThunk(id, status))
+    }
   }
 }
 

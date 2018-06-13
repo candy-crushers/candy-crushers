@@ -47,7 +47,6 @@ const sendStatusChangeEmail = (status, orderId) => {
 export const createEditOrderForAdminThunk = (id, status) => {
   return async (dispatch) => {
     try {
-      console.log('in thunk', id, status)
       await axios.put(`/api/admin/orders/${id}`, status)
       dispatch(editOrderForAdminAction(status))
       await sendStatusChangeEmail(status, id)
