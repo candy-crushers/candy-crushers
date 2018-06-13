@@ -5,6 +5,7 @@ import {Table} from 'semantic-ui-react'
 
 const OrderProductDetails = ({ products }) => {
   return (
+
       <Table striped>
         <Table.Header>
           <Table.Row>

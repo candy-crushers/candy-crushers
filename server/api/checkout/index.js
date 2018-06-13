@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY || 'sk_test_BQok
 
 router.post('/stripe', (req, res, next) => {
   const stripeToken = req.body.stripeToken
-  const amount = Number((req.body.subtotal * 100).toFixed(0))
+  const amount = req.body.subtotal
 
   stripe.charges.create({
     amount,

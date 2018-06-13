@@ -43,7 +43,6 @@ class CandyItem extends Component {
               <Item.Header as='h1'>{name}</Item.Header>
               <Item.Description>{description}</Item.Description><br /><br />
                 <Item.Extra>
-                    <p>{`price : ${price}`}</p><br />
                   { button && <Button color='pink' onClick={handleClick} >{B}</Button> }
                   { (text && !outOfStock) && <form onSubmit={handleSubmit} >
                       <input type="number" name="quantity" value={quantity} onChange={handleChange} /><br /><br />
