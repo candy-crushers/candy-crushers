@@ -22,10 +22,10 @@ class SingleProduct extends Component {
 
   handleChange = (event) => {
     event.preventDefault()
-    if(event.target.value > 0){
-      this.setState({
-        [event.target.name] : event.target.value
-      })
+    if(event.target.value > 0 && event.target.value <= this.props.singleProduct.inventory){
+        this.setState({
+          [event.target.name] : event.target.value
+        })
     }
   }
 

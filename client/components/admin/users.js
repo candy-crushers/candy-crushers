@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchUsersThunk, changeAdminStatus, changePasswordTriggerThunk,  deleteUserThunk } from '../../store'
-import {Checkbox, Container} from 'semantic-ui-react'
+import {Checkbox, Container, Button} from 'semantic-ui-react'
 
 class AdminUsers extends React.Component {
 
@@ -21,17 +21,16 @@ class AdminUsers extends React.Component {
                {user.email}
             </div>
               <Checkbox
-                label='Admin'
+                label="Admin"
                 checked={user.isAdmin}
                 onChange={() => changeAdminStatus({...user, isAdmin: !user.isAdmin})}
                 toggle
               />
-              <Checkbox
-                label='Password Reset'
-                checked={!user.isVerified}
-                onChange={() => changePassword(user) }
-                radio
-              />
+              <Button
+                onClick={() => changePassword(user) }
+              >
+              Password Reset
+              </Button>
             <div>
               {currentUser.id !== user.id ? <button type="button" onClick={() => deleteUser(user.id)}>Delete</button> :
               null }

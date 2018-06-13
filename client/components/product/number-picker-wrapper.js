@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { addItem } from '../../store'
-import { Icon, Segment, Button } from 'semantic-ui-react'
+import { Icon, Segment, Button, Message } from 'semantic-ui-react'
 
 
 
@@ -27,9 +27,12 @@ class NumberPickerWrapper extends Component {
 
   plus(event){
     event.preventDefault()
-    this.setState({
-      quantity : this.state.quantity + 1
-    })
+    console.log(this.props.product.inventory)
+    if(this.state.quantity < this.props.product.inventory) {
+      this.setState({
+        quantity : this.state.quantity + 1
+      })
+    }
   }
 
   minus(event){
@@ -46,15 +49,23 @@ class NumberPickerWrapper extends Component {
 
   render(){
     const quantity = this.state.quantity
+    const {inventory} = this.props.product;
+
     return(
       <div>
       <div className="numberPicker" >
         <p>quantity:</p>
         <Icon name='minus square' onClick={(e) => this.minus(e) }/>
           <p>{quantity}</p>
-        <Icon name='plus square' onClick={(e) => this.plus(e) }/>
+        <Icon name='plus square' onClick={(e) => this.plus(e) } disabled={quantity === inventory}/>
+
       </div>
         <Button size='mini' color='blue' onClick={(e) => this.handleSubmit(e)}>Add to  Cart!</Button>
+        { quantity === inventory &&
+        <Message negative>
+          <Message.Header>{`Only ${quantity} left!`}</Message.Header>
+        </Message>
+        }
         </div>)
 
   }

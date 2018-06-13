@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, Container, Button } from 'semantic-ui-react'
+import { Item, Container, Button, Message } from 'semantic-ui-react'
 import MultiPhotoDisplay from './multi-photo-display'
 import {DisplayAmount} from '../'
 
@@ -21,7 +21,7 @@ class CandyItem extends Component {
   }
 
     render (){
-      const { images, name, price, description } = this.props.product
+      const { images, name, price, description, inventory } = this.props.product
       const { text, quantity, handleChange, handleSubmit } = this.props.showQuantity
       const { button, handleClick, outOfStock, multi } = this.props
       const multiContent = {
@@ -48,6 +48,10 @@ class CandyItem extends Component {
                       <input type="number" name="quantity" value={quantity} onChange={handleChange} /><br /><br />
                       <Button color='blue' size="mini" type="submit">{text}</Button>
                     </form> }
+                    {Number(quantity) === inventory &&
+                    <Message negative>
+                      <Message.Header>{`Only ${quantity} left!`}</Message.Header>
+                    </Message>}
                     <p>price : <DisplayAmount amount={price} /></p>
                 </Item.Extra>
             </Item.Content>
