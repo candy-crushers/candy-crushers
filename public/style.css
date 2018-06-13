@@ -232,3 +232,10 @@ form.checkout div, #auth-form.form div {
   width: 150px
 
 }
+
+/* -----Reset Password------ */
+
+#reset-password {
+  margin: 2em auto;
+  width: 60vw;
+}
